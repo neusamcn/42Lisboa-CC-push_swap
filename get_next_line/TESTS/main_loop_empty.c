@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_loop.c                                        :+:      :+:    :+:   */
+/*   main_loop_empty.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mu <mu@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 16:22:27 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/02 22:41:02 by mu               ###   ########.fr       */
+/*   Updated: 2025/06/02 22:41:43 by mu               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(void)
 	int		fd;
 	char	*line;
 
-	file = "TESTS/test.txt";
+	file = "TESTS/test_empty.txt";
 	fd = open(file, O_RDONLY);
 	// file offset (mark of current position @ file) set to beginning of file.
 	line = NULL;
@@ -31,7 +31,8 @@ int	main(void)
 	{
 		printf("\n***** Next line: *****\n");
 		printf("%s\n", line);
-		free(line);
+		if (line != NULL)
+			free(line);
 	}
 	close(fd);
 	return (0);
