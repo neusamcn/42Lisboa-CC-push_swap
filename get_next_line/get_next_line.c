@@ -6,7 +6,7 @@
 /*   By: mu <mu@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 16:39:42 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/02 23:19:04 by mu               ###   ########.fr       */
+/*   Updated: 2025/06/02 23:30:10 by mu               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,6 @@ char	*get_next_line(int fd)
 // TO DO:
 // 1. TEST ALL edge cases
 // 1.1. empty file => must return NULL,
-// 1.1.1. empty file with BUFFER_SIZE = 0 => must return NULL,
-// 1.1.2. empty file with BUFFER_SIZE > 0 => must return NULL,
-// 1.1.3. empty file with BUFFER_SIZE < 0 => must return NULL,
 // 1.2. big BUFFER_SIZEs (subject),
 // 1.3. extremely long line,
 // 1.4. change fd mid function calls
