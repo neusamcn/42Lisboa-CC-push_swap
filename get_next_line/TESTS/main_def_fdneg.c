@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main_def_fdneg.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 16:40:04 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/03 14:43:03 by ncruz-ne         ###   ########.fr       */
+/*   Created: 2025/06/01 16:24:56 by ncruz-ne          #+#    #+#             */
+/*   Updated: 2025/06/03 12:22:34 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "get_next_line.h"
+#include <stdio.h>
 
-# include <fcntl.h>
-# include <stddef.h>
-# include <stdlib.h>
-# include <unistd.h>
+int	main(void)
+{
+	char	*line;
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
-
-char	*get_next_line(int fd);
-void	*ft_calloc(size_t nmemb, size_t size);
-// char	*ft_strrchr(const char *s, int c);
-// size_t	nl_buffer(int fd);
-
-#endif
+	printf("%s\n", line = get_next_line(-1));
+	if (line != NULL)
+		free(line);
+	printf("\n***** Next line: *****\n");
+	printf("%s\n", line = get_next_line(-1));
+	if (line != NULL)
+		free(line);
+	return (0);
+}

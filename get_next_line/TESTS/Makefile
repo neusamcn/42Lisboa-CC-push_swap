@@ -6,7 +6,7 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/26 17:11:21 by ncruz-ne          #+#    #+#              #
-#    Updated: 2025/06/01 19:22:49 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2025/06/03 14:15:47 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ EXEC = $(MAIN_SRCS:.c=)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(EXEC): %: %.o $(NAME)
-	$(CC) $(CFLAGS) -g -Wno-format -Wno-format-overflow $< $(NAME) -o $@
+	$(CC) $(CFLAGS) -g $< $(NAME) -o $@
 
 run: $(EXEC)
 	@for exe in $(EXEC); do \

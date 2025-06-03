@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 16:40:10 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/03 14:43:03 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/06/03 14:28:04 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,18 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	return (NULL);
 }
 
-// char	*ft_strrchr(const char *s, int c)
-// {
-// 	int	i;
+char	*ft_strrchr(const char *s, int c)
+{
+	int	i;
 
-// 	i = 0;
-// 	while (s[i] != '\0')
-// 		i++;
-// 	while (i >= 0)
-// 	{
-// 		if (s[i] == (unsigned char)c)
-// 			return ((char *)&s[i]);
-// 		i--;
-// 	}
-// 	return (NULL);
-// }
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	while (i >= 0)
+	{
+		if (s[i] == (unsigned char)c)
+			return ((char *)&s[i]);
+		i--;
+	}
+	return (NULL);
+}

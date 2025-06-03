@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 16:39:42 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/03 18:33:36 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/06/03 14:33:27 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,41 +18,16 @@ char	*get_next_line(int fd)
 	ssize_t	tempread;
 	size_t	bytesread;
 	char	*buffer;
-	char	*templine;
+	char	*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	bytesread = 0;
-	buffer = ft_calloc(BUFFER_SIZE, sizeof(char));
-	if (!buffer)
-		return (NULL);
-	while (tempread < BUFFER_SIZE)
-	{
-		tempread = read(fd, buffer, BUFFER_SIZE);
-		if (tempread < 0 || tempread > BUFFER_SIZE)
-		{
-			free(buffer);
-			return (NULL);
-		}
-		while (*buffer != NULL && *buffer != '\n')
-		{
-			templine[bytesread] = *buffer;
-			bytesread++;
-			*buffer++;
-		}
-		if (templine[bytesread - 1])
-	}
-
-
-
-
-
-
 	buffer = ft_calloc(1, sizeof(char));
 	if (!buffer)
 		return (NULL);
-	templine = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (!templine)
+	line = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (!line)
 	{
 		free(buffer);
 		return (NULL);
@@ -60,24 +35,23 @@ char	*get_next_line(int fd)
 	while (*buffer != '\n' && bytesread < BUFFER_SIZE)
 	{
 		tempread = read(fd, buffer, 1);
-		if (tempread == EOF)
+		if (*buffer == EOF || tempread != 1)
 		{
 			free(buffer);
-			return (templine);
+			if (tempread == 0)
+			{
+				free(line);
+				return (NULL);
+			}
+			return (line);
 		}
-		else if (tempread != 1)
-		{
-			free(buffer);
-			free(templine);
-			return (NULL);
-		}
-		templine[bytesread] = *buffer;
+		line[bytesread] = *buffer;
 		bytesread++;
 	}
 	free(buffer);
-	if (templine[bytesread - 1] == '\n')
-		return (templine);
-	free(templine);
+	if (ft_strrchr(line, 10) != NULL)
+		return (line);
+	free(line);
 	return (NULL);
 }
 
