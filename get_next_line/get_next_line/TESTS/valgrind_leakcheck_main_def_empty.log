@@ -1,0 +1,53 @@
+==421255== Memcheck, a memory error detector
+==421255== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==421255== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==421255== Command: /home/ncruz-ne/Documents/ProjectsNeusa/CC/get_next_line/TESTS/main_def_empty
+==421255== Parent PID: 421229
+==421255== 
+==421255== Invalid read of size 1
+==421255==    at 0x4013B2: get_next_line (in /home/ncruz-ne/Documents/ProjectsNeusa/CC/get_next_line/TESTS/main_def_empty)
+==421255==    by 0x4011F3: main (in /home/ncruz-ne/Documents/ProjectsNeusa/CC/get_next_line/TESTS/main_def_empty)
+==421255==  Address 0xffffffffffffffff is not stack'd, malloc'd or (recently) free'd
+==421255== 
+==421255== 
+==421255== Process terminating with default action of signal 11 (SIGSEGV)
+==421255==  Access not within mapped region at address 0xFFFFFFFFFFFFFFFF
+==421255==    at 0x4013B2: get_next_line (in /home/ncruz-ne/Documents/ProjectsNeusa/CC/get_next_line/TESTS/main_def_empty)
+==421255==    by 0x4011F3: main (in /home/ncruz-ne/Documents/ProjectsNeusa/CC/get_next_line/TESTS/main_def_empty)
+==421255==  If you believe this happened as a result of a stack
+==421255==  overflow in your program's main thread (unlikely but
+==421255==  possible), you can try to increase the size of the
+==421255==  main thread stack using the --main-stacksize= flag.
+==421255==  The main thread stack size used in this run was 8388608.
+==421255== 
+==421255== HEAP SUMMARY:
+==421255==     in use at exit: 1,066 bytes in 2 blocks
+==421255==   total heap usage: 2 allocs, 0 frees, 1,066 bytes allocated
+==421255== 
+==421255== 42 bytes in 1 blocks are still reachable in loss record 1 of 2
+==421255==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==421255==    by 0x401510: ft_calloc (in /home/ncruz-ne/Documents/ProjectsNeusa/CC/get_next_line/TESTS/main_def_empty)
+==421255==    by 0x4012D0: get_next_line (in /home/ncruz-ne/Documents/ProjectsNeusa/CC/get_next_line/TESTS/main_def_empty)
+==421255==    by 0x4011F3: main (in /home/ncruz-ne/Documents/ProjectsNeusa/CC/get_next_line/TESTS/main_def_empty)
+==421255== 
+==421255== 1,024 bytes in 1 blocks are still reachable in loss record 2 of 2
+==421255==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==421255==    by 0x48EFBA3: _IO_file_doallocate (filedoalloc.c:101)
+==421255==    by 0x48FECDF: _IO_doallocbuf (genops.c:347)
+==421255==    by 0x48FDF5F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:744)
+==421255==    by 0x48FC6D4: _IO_new_file_xsputn (fileops.c:1243)
+==421255==    by 0x48FC6D4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1196)
+==421255==    by 0x48E614C: outstring_func (vfprintf-internal.c:239)
+==421255==    by 0x48E614C: __vfprintf_internal (vfprintf-internal.c:1263)
+==421255==    by 0x48D179E: printf (printf.c:33)
+==421255==    by 0x4011EB: main (in /home/ncruz-ne/Documents/ProjectsNeusa/CC/get_next_line/TESTS/main_def_empty)
+==421255== 
+==421255== LEAK SUMMARY:
+==421255==    definitely lost: 0 bytes in 0 blocks
+==421255==    indirectly lost: 0 bytes in 0 blocks
+==421255==      possibly lost: 0 bytes in 0 blocks
+==421255==    still reachable: 1,066 bytes in 2 blocks
+==421255==         suppressed: 0 bytes in 0 blocks
+==421255== 
+==421255== For lists of detected and suppressed errors, rerun with: -s
+==421255== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
