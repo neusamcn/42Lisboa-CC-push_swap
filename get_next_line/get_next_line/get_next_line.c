@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 16:39:42 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/04 18:56:24 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/06/06 22:07:38 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,41 +15,111 @@
 
 char	*get_next_line(int fd)
 {
-	ssize_t	tempread;
-	ssize_t	i;
-	char	*buffer;
-	char	*line;
+	char		*buf1;
+	static char	*buf2;
+	char		*line;
+	char		*nextline;
+	ssize_t		bytesread;
 
-	t_list *ft_lstnew(void *content);
-	t_list *ft_lstlast(t_list * lst);
-	void ft_lstadd_back(t_list * *lst, t_list * new);
-
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	// tempread = 0;
-	i = 0;
-	buffer = malloc(BUFFER_SIZE * sizeof(char));
-	if (!buffer)
-		return (NULL);
-	tempread = read(fd, buffer, BUFFER_SIZE);
-	if (tempread < 0)
+	// necessary?
+	if (BUFFER_SIZE > 0 && fd >= 0)
 	{
-		free(buffer);
-		return (NULL);
-	}
-	line = ft_calloc();
-	while (buffer[i] !=  '\n' && i <= tempread)
-	{
-		line[i] = buffer[i];
-		if (line[i] == '\n')
+		buf1 = ft_calloc(BUFFER_SIZE + 1, 1);
+		bytesread = read(fd, buf1, BUFFER_SIZE);
+		if (bytesread <= 0)
 		{
-			free(buffer);
+			free(buf1);
+			return (NULL);
+		}
+		buf2 = ft_calloc(BUFFER_SIZE + 1, 1);
+		bytesread = read(fd, buf2, BUFFER_SIZE);
+		if (bytesread < 0)
+		{
+			free(buf1);
+			free(buf2);
+			return (NULL);
+		}
+		line = ft_strjoin_nl(buf1, buf2);
+		free(buf1);
+		if (bytesread == 0)
+		{
+			free(buf2);
 			return (line);
 		}
-		i++;
+		while (bytesread >= 0)
+		{
+			bytesread = read(fd, buf2, BUFFER_SIZE);
+			nextline = ft_strjoin_nl(line, buf2);
+			if (ft_strrchr(nextline, 10) != NULL || bytesread == 0)
+			{
+				free(buf2);
+				free(line);
+				return (nextline);
+			}
+			ft_strlcpy(line, nextline, ft_strlen(nextline));
+		}
+		free(buf2);
+		free(line);
+		free(nextline);
 	}
-
+	return (NULL);
 }
+// {
+// 	ssize_t	tempread;
+// 	ssize_t	bytesread;
+// 	ssize_t	i;
+// 	ssize_t	i_max;
+// 	static char	*buffer;
+// 	char	*line_cnt; // ?
+// 	t_list	*line_nd;
+// 	t_list	**line_lst;
+
+// 	t_list *ft_lstlast(t_list * lst);
+// 	void ft_lstadd_back(t_list **lst, t_list *new);
+// 	if (fd < 0 || BUFFER_SIZE <= 0)
+// 		return (NULL);
+// 	// tempread = 0;
+// 	bytesread = 0;
+// 	i = 0;
+// 	i_max = 0;
+// 	buffer = ft_calloc(BUFFER_SIZE + 1, 1);
+// 	if (!buffer)
+// 		return (NULL);
+// 	tempread = read(fd, buffer, BUFFER_SIZE);
+// 	if (tempread < 0)
+// 	{
+// 		free(buffer);
+// 		return (NULL);
+// 	}
+// 	if (tempread == 0)
+// 		return (buffer);
+// 	if (ft_strrchr(buffer, 10) != NULL)
+// 	{
+// 		// return (substring up to '\n' & save rest for next call - static buffer);
+// 	}
+// 	line_nd = ft_lstnew(buffer);
+// 	*line_lst = line_nd; // needed? makes sense?
+// 	while (tempread > 0)
+// 	{
+// 		bytesread += tempread;
+// 		tempread = read(fd, buffer, BUFFER_SIZE);
+// 		if (ft_strrchr(buffer, 10) == NULL)
+// 			ft_lstadd_back(line_lst, buffer);
+// 	}
+// 	// found '\n'. then what
+// 	while (buffer[i_max] != '\n')
+// 		i_max++;
+// 	while (i < i_max)
+// 	{
+// 		line_cnt[i] = buffer[i];
+// 		i++;
+// 	}
+// 	line_nd = ft_lstnew(line_cnt); // do i need to have
+// 	ft_lstadd_back(line_lst, line_nd);
+// 	// 1. save buffer leftover; 2. cpy all to char*; 3. return char*
+
+// }
+
 // {
 // 	ssize_t	tempread;
 // 	size_t	bytesread;
