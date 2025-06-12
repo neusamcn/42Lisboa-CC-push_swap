@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mu <mu@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 16:22:27 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/02 22:41:02 by mu               ###   ########.fr       */
+/*   Updated: 2025/06/06 18:53:14 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
+# include <fcntl.h>
 
 int	main(void)
 {

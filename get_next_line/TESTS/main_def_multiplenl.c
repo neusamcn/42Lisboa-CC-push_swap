@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_def_nonl.c                                    :+:      :+:    :+:   */
+/*   main_def.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 16:24:56 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/06 18:52:57 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/06/06 18:53:22 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(void)
 	char	*line;
 	int		fd;
 
-	file = "TESTS/test_nonl.txt";
+	file = "TESTS/multiple_nl.txt";
 	fd = open(file, O_RDONLY);
 	// file offset (mark of current position @ file) set to beginning of file.
 	if (fd == -1)

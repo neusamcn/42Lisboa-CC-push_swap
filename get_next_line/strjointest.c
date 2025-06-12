@@ -1,17 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   strjointest.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 16:40:10 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/12 21:16:16 by ncruz-ne         ###   ########.fr       */
+/*   Created: 2025/06/09 16:00:39 by ncruz-ne          #+#    #+#             */
+/*   Updated: 2025/06/09 16:08:22 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <stddef.h>
+#include <unistd.h>
+#include <fcntl.h>
 
 size_t	ft_strlen(const char *s)
 {
@@ -19,16 +22,6 @@ size_t	ft_strlen(const char *s)
 
 	i = 0;
 	while (s[i] != '\0')
-		i++;
-	return (i);
-}
-
-size_t	ft_strlen_nl(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\n')
 		i++;
 	return (i);
 }
@@ -70,68 +63,6 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	return (NULL);
 }
 
-char	*ft_strchr(const char *s, int c)
-{
-	int				i;
-	unsigned char	chr;
-	char			*p;
-
-	i = 0;
-	chr = (unsigned char)c;
-	p = (char *)s;
-	while (*(p + i))
-	{
-		if (*(p + i) == chr)
-			return (p + i);
-		i++;
-	}
-	if (chr == '\0')
-		return (p + i);
-	return (NULL);
-}
-
-char	*ft_strrchr(const char *s, int c)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	while (i >= 0)
-	{
-		if (s[i] == (unsigned char)c)
-			return ((char *)&s[i]);
-		i--;
-	}
-	return (NULL);
-}
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	unsigned int	i;
-	char			*substr;
-	size_t			slen;
-
-	i = 0;
-	slen = ft_strlen(s);
-	if (!s || start >= slen)
-		return (ft_calloc(1, 1));
-	if (slen - start >= len)
-		substr = malloc((len + 1) * sizeof(char));
-	else
-		substr = malloc((slen - start + 1) * sizeof(char));
-	if (!substr)
-		return (NULL);
-	while (s[start] && i < len)
-	{
-		substr[i] = s[start];
-		i++;
-		start++;
-	}
-	substr[i] = '\0';
-	return (substr);
-}
-
 char	*ft_strjoin_nl(char const *s1, char const *s2)
 {
 	char	*join;
@@ -160,20 +91,8 @@ char	*ft_strjoin_nl(char const *s1, char const *s2)
 	return (join);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+int	main(void)
 {
-	size_t	i;
-
-	i = 0;
-	if (size > 0 && src[ft_strlen(src)] == '\0')
-	{
-		while (i < size - 1 && src[i])
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
-	}
-	return (ft_strlen(src));
+	printf("%s\n", ft_strjoin_nl("hello..\n.", "test1\0test2\ntest3"));
+	return (0);
 }
-
