@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 16:40:10 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/12 21:16:16 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/06/15 20:16:58 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,32 +106,6 @@ char	*ft_strrchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	unsigned int	i;
-	char			*substr;
-	size_t			slen;
-
-	i = 0;
-	slen = ft_strlen(s);
-	if (!s || start >= slen)
-		return (ft_calloc(1, 1));
-	if (slen - start >= len)
-		substr = malloc((len + 1) * sizeof(char));
-	else
-		substr = malloc((slen - start + 1) * sizeof(char));
-	if (!substr)
-		return (NULL);
-	while (s[start] && i < len)
-	{
-		substr[i] = s[start];
-		i++;
-		start++;
-	}
-	substr[i] = '\0';
-	return (substr);
-}
-
 char	*ft_strjoin_nl(char const *s1, char const *s2)
 {
 	char	*join;
@@ -177,3 +151,67 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	return (ft_strlen(src));
 }
 
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	size_t	i;
+	size_t	s1len;
+	char	*trimmed;
+
+	if (!s1)
+		return (NULL);
+	i = 0;
+	s1len = ft_strlen(s1);
+	while (s1[i] && ft_strchr(set, (int)s1[i]) != NULL)
+		i++;
+	if (i == s1len)
+	{
+		trimmed = ft_calloc(1, 1);
+		if (!trimmed)
+			return (NULL);
+		return (trimmed);
+	}
+	s1len--;
+	while (s1[s1len] && ft_strrchr(set, (int)s1[s1len]) != NULL)
+		s1len--;
+	trimmed = malloc((s1len - i + 2) * sizeof(char));
+	if (trimmed == NULL)
+		return (NULL);
+	ft_strlcpy(trimmed, s1 + i, s1len - i + 2);
+	return (trimmed);
+}
+
+char	*ft_substr_gnl(char const *s, unsigned int start, size_t len)
+{
+	unsigned int	i;
+	unsigned int	rem;
+	char			*substr;
+	size_t			slen;
+
+	slen = ft_strlen(s);
+	if (!s || start >= slen)
+		return (ft_calloc(1, 1));
+	if (slen - start >= len)
+		substr = malloc((len + 1) * sizeof(char)); // switch to calloc?
+	else
+		substr = malloc((slen - start + 1) * sizeof(char)); // switch to calloc?
+	if (!substr)
+		return (NULL);
+	rem = 0;
+	while (s[rem])
+	{
+		if (s[rem] == 10)
+			break;
+		rem++;
+	}
+	i = 0;
+	if (rem > len)
+		return (NULL);
+	while (s[start] && start <= rem)
+	{
+		substr[i] = s[start];
+		i++;
+		start++;
+	}
+	substr[i] = '\0'; // remove (calloc)?
+	return (substr);
+}

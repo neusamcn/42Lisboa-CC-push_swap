@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 16:39:42 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/12 18:26:02 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/06/12 21:15:16 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,55 +15,69 @@
 
 char	*get_next_line(int fd)
 {
-	char		*buf1;
-	static char	*buf2;
-	char		*line;
-	char		*nextline;
-	ssize_t		bytesread;
+	static char		buf1[BUFFER_SIZE + 1];
+	static char		buf2[BUFFER_SIZE + 1];
+	static char		*nextline;
+	static size_t	offset;
+	ssize_t			bytesread;
 
+
+	// char		*line;
 	if (BUFFER_SIZE > 0 && fd >= 0)
 	{
-		buf1 = ft_calloc(BUFFER_SIZE + 1, 1);
 		bytesread = read(fd, buf1, BUFFER_SIZE);
 		if (bytesread <= 0)
-		{
-			free(buf1);
 			return (NULL);
-		}
-		buf2 = ft_calloc(BUFFER_SIZE + 1, 1);
-		bytesread = read(fd, buf2, BUFFER_SIZE);
-		if (bytesread < 0)
+		if (ft_strrchr(buf1, 10) != NULL)
 		{
-			free(buf1);
-			free(buf2);
-			return (NULL);
+			nextline = ft_calloc(BUFFER_SIZE + 1, 1);
+			ft_strlcpy(buf2, ft_strchr(buf1 + offset, 10), BUFFER_SIZE);
+			nextline = buf2 - (buf1 + offset);
+			offset += ft_strlen_nl(nextline);
+			return (nextline);
 		}
-		line = ft_strjoin_nl(buf1, buf2);
-		free(buf1);
-		if (bytesread == 0)
-		{
-			free(buf2);
-			return (line);
-		}
-		while (bytesread >= 0)
-		{
-			bytesread = read(fd, buf2, BUFFER_SIZE);
-			nextline = ft_strjoin_nl(line, buf2);
-			if (ft_strrchr(nextline, 10) != NULL || bytesread == 0)
-			{
-				free(buf2);
-				free(line);
-				return (nextline);
-			}
-			ft_strlcpy(line, nextline, ft_strlen(nextline));
-		}
-		free(buf2);
-		free(line);
-		free(nextline);
+
+
+
+		// 	bytesread = read(fd, buf1, BUFFER_SIZE);
+		// 	if (bytesread <= 0)
+		// 		return (NULL);
+		// 	if (ft_strrchr(buf1, 10) != NULL)
+		// 	{
+		// 		nextline = ft_strjoin_nl("", buf1);
+		// 		return (nextline);
+		// 	}
+		// 	buf2 = ft_calloc(BUFFER_SIZE + 1, 1);
+		// 	bytesread = read(fd, buf2, BUFFER_SIZE);
+		// 	if (bytesread < 0)
+		// 	{
+		// 		free(buf2);
+		// 		return (NULL);
+		// 	}
+		// 	line = ft_strjoin_nl(buf1, buf2);
+		// 	if (bytesread == 0)
+		// 	{
+		// 		free(buf2);
+		// 		return (line);
+		// 	}
+		// 	while (bytesread >= 0)
+		// 	{
+		// 		bytesread = read(fd, buf2, BUFFER_SIZE);
+		// 		nextline = ft_strjoin_nl(line, buf2);
+		// 		if (ft_strrchr(nextline, 10) != NULL || bytesread == 0)
+		// 		{
+		// 			free(buf2);
+		// 			free(line);
+		// 			return (nextline);
+		// 		}
+		// 		ft_strlcpy(line, nextline, ft_strlen(nextline));
+		// 	}
+		// 	free(buf2);
+		// 	free(line);
+		// 	free(nextline);
 	}
 	return (NULL);
 }
-
 
 // {
 // 	ssize_t	tempread;
@@ -96,7 +110,7 @@ char	*get_next_line(int fd)
 // 		return (buffer);
 // 	if (ft_strrchr(buffer, 10) != NULL)
 // 	{
-// 		// return (substring up to '\n' & save rest for next call - static buffer);
+// 		// return (substr up to '\n' & save rest for next call - static buffer);
 // 	}
 // 	line_nd = ft_lstnew(buffer);
 // 	*line_lst = line_nd; // needed? makes sense?

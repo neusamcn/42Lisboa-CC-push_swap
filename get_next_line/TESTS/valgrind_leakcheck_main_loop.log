@@ -1,15 +1,51 @@
-==883708== Memcheck, a memory error detector
-==883708== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==883708== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==883708== Command: /home/ncruz-ne/Documents/ProjectsNeusa/CC/get_next_line/TESTS/main_loop
-==883708== Parent PID: 883685
-==883708== 
-==883708== 
-==883708== HEAP SUMMARY:
-==883708==     in use at exit: 0 bytes in 0 blocks
-==883708==   total heap usage: 2 allocs, 2 frees, 1,067 bytes allocated
-==883708== 
-==883708== All heap blocks were freed -- no leaks are possible
-==883708== 
-==883708== For lists of detected and suppressed errors, rerun with: -s
-==883708== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==114863== Memcheck, a memory error detector
+==114863== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==114863== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==114863== Command: /home/ncruz-ne/Documents/ProjectsNeusa/CC/get_next_line/TESTS/main_loop
+==114863== Parent PID: 114834
+==114863== 
+==114863== 
+==114863== Process terminating with default action of signal 2 (SIGINT)
+==114863==    at 0x4985885: write (write.c:26)
+==114863==    by 0x48FBEEC: _IO_file_write@@GLIBC_2.2.5 (fileops.c:1180)
+==114863==    by 0x48FD9E0: new_do_write (fileops.c:448)
+==114863==    by 0x48FD9E0: _IO_new_do_write (fileops.c:425)
+==114863==    by 0x48FD9E0: _IO_do_write@@GLIBC_2.2.5 (fileops.c:422)
+==114863==    by 0x48FC6D4: _IO_new_file_xsputn (fileops.c:1243)
+==114863==    by 0x48FC6D4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1196)
+==114863==    by 0x48E6FC9: outstring_func (vfprintf-internal.c:239)
+==114863==    by 0x48E6FC9: __vfprintf_internal (vfprintf-internal.c:1593)
+==114863==    by 0x48D179E: printf (printf.c:33)
+==114863==    by 0x401234: main (in /home/ncruz-ne/Documents/ProjectsNeusa/CC/get_next_line/TESTS/main_loop)
+==114863== 
+==114863== HEAP SUMMARY:
+==114863==     in use at exit: 1,056 bytes in 2 blocks
+==114863==   total heap usage: 112,941 allocs, 112,939 frees, 3,615,105 bytes allocated
+==114863== 
+==114863== 32 bytes in 1 blocks are still reachable in loss record 1 of 2
+==114863==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==114863==    by 0x401AF2: ft_substr_gnl (in /home/ncruz-ne/Documents/ProjectsNeusa/CC/get_next_line/TESTS/main_loop)
+==114863==    by 0x40131D: get_next_line (in /home/ncruz-ne/Documents/ProjectsNeusa/CC/get_next_line/TESTS/main_loop)
+==114863==    by 0x401200: main (in /home/ncruz-ne/Documents/ProjectsNeusa/CC/get_next_line/TESTS/main_loop)
+==114863== 
+==114863== 1,024 bytes in 1 blocks are still reachable in loss record 2 of 2
+==114863==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==114863==    by 0x48EFBA3: _IO_file_doallocate (filedoalloc.c:101)
+==114863==    by 0x48FECDF: _IO_doallocbuf (genops.c:347)
+==114863==    by 0x48FDF5F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:744)
+==114863==    by 0x48FC6D4: _IO_new_file_xsputn (fileops.c:1243)
+==114863==    by 0x48FC6D4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1196)
+==114863==    by 0x48E614C: outstring_func (vfprintf-internal.c:239)
+==114863==    by 0x48E614C: __vfprintf_internal (vfprintf-internal.c:1263)
+==114863==    by 0x48D179E: printf (printf.c:33)
+==114863==    by 0x4011F3: main (in /home/ncruz-ne/Documents/ProjectsNeusa/CC/get_next_line/TESTS/main_loop)
+==114863== 
+==114863== LEAK SUMMARY:
+==114863==    definitely lost: 0 bytes in 0 blocks
+==114863==    indirectly lost: 0 bytes in 0 blocks
+==114863==      possibly lost: 0 bytes in 0 blocks
+==114863==    still reachable: 1,056 bytes in 2 blocks
+==114863==         suppressed: 0 bytes in 0 blocks
+==114863== 
+==114863== For lists of detected and suppressed errors, rerun with: -s
+==114863== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

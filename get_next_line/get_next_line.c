@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 16:39:42 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/12 21:15:16 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/06/15 20:42:24 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,65 +16,36 @@
 char	*get_next_line(int fd)
 {
 	static char		buf1[BUFFER_SIZE + 1];
-	static char		buf2[BUFFER_SIZE + 1];
 	static char		*nextline;
-	static size_t	offset;
-	ssize_t			bytesread;
+	static ssize_t	offset;
+	static ssize_t			bytesread;
 
-
+	// static char		buf2[BUFFER_SIZE + 1];
 	// char		*line;
 	if (BUFFER_SIZE > 0 && fd >= 0)
 	{
-		bytesread = read(fd, buf1, BUFFER_SIZE);
-		if (bytesread <= 0)
-			return (NULL);
-		if (ft_strrchr(buf1, 10) != NULL)
+		if (offset == 0)
 		{
-			nextline = ft_calloc(BUFFER_SIZE + 1, 1);
-			ft_strlcpy(buf2, ft_strchr(buf1 + offset, 10), BUFFER_SIZE);
-			nextline = buf2 - (buf1 + offset);
-			offset += ft_strlen_nl(nextline);
-			return (nextline);
+			bytesread = read(fd, buf1, BUFFER_SIZE);
+			if (bytesread <= 0)
+				return (NULL);
 		}
-
-
-
-		// 	bytesread = read(fd, buf1, BUFFER_SIZE);
-		// 	if (bytesread <= 0)
-		// 		return (NULL);
-		// 	if (ft_strrchr(buf1, 10) != NULL)
-		// 	{
-		// 		nextline = ft_strjoin_nl("", buf1);
-		// 		return (nextline);
-		// 	}
-		// 	buf2 = ft_calloc(BUFFER_SIZE + 1, 1);
-		// 	bytesread = read(fd, buf2, BUFFER_SIZE);
-		// 	if (bytesread < 0)
-		// 	{
-		// 		free(buf2);
-		// 		return (NULL);
-		// 	}
-		// 	line = ft_strjoin_nl(buf1, buf2);
-		// 	if (bytesread == 0)
-		// 	{
-		// 		free(buf2);
-		// 		return (line);
-		// 	}
-		// 	while (bytesread >= 0)
-		// 	{
-		// 		bytesread = read(fd, buf2, BUFFER_SIZE);
-		// 		nextline = ft_strjoin_nl(line, buf2);
-		// 		if (ft_strrchr(nextline, 10) != NULL || bytesread == 0)
-		// 		{
-		// 			free(buf2);
-		// 			free(line);
-		// 			return (nextline);
-		// 		}
-		// 		ft_strlcpy(line, nextline, ft_strlen(nextline));
-		// 	}
-		// 	free(buf2);
-		// 	free(line);
-		// 	free(nextline);
+		if (offset < bytesread)
+		{
+			if (ft_strchr(&buf1[offset], 10) != NULL)
+			{
+				nextline = ft_substr_gnl(buf1, offset, BUFFER_SIZE);
+				offset += ft_strlen_nl(nextline);
+				return (nextline);
+			}
+			// should i break?
+			ft_strlcpy(nextline, buf1, bytesread);
+			bytesread = read(fd, buf1, BUFFER_SIZE);
+			if (bytesread <= 0)
+				return (NULL);
+			// concatenate nextline with next trimmed read...
+		}
+		offset = 0;
 	}
 	return (NULL);
 }

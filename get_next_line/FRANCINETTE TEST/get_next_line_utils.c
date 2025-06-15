@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 16:40:10 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/06 22:05:27 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/06/12 21:16:16 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,16 @@ size_t	ft_strlen(const char *s)
 
 	i = 0;
 	while (s[i] != '\0')
+		i++;
+	return (i);
+}
+
+size_t	ft_strlen_nl(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\n')
 		i++;
 	return (i);
 }
@@ -60,6 +70,26 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	return (NULL);
 }
 
+char	*ft_strchr(const char *s, int c)
+{
+	int				i;
+	unsigned char	chr;
+	char			*p;
+
+	i = 0;
+	chr = (unsigned char)c;
+	p = (char *)s;
+	while (*(p + i))
+	{
+		if (*(p + i) == chr)
+			return (p + i);
+		i++;
+	}
+	if (chr == '\0')
+		return (p + i);
+	return (NULL);
+}
+
 char	*ft_strrchr(const char *s, int c)
 {
 	int	i;
@@ -74,6 +104,32 @@ char	*ft_strrchr(const char *s, int c)
 		i--;
 	}
 	return (NULL);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	unsigned int	i;
+	char			*substr;
+	size_t			slen;
+
+	i = 0;
+	slen = ft_strlen(s);
+	if (!s || start >= slen)
+		return (ft_calloc(1, 1));
+	if (slen - start >= len)
+		substr = malloc((len + 1) * sizeof(char));
+	else
+		substr = malloc((slen - start + 1) * sizeof(char));
+	if (!substr)
+		return (NULL);
+	while (s[start] && i < len)
+	{
+		substr[i] = s[start];
+		i++;
+		start++;
+	}
+	substr[i] = '\0';
+	return (substr);
 }
 
 char	*ft_strjoin_nl(char const *s1, char const *s2)
