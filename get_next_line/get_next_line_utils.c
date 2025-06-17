@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 16:40:10 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/15 20:16:58 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/06/16 18:54:33 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,21 +134,22 @@ char	*ft_strjoin_nl(char const *s1, char const *s2)
 	return (join);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+size_t	ft_strlcpy_nl(char *dst, const char *src, size_t size)
 {
 	size_t	i;
 
 	i = 0;
 	if (size > 0 && src[ft_strlen(src)] == '\0')
 	{
-		while (i < size - 1 && src[i])
+		while (i < size - 1 && src[i] != '\n')
 		{
 			dst[i] = src[i];
 			i++;
 		}
-		dst[i] = '\0';
+		dst[i] = '\n';
+		dst[i + 1] = '\0';
 	}
-	return (ft_strlen(src));
+	return (ft_strlen(dst));
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
@@ -214,4 +215,24 @@ char	*ft_substr_gnl(char const *s, unsigned int start, size_t len)
 	}
 	substr[i] = '\0'; // remove (calloc)?
 	return (substr);
+}
+
+void	*ft_memmove(void *dest, const void *src, size_t n)
+{
+	unsigned char	*dest_uc;
+	unsigned char	*src_uc;
+
+	dest_uc = (unsigned char *)dest;
+	src_uc = (unsigned char *)src;
+	if (dest == src || n == 0)
+		return (dest);
+	if (dest < src)
+		return (ft_memcpy(dest, src, n));
+	while (n > 0)
+	{
+		dest_uc[n - 1] = src_uc[n - 1];
+		n--;
+	}
+	dest = (void *)dest_uc;
+	return (dest);
 }
