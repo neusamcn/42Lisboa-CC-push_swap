@@ -6,7 +6,7 @@
 /*   By: mu <mu@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 16:39:42 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/02 23:30:10 by mu               ###   ########.fr       */
+/*   Updated: 2025/06/16 20:47:21 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,45 +15,51 @@
 
 char	*get_next_line(int fd)
 {
-	ssize_t	tempread;
-	size_t	bytesread;
-	char	*buffer;
-	char	*line;
+	static char	buf[BUFFER_SIZE + 1];
+	char		*line;
+	ssize_t		bytesread;
+	// 'memmove'
+	int	i;
+	int	buf_nl_len;
 
-
-	bytesread = 0;
-	buffer = ft_calloc(1, sizeof(char));
-	if (!buffer)
-		return (NULL);
-	line = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (!line)
+	if (BUFFER_SIZE > 0 && fd >= 0)
 	{
-		free(buffer);
-		return (NULL);
-	}
-	while (*buffer != '\n' && bytesread <= BUFFER_SIZE)
-	{
-		tempread = read(fd, buffer, 1);
-		if (*buffer == EOF || tempread != 1)
+		if (!*buf)
 		{
-			free(buffer);
-			if (bytesread == 0)
+			bytesread = read(fd, buf, BUFFER_SIZE);
+			if (bytesread <= 0)
+				return (NULL);
+			if (ft_strchr(buf, 10))
+			{
+				buf_nl_len = ft_strlen_nl(buf);
+				line = ft_calloc(buf_nl_len + 1, 1);
+				ft_strlcpy_nl(line, buf, BUFFER_SIZE);
+				// 'memmove'
+				i = 0;
+				while (i < BUFFER_SIZE - buf_nl_len)
 				{
-					free(line);
-					return (NULL);
+					buf[i] = buf[buf_nl_len];
+					i++;
+					buf_nl_len++;
 				}
-			return (line);
+				buf[i] = '\0';
+				return (line);
+			}
+			// !'\n' after 1st read
+			while (!ft_strchr(line, 10))
+			{
+				line = ft_strjoin_nl(line, buf);
+				bytesread = 
+			}
 		}
-		line[bytesread] = *buffer;
-		bytesread++;
+		// *buf has data = after 1st read
+
 	}
-	free(buffer);
-	return (line);
+	return (NULL);
 }
 
 // TO DO:
 // 1. TEST ALL edge cases
-// 1.1. empty file => must return NULL,
 // 1.2. big BUFFER_SIZEs (subject),
 // 1.3. extremely long line,
 // 1.4. change fd mid function calls

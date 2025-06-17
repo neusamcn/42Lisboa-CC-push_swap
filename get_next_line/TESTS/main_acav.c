@@ -6,12 +6,13 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 16:22:59 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/01 19:10:03 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/06/12 18:17:43 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
+# include <fcntl.h>
 
 int	main(int ac, char **av)
 {
