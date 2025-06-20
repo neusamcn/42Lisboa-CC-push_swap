@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 16:40:10 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/16 18:54:33 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:15:29 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,45 +141,49 @@ size_t	ft_strlcpy_nl(char *dst, const char *src, size_t size)
 	i = 0;
 	if (size > 0 && src[ft_strlen(src)] == '\0')
 	{
-		while (i < size - 1 && src[i] != '\n')
+		while (i < size - 1 && src[i] != '\n' && src[i] != '\0')
 		{
 			dst[i] = src[i];
 			i++;
 		}
-		dst[i] = '\n';
-		dst[i + 1] = '\0';
+		if (src[i] == '\n')
+		{
+			dst[i] = '\n';
+			i++;
+		}
+		dst[i] = '\0';
 	}
 	return (ft_strlen(dst));
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
-{
-	size_t	i;
-	size_t	s1len;
-	char	*trimmed;
+// char	*ft_strtrim(char const *s1, char const *set)
+// {
+// 	size_t	i;
+// 	size_t	s1len;
+// 	char	*trimmed;
 
-	if (!s1)
-		return (NULL);
-	i = 0;
-	s1len = ft_strlen(s1);
-	while (s1[i] && ft_strchr(set, (int)s1[i]) != NULL)
-		i++;
-	if (i == s1len)
-	{
-		trimmed = ft_calloc(1, 1);
-		if (!trimmed)
-			return (NULL);
-		return (trimmed);
-	}
-	s1len--;
-	while (s1[s1len] && ft_strrchr(set, (int)s1[s1len]) != NULL)
-		s1len--;
-	trimmed = malloc((s1len - i + 2) * sizeof(char));
-	if (trimmed == NULL)
-		return (NULL);
-	ft_strlcpy(trimmed, s1 + i, s1len - i + 2);
-	return (trimmed);
-}
+// 	if (!s1)
+// 		return (NULL);
+// 	i = 0;
+// 	s1len = ft_strlen(s1);
+// 	while (s1[i] && ft_strchr(set, (int)s1[i]) != NULL)
+// 		i++;
+// 	if (i == s1len)
+// 	{
+// 		trimmed = ft_calloc(1, 1);
+// 		if (!trimmed)
+// 			return (NULL);
+// 		return (trimmed);
+// 	}
+// 	s1len--;
+// 	while (s1[s1len] && ft_strrchr(set, (int)s1[s1len]) != NULL)
+// 		s1len--;
+// 	trimmed = malloc((s1len - i + 2) * sizeof(char));
+// 	if (trimmed == NULL)
+// 		return (NULL);
+// 	ft_strlcpy(trimmed, s1 + i, s1len - i + 2);
+// 	return (trimmed);
+// }
 
 char	*ft_substr_gnl(char const *s, unsigned int start, size_t len)
 {
@@ -201,7 +205,7 @@ char	*ft_substr_gnl(char const *s, unsigned int start, size_t len)
 	while (s[rem])
 	{
 		if (s[rem] == 10)
-			break;
+			break ;
 		rem++;
 	}
 	i = 0;
@@ -217,22 +221,22 @@ char	*ft_substr_gnl(char const *s, unsigned int start, size_t len)
 	return (substr);
 }
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
-{
-	unsigned char	*dest_uc;
-	unsigned char	*src_uc;
+// void	*ft_memmove(void *dest, const void *src, size_t n)
+// {
+// 	unsigned char	*dest_uc;
+// 	unsigned char	*src_uc;
 
-	dest_uc = (unsigned char *)dest;
-	src_uc = (unsigned char *)src;
-	if (dest == src || n == 0)
-		return (dest);
-	if (dest < src)
-		return (ft_memcpy(dest, src, n));
-	while (n > 0)
-	{
-		dest_uc[n - 1] = src_uc[n - 1];
-		n--;
-	}
-	dest = (void *)dest_uc;
-	return (dest);
-}
+// 	dest_uc = (unsigned char *)dest;
+// 	src_uc = (unsigned char *)src;
+// 	if (dest == src || n == 0)
+// 		return (dest);
+// 	if (dest < src)
+// 		return (ft_memcpy(dest, src, n));
+// 	while (n > 0)
+// 	{
+// 		dest_uc[n - 1] = src_uc[n - 1];
+// 		n--;
+// 	}
+// 	dest = (void *)dest_uc;
+// 	return (dest);
+// }
