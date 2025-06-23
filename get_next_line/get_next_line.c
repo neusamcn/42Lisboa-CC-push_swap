@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mu <mu@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 16:39:42 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/20 18:31:55 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/06/23 23:46:25 by mu               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,62 +17,52 @@ char	*get_next_line(int fd)
 {
 	static char	buf[BUFFER_SIZE + 1];
 	char		*line;
-	char		*nextline;
 	ssize_t		bytesread;
 	int			i;
-	int			buf_nl_len;
+	int			buf_len_nl;
 
-	// 'memmove'
-	if (BUFFER_SIZE > 0 && fd >= 0)
+	if (BUFFER_SIZE <= 0 || fd < 0)
+		return (NULL);
+	line = NULL;
+	if (!*buf)
 	{
-		if (!*buf)
+		bytesread = read(fd, buf, BUFFER_SIZE);
+		if (bytesread <= 0)
 		{
-			bytesread = read(fd, buf, BUFFER_SIZE);
-			if (bytesread <= 0)
-				return (NULL);
+			buf[0] = '\0';
+			return (NULL);
 		}
-		if (ft_strchr(buf, 10))
+		if (bytesread > 0)
+			buf[bytesread] = '\0';
+	}
+	while (!ft_strchr(buf, '\n'))
+	{
+		line = append_line(line, buf);
+		if (!line)
+			return (NULL);
+		bytesread = read(fd, buf, BUFFER_SIZE);
+		if (bytesread == 0)
 		{
-			buf_nl_len = ft_strlen_nl(buf);
-			line = ft_calloc(buf_nl_len + 1, 1);
-			ft_strlcpy_nl(line, buf, BUFFER_SIZE);
-			// 'memmove'
-			i = 0;
-			while (i < BUFFER_SIZE - buf_nl_len)
-			{
-				buf[i] = buf[buf_nl_len];
-				i++;
-				buf_nl_len++;
-			}
-			buf[i] = '\0';
+			buf[0] = '\0';
 			return (line);
 		}
-		// !'\n' after 1st read
-		line = ft_calloc(BUFFER_SIZE + 1, 1);
-		while (!ft_strchr(buf, 10))
+		else if (bytesread < 0)
 		{
-			ft_strlcpy_nl(line, buf, BUFFER_SIZE);
-			bytesread = read(fd, buf, BUFFER_SIZE);
-			nextline = ft_strjoin_nl(line, buf);
+			buf[0] = '\0';
+			return (NULL);
 		}
-		if (ft_strchr(buf, 10))
-		{
-			buf_nl_len = ft_strlen_nl(buf);
-			line = ft_calloc(buf_nl_len + 1, 1);
-			nextline = ft_strjoin_nl(line, buf);
-			// 'memmove'
-			i = 0;
-			while (i < BUFFER_SIZE - buf_nl_len)
-			{
-				buf[i] = buf[buf_nl_len];
-				i++;
-				buf_nl_len++;
-			}
-			buf[i] = '\0';
-			return (nextline);
-		}
+		else if (bytesread > 0)
+			buf[bytesread] = '\0';
 	}
-	return (NULL);
+	buf_len_nl = ft_strlen_nl(buf) + 1;
+	line = append_line(line, buf);
+	if (!line)
+		return (NULL);
+	i = 0;
+	while (buf[buf_len_nl] && buf_len_nl < BUFFER_SIZE)
+		buf[i++] = buf[buf_len_nl++];
+	buf[i] = '\0';
+	return (line);
 }
 
 // TO DO:

@@ -1,15 +1,15 @@
-==114851== Memcheck, a memory error detector
-==114851== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==114851== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==114851== Command: /home/ncruz-ne/Documents/ProjectsNeusa/CC/get_next_line/TESTS/main_def_fdneg
-==114851== Parent PID: 114834
-==114851== 
-==114851== 
-==114851== HEAP SUMMARY:
-==114851==     in use at exit: 0 bytes in 0 blocks
-==114851==   total heap usage: 1 allocs, 1 frees, 1,024 bytes allocated
-==114851== 
-==114851== All heap blocks were freed -- no leaks are possible
-==114851== 
-==114851== For lists of detected and suppressed errors, rerun with: -s
-==114851== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==28105== Memcheck, a memory error detector
+==28105== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==28105== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==28105== Command: /home/mu/Desktop/42/github/gnl/get_next_line/TESTS/main_def_fdneg
+==28105== Parent PID: 28085
+==28105== 
+==28105== 
+==28105== HEAP SUMMARY:
+==28105==     in use at exit: 0 bytes in 0 blocks
+==28105==   total heap usage: 1 allocs, 1 frees, 1,024 bytes allocated
+==28105== 
+==28105== All heap blocks were freed -- no leaks are possible
+==28105== 
+==28105== For lists of detected and suppressed errors, rerun with: -s
+==28105== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

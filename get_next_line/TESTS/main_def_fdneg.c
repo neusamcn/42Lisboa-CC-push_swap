@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_def_fdneg.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mu <mu@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 16:24:56 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/06 18:52:57 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/06/23 18:31:37 by mu               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,21 @@ int	main(void)
 {
 	char	*line;
 
-	printf("%s\n", line = get_next_line(-1));
-	if (line != NULL)
+	line = get_next_line(-1);
+	if (line)
+	{
+		printf("\n***** Next line: *****\n%s\n", line);
 		free(line);
-	printf("\n***** Next line: *****\n");
-	printf("%s\n", line = get_next_line(-1));
-	if (line != NULL)
+	}
+	else
+		printf("\n***** Next line: *****\n(null)\n");
+	line = get_next_line(-1);
+	if (line)
+	{
+		printf("\n***** Next line: *****\n%s\n", line);
 		free(line);
+	}
+	else
+		printf("\n***** Next line: *****\n(null)\n");
 	return (0);
 }
