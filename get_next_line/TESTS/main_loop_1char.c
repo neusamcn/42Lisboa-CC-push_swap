@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_binary.c                                      :+:      :+:    :+:   */
+/*   main_loop_1char.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/23 20:42:55 by mu                #+#    #+#             */
-/*   Updated: 2025/06/24 16:35:42 by ncruz-ne         ###   ########.fr       */
+/*   Created: 2025/06/01 16:22:27 by ncruz-ne          #+#    #+#             */
+/*   Updated: 2025/06/24 14:40:49 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,14 @@
 #include <stdio.h>
 # include <fcntl.h>
 
-int main(void)
+int	main(void)
 {
-    char	*file = "TESTS/test_binary.bin";
+	char	*file;
 	int		fd;
 	char	*line;
 
-    FILE *fp = fopen(file, "wb");  // Open in binary write mode
-    if (!fp)
-    {
-        perror("Error opening file");
-        return (1);
-    }
-
-    // Example: write an array of bytes
-    unsigned char data[] = {0x41, 0x42, 0x43, 0x00, 0xFF};  // 'A', 'B', 'C', '\0', 255
-    size_t size = sizeof(data);
-
-    if (fwrite(data, 1, size, fp) != size)
-    {
-        perror("Error writing to file");
-        fclose(fp);
-        return (1);
-    }
-
-    fclose(fp);
-
-	fd = open(file, O_RDONLY); // required since gnl() only works w/ fd
+	file = "TESTS/1char.txt";
+	fd = open(file, O_RDONLY);
 	// file offset (mark of current position @ file) set to beginning of file.
 	line = NULL;
 	if (fd == -1)
@@ -54,8 +35,5 @@ int main(void)
 		free(line);
 	}
 	close(fd);
-    
-    return (0);
+	return (0);
 }
-
-// write(STDOUT_FILENO, line, actual_bytes_read);

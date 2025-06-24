@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_def_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mu <mu@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 16:24:56 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/24 11:53:30 by mu               ###   ########.fr       */
+/*   Updated: 2025/06/24 14:35:03 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,63 +41,63 @@ int	main(void)
 	else
 		printf("fd3 = %d => '%s' opened successfully.\n----------\n", fd3, file3);
 	printf("\n***** Next line fd1: *****\n");
-	printf("%s", line = get_next_line_bonus(fd1));
+	printf("%s", line = get_next_line(fd1));
 	if (line != NULL)
 		free(line);
 	printf("\n***** Next line fd2: *****\n");
-	printf("%s", line = get_next_line_bonus(fd2));
+	printf("%s", line = get_next_line(fd2));
 	if (line != NULL)
 		free(line);
 	printf("\n***** Next line fd3: *****\n");
-	printf("%s", line = get_next_line_bonus(fd3));
+	printf("%s", line = get_next_line(fd3));
 	if (line != NULL)
 		free(line);
 	printf("\n***** Next line fd1: *****\n");
-	printf("%s", line = get_next_line_bonus(fd1));
+	printf("%s", line = get_next_line(fd1));
 	if (line != NULL)
 		free(line);
 	printf("\n***** Next line fd1: *****\n");
-	printf("%s", line = get_next_line_bonus(fd1));
+	printf("%s", line = get_next_line(fd1));
 	if (line != NULL)
 		free(line);
 	printf("\n***** Next line fd2: *****\n");
-	printf("%s", line = get_next_line_bonus(fd2));
+	printf("%s", line = get_next_line(fd2));
 	if (line != NULL)
 		free(line);
 	printf("\n***** Next line fd2: *****\n");
-	printf("%s", line = get_next_line_bonus(fd2));
+	printf("%s", line = get_next_line(fd2));
 	if (line != NULL)
 		free(line);
 	printf("\n***** Next line fd3: *****\n");
-	printf("%s", line = get_next_line_bonus(fd3));
+	printf("%s", line = get_next_line(fd3));
 	if (line != NULL)
 		free(line);
 	printf("\n***** Next line fd3: *****\n");
-	printf("%s", line = get_next_line_bonus(fd3));
+	printf("%s", line = get_next_line(fd3));
 	if (line != NULL)
 		free(line);
 	printf("\n***** Next line fd1: *****\n");
-	printf("%s", line = get_next_line_bonus(fd1));
+	printf("%s", line = get_next_line(fd1));
 	if (line != NULL)
 		free(line);
 	printf("\n***** Next line fd3: *****\n");
-	printf("%s", line = get_next_line_bonus(fd3));
+	printf("%s", line = get_next_line(fd3));
 	if (line != NULL)
 		free(line);
 	printf("\n***** Next line fd2: *****\n");
-	printf("%s", line = get_next_line_bonus(fd2));
+	printf("%s", line = get_next_line(fd2));
 	if (line != NULL)
 		free(line);
 	printf("\n***** Next line fd3: *****\n");
-	printf("%s", line = get_next_line_bonus(fd3));
+	printf("%s", line = get_next_line(fd3));
 	if (line != NULL)
 		free(line);
 	printf("\n***** Next line fd2: *****\n");
-	printf("%s", line = get_next_line_bonus(fd2));
+	printf("%s", line = get_next_line(fd2));
 	if (line != NULL)
 		free(line);
 	printf("\n***** Next line fd1: *****\n");
-	printf("%s\n", line = get_next_line_bonus(fd1));
+	printf("%s\n", line = get_next_line(fd1));
 	if (line != NULL)
 		free(line);
 	close(fd1);

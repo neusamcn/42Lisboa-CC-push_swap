@@ -6,65 +6,45 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 16:40:10 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/12 21:16:16 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/06/24 14:32:11 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
 
 size_t	ft_strlen_nl(const char *s)
 {
 	size_t	i;
 
+	if (!s)
+		return (0);
 	i = 0;
-	while (s[i] != '\n')
+	while (s[i] && s[i] != '\n')
 		i++;
 	return (i);
-}
-
-static void	ft_bzero(void *s, size_t n)
-{
-	size_t			i;
-	unsigned char	*ptr;
-
-	ptr = (unsigned char *)s;
-	i = 0;
-	while (i < n)
-	{
-		ptr[i] = 0;
-		i++;
-	}
-	s = (void *)ptr;
 }
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*ptr;
-	size_t	flowcheck;
+	size_t	i;
 
 	if (nmemb == 0 || size == 0)
 	{
 		ptr = malloc(0);
 		return (ptr);
 	}
-	flowcheck = nmemb * size;
-	if (flowcheck / nmemb == size)
+	if (size > 0 && nmemb <= SIZE_MAX / size)
 	{
 		ptr = malloc(nmemb * size);
 		if (ptr == NULL)
 			return (NULL);
-		ft_bzero(ptr, size * nmemb);
+		i = 0;
+		while (i < size * nmemb)
+		{
+			((unsigned char *)ptr)[i] = 0;
+			i++;
+		}
 		return (ptr);
 	}
 	return (NULL);
@@ -76,6 +56,8 @@ char	*ft_strchr(const char *s, int c)
 	unsigned char	chr;
 	char			*p;
 
+	if (!s)
+		return (NULL);
 	i = 0;
 	chr = (unsigned char)c;
 	p = (char *)s;
@@ -90,90 +72,60 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*ft_strrchr(const char *s, int c)
+char	*append_line(char *old, char const *buf)
 {
-	int	i;
+	char	*new;
+	size_t	i_new;
+	size_t	i_buf;
 
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	while (i >= 0)
+	if (!buf || !*buf)
+		return (old);
+	new = ft_calloc(ft_strlen_nl(old) + ft_strlen_nl(buf) + 2, 1);
+	if (!new)
 	{
-		if (s[i] == (unsigned char)c)
-			return ((char *)&s[i]);
-		i--;
+		free(old);
+		return (NULL);
 	}
-	return (NULL);
+	i_new = 0;
+	while (old && old[i_new])
+	{
+		new[i_new] = old[i_new];
+		i_new++;
+	}
+	free(old);
+	i_buf = 0;
+	while (buf[i_buf] && buf[i_buf] != '\n')
+		new[i_new++] = buf[i_buf++];
+	if (buf[i_buf] == '\n')
+		new[i_new++] = '\n';
+	return (new);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*read_to_nl(int fd, char *buf, char *line)
 {
-	unsigned int	i;
-	char			*substr;
-	size_t			slen;
+	t_read_to_nl_vars	vars;
 
-	i = 0;
-	slen = ft_strlen(s);
-	if (!s || start >= slen)
-		return (ft_calloc(1, 1));
-	if (slen - start >= len)
-		substr = malloc((len + 1) * sizeof(char));
-	else
-		substr = malloc((slen - start + 1) * sizeof(char));
-	if (!substr)
-		return (NULL);
-	while (s[start] && i < len)
+	while (1)
 	{
-		substr[i] = s[start];
-		i++;
-		start++;
-	}
-	substr[i] = '\0';
-	return (substr);
-}
-
-char	*ft_strjoin_nl(char const *s1, char const *s2)
-{
-	char	*join;
-	size_t	i1;
-	size_t	i2;
-
-	i1 = 0;
-	i2 = 0;
-	if (!s1 || !s2)
-		return (NULL);
-	join = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, 1);
-	if (join == NULL)
-		return (NULL);
-	while (s1[i1] != '\0')
-	{
-		join[i1] = s1[i1];
-		i1++;
-	}
-	while (s2[i2] != '\n' && s2[i2] != '\0')
-	{
-		join[i1 + i2] = s2[i2];
-		i2++;
-	}
-	if (s2[i2] == '\n')
-		join[i1 + i2] = '\n';
-	return (join);
-}
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
-{
-	size_t	i;
-
-	i = 0;
-	if (size > 0 && src[ft_strlen(src)] == '\0')
-	{
-		while (i < size - 1 && src[i])
+		line = append_line(line, buf);
+		if (!line)
+			return (NULL);
+		if (ft_strchr(buf, '\n'))
+			break ;
+		vars.bytesread = read(fd, buf, BUFFER_SIZE);
+		if (vars.bytesread <= 0)
 		{
-			dst[i] = src[i];
-			i++;
+			buf[0] = '\0';
+			if (vars.bytesread < 0)
+				return (NULL);
+			return (line);
 		}
-		dst[i] = '\0';
+		buf[vars.bytesread] = '\0';
 	}
-	return (ft_strlen(src));
+	vars.i = 0;
+	vars.buf_len_nl = ft_strlen_nl(buf) + 1;
+	while (buf[vars.buf_len_nl] && vars.buf_len_nl < BUFFER_SIZE)
+		buf[vars.i++] = buf[vars.buf_len_nl++];
+	buf[vars.i] = '\0';
+	return (line);
 }
-

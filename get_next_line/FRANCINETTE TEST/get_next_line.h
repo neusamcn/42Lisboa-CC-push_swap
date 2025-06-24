@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 16:40:04 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/12 21:16:16 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/06/24 14:32:20 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <fcntl.h>
 # include <stddef.h>
+# include <stdint.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -22,15 +23,20 @@
 #  define BUFFER_SIZE 42
 # endif
 
-char	*get_next_line(int fd);
-size_t	ft_strlen(const char *s);
-size_t	ft_strlen_nl(const char *s);
-void	*ft_calloc(size_t nmemb, size_t size);
-char	*ft_strjoin_nl(char const *s1, char const *s2);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-char	*ft_strchr(const char *s, int c);
-char	*ft_strrchr(const char *s, int c);
-// size_t	nl_buffer(int fd);
+typedef struct s_read_to_nl_vars
+{
+	int		i;
+	int		buf_len_nl;
+	ssize_t	bytesread;
+}			t_read_to_nl_vars;
+
+void		*ft_calloc(size_t nmemb, size_t size);
+
+char		*append_line(char *s1, char const *buf);
+char		*ft_strchr(const char *s, int c);
+char		*get_next_line(int fd);
+char		*read_to_nl(int fd, char *buf, char *line);
+
+size_t		ft_strlen_nl(const char *s);
 
 #endif
