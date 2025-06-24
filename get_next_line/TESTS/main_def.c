@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_def.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mu <mu@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 16:24:56 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/06 18:53:22 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/06/24 11:48:39 by mu               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	main(void)
 	if (line != NULL)
 		free(line);
 	printf("\n***** Next line: *****\n");
-	printf("%s", line = get_next_line(fd));
+	printf("%s\n", line = get_next_line(fd));
 	if (line != NULL)
 		free(line);
 	close(fd);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
+#    By: mu <mu@student.42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/26 17:11:21 by ncruz-ne          #+#    #+#              #
-#    Updated: 2025/06/03 14:15:47 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2025/06/24 11:43:09 by mu               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,12 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
+bonus: .bonus
+
+.bonus: $(NAME) $(OBJS_BONUS)
+	ar rcs $(NAME) $(OBJS) $(OBJS_BONUS)
+	touch .bonus
+
 MAIN_SRCS = $(wildcard TESTS/main*.c)
 
 MAIN_OBJS = $(MAIN_SRCS:.c=.o)
@@ -52,11 +58,11 @@ valgrind: $(EXEC)
 	./TESTS/valgrind_all.sh
 
 clean:
-	-rm -f $(OBJS) $(MAIN_OBJS)
+	-rm -f $(OBJS) $(MAIN_OBJS) $(OBJS_BONUS) .bonus
 
 fclean: clean
 	-rm -f $(NAME) $(EXEC)
 
 re: fclean all
 
-.PHONY: all clean fclean re run valgrind
+.PHONY: all clean fclean re run valgrind bonus

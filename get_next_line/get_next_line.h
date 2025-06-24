@@ -6,7 +6,7 @@
 /*   By: mu <mu@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 16:40:04 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/23 22:59:25 by mu               ###   ########.fr       */
+/*   Updated: 2025/06/24 10:30:54 by mu               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,20 @@
 #  define BUFFER_SIZE 42
 # endif
 
-char	*get_next_line(int fd);
-size_t	ft_strlen_nl(const char *s);
+typedef struct s_read_to_nl_vars
+{
+    int i;
+    int buf_len_nl;
+    ssize_t bytesread;
+}   t_read_to_nl_vars;
+
 void	*ft_calloc(size_t nmemb, size_t size);
+
 char	*append_line(char *s1, char const *buf);
 char	*ft_strchr(const char *s, int c);
+char	*get_next_line(int fd);
+char	*read_to_nl(int fd, char *buf, char *line);
+
+size_t	ft_strlen_nl(const char *s);
 
 #endif

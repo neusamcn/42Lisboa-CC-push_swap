@@ -1,15 +1,15 @@
-==28090== Memcheck, a memory error detector
-==28090== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==28090== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
-==28090== Command: /home/mu/Desktop/42/github/gnl/get_next_line/TESTS/main_acav
-==28090== Parent PID: 28085
-==28090== 
-==28090== 
-==28090== HEAP SUMMARY:
-==28090==     in use at exit: 0 bytes in 0 blocks
-==28090==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==28090== 
-==28090== All heap blocks were freed -- no leaks are possible
-==28090== 
-==28090== For lists of detected and suppressed errors, rerun with: -s
-==28090== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==21874== Memcheck, a memory error detector
+==21874== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==21874== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==21874== Command: /home/mu/Desktop/42/github/gnl/get_next_line/TESTS/main_acav
+==21874== Parent PID: 21869
+==21874== 
+==21874== 
+==21874== HEAP SUMMARY:
+==21874==     in use at exit: 0 bytes in 0 blocks
+==21874==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==21874== 
+==21874== All heap blocks were freed -- no leaks are possible
+==21874== 
+==21874== For lists of detected and suppressed errors, rerun with: -s
+==21874== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
