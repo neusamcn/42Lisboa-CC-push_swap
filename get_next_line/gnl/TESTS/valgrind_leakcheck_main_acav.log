@@ -1,0 +1,15 @@
+==44321== Memcheck, a memory error detector
+==44321== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==44321== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==44321== Command: /home/ncruz-ne/Documents/ProjectsNeusa/CC/libft+printf+gnl/gnl/TESTS/main_acav
+==44321== Parent PID: 44316
+==44321== 
+==44321== 
+==44321== HEAP SUMMARY:
+==44321==     in use at exit: 0 bytes in 0 blocks
+==44321==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==44321== 
+==44321== All heap blocks were freed -- no leaks are possible
+==44321== 
+==44321== For lists of detected and suppressed errors, rerun with: -s
+==44321== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
