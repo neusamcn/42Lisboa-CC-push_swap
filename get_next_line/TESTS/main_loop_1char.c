@@ -6,13 +6,14 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 16:22:27 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/24 14:40:49 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/07/01 17:41:55 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <errno.h>
+#include <fcntl.h>
 #include <stdio.h>
-# include <fcntl.h>
 
 int	main(void)
 {

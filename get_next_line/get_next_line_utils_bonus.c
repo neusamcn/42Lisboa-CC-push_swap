@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 16:58:00 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/24 14:31:42 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/07/02 19:05:05 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	if (size > 0 && nmemb <= SIZE_MAX / size)
 	{
 		ptr = malloc(nmemb * size);
-		if (ptr == NULL)
-			return (NULL);
+		if (!ptr)
+			return (malloc(0));
 		i = 0;
 		while (i < size * nmemb)
 		{
@@ -101,7 +101,7 @@ char	*append_line(char *old, char const *buf)
 	return (new);
 }
 
-char	*read_to_nl(int fd, char *buf, char *line)
+char	*read_until_nl(int fd, char *buf, char *line)
 {
 	t_read_to_nl_vars	vars;
 

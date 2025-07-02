@@ -6,13 +6,14 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 16:22:59 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/12 18:17:43 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/07/01 17:41:03 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <errno.h>
+#include <fcntl.h>
 #include <stdio.h>
-# include <fcntl.h>
 
 int	main(int ac, char **av)
 {
@@ -26,7 +27,7 @@ int	main(int ac, char **av)
 		fd = open(file, O_RDONLY);
 		// file offset (mark of current position @ file) set to beginning of file.
 		line = "";
-        printf(">>> TEST W/ **av <<<\n<><><><><><><><><><>\n");
+		printf(">>> TEST W/ **av <<<\n<><><><><><><><><><>\n");
 		if (fd == -1)
 			printf("fd = %d => cannot open '%s'\n", fd, file);
 		else

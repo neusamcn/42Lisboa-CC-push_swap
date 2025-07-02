@@ -1,15 +1,15 @@
-==160582== Memcheck, a memory error detector
-==160582== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==160582== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==160582== Command: /home/ncruz-ne/Documents/ProjectsNeusa/CC/get_next_line/TESTS/main_binary
-==160582== Parent PID: 160573
-==160582== 
-==160582== 
-==160582== HEAP SUMMARY:
-==160582==     in use at exit: 0 bytes in 0 blocks
-==160582==   total heap usage: 4 allocs, 4 frees, 5,597 bytes allocated
-==160582== 
-==160582== All heap blocks were freed -- no leaks are possible
-==160582== 
-==160582== For lists of detected and suppressed errors, rerun with: -s
-==160582== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==44325== Memcheck, a memory error detector
+==44325== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==44325== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==44325== Command: /home/ncruz-ne/Documents/ProjectsNeusa/CC/libft+printf+gnl/gnl/TESTS/main_binary
+==44325== Parent PID: 44316
+==44325== 
+==44325== 
+==44325== HEAP SUMMARY:
+==44325==     in use at exit: 0 bytes in 0 blocks
+==44325==   total heap usage: 4 allocs, 4 frees, 5,597 bytes allocated
+==44325== 
+==44325== All heap blocks were freed -- no leaks are possible
+==44325== 
+==44325== For lists of detected and suppressed errors, rerun with: -s
+==44325== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

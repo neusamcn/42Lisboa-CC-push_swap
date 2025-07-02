@@ -1,15 +1,15 @@
-==160601== Memcheck, a memory error detector
-==160601== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==160601== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==160601== Command: /home/ncruz-ne/Documents/ProjectsNeusa/CC/get_next_line/TESTS/main_def_multiplenl
-==160601== Parent PID: 160573
-==160601== 
-==160601== 
-==160601== HEAP SUMMARY:
-==160601==     in use at exit: 0 bytes in 0 blocks
-==160601==   total heap usage: 6 allocs, 6 frees, 1,034 bytes allocated
-==160601== 
-==160601== All heap blocks were freed -- no leaks are possible
-==160601== 
-==160601== For lists of detected and suppressed errors, rerun with: -s
-==160601== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==44343== Memcheck, a memory error detector
+==44343== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==44343== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==44343== Command: /home/ncruz-ne/Documents/ProjectsNeusa/CC/libft+printf+gnl/gnl/TESTS/main_def_multiplenl
+==44343== Parent PID: 44316
+==44343== 
+==44343== 
+==44343== HEAP SUMMARY:
+==44343==     in use at exit: 0 bytes in 0 blocks
+==44343==   total heap usage: 6 allocs, 6 frees, 1,034 bytes allocated
+==44343== 
+==44343== All heap blocks were freed -- no leaks are possible
+==44343== 
+==44343== For lists of detected and suppressed errors, rerun with: -s
+==44343== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

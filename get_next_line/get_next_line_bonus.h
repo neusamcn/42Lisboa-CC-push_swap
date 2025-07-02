@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 16:57:47 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/24 15:02:00 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/07/01 17:39:28 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		*ft_calloc(size_t nmemb, size_t size);
 char		*append_line(char *s1, char const *buf);
 char		*ft_strchr(const char *s, int c);
 char		*get_next_line(int fd);
-char		*read_to_nl(int fd, char *buf, char *line);
+char		*read_until_nl(int fd, char *buf, char *line);
 
 size_t		ft_strlen_nl(const char *s);
 

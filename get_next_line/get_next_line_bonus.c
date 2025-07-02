@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 16:57:35 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/06/24 14:35:06 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/07/01 17:39:28 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*get_next_line(int fd)
 		}
 		buf[fd][bytesread] = '\0';
 	}
-	line = read_to_nl(fd, buf[fd], line);
+	line = read_until_nl(fd, buf[fd], line);
 	if (!line)
 		return (NULL);
 	return (line);
