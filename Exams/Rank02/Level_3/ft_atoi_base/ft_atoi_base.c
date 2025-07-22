@@ -28,7 +28,7 @@ int	ft_atoi_base(const char *str, int str_base)
             return (0);
         i_str++;
     }
-    // Start on the right index:
+    // Start on the correct index:
     if (sign == -1)
         i_str = 1;
     else
