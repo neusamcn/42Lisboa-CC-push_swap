@@ -28,10 +28,12 @@ int	ft_atoi_base(const char *str, int str_base)
             return (0);
         i_str++;
     }
+    // Start on the right index:
     if (sign == -1)
         i_str = 1;
     else
         i_str = 0;
+    // Convert nb from str_base to decimal base:
     while (str[i_str] && str[i_str] != '\0')
     {
         i_bmax16 = 0;
