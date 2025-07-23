@@ -1,19 +1,3 @@
-// // FOR TESTING ONLY:
-// #include <unistd.h>
-
-// void	print_bits(unsigned char octet)
-// {
-//     unsigned char   bit_mask;
-//     int i = 7;
-
-//     while (i >= 0)
-//     { 
-//         bit_mask = (octet >> i & 1) + '0';
-//         write(1, &bit_mask, 1);
-//         i--;
-//     }
-// }
-
 // FOLLOW THE RED THREAD:
 /* 
     Based on the Positional Notation method
@@ -53,6 +37,21 @@ unsigned char	swap_bits(unsigned char octet)
 }
 
 // // FOR TESTING ONLY:
+// #include <unistd.h>
+
+// void	print_bits(unsigned char octet)
+// {
+//     unsigned char   bit_mask;
+//     int i = 7;
+
+//     while (i >= 0)
+//     { 
+//         bit_mask = (octet >> i & 1) + '0';
+//         write(1, &bit_mask, 1);
+//         i--;
+//     }
+// }
+
 // int main()
 // {
 //     print_bits(swap_bits(2)); // = 00100000
