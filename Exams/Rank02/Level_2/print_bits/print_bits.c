@@ -13,6 +13,22 @@ void	print_bits(unsigned char octet)
         i--;
     }
 }
+
+// WITHOUT BITWISE OPERATORS
+void	print_bits(unsigned char octet)
+{
+	char	bin_bits[] = "00000000";
+	int		max_index;
+
+	max_index = 7;
+	while (max_index >= 0 && octet > 0)
+	{
+		bin_bits[max_index] = (octet % 2) + '0';
+		octet = octet / 2;
+		max_index--;
+	}
+	write(1, &bin_bits, 8);
+}
 /*
     octet >> i
 Allows to shift all bits of this octet/byte to the right,
