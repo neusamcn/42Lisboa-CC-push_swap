@@ -1,19 +1,13 @@
-// // FOR TESTING ONLY:
-// #include <stdio.h>
-
 int	ft_atoi_base(const char *str, int str_base)
 {
-    char    *base_max16 = "0123456789abcdef";
-    int base_10 = 0;
+    int result_base10 = 0;
     int sign = 1;
-    int i_bmax16 = 0;
+    int char2int = 0;
     int i_str = 0;
 
-    // Recognize uppercase letters in str:
+    // Recognize '-' at index 0 and recognize uppercase letters in rest of str:
     while (str[i_str] && str[i_str] != '\0')
     {
-        if (str[i_str] >= 'A' && str[i_str] <= 'Z')
-            base_max16 = "0123456789ABCDEF";
         // Check for negative number:
         if (str[i_str] == '-')
         {
@@ -36,71 +30,107 @@ int	ft_atoi_base(const char *str, int str_base)
     // Convert nb from str_base to decimal base:
     while (str[i_str] && str[i_str] != '\0')
     {
-        i_bmax16 = 0;
-        while (base_max16[i_bmax16] && base_max16[i_bmax16] != '\0'
-                && i_bmax16 < str_base)
+        // Convert chars 'A'/'a' to 'F''f' to int and numeric chars to int:
+        if (str[i_str] == 'A' || str[i_str] == 'a')
+            char2int = 10;
+        else if (str[i_str] == 'B' || str[i_str] == 'b')
+            char2int = 11;
+        else if (str[i_str] == 'C' || str[i_str] == 'b')
+            char2int = 12;
+        else if (str[i_str] == 'D' || str[i_str] == 'c')
+            char2int = 13;
+        else if (str[i_str] == 'E' || str[i_str] == 'e')
+            char2int = 14;
+        else if (str[i_str] == 'F' || str[i_str] == 'f')
+            char2int = 15;
+        else
+            char2int = str[i_str] - '0';
+        // Convert to decimal base:
+        if (char2int < str_base)
         {
-            if (str[i_str] == base_max16[i_bmax16])
-            {
-                base_10 += i_bmax16;
-                i_bmax16 = 0;
-                break;
-            }
-            i_bmax16++;
+            result_base10 = result_base10 * str_base + char2int;
+            i_str++;
         }
-        if (str[i_str + 1] != '\0')
-        base_10 += str_base - 1;
-        i_str++;
+        else
+            return (0);
     }
-    return (base_10 * sign);
+    return (result_base10 * sign);
 }
 // // FOR TESTING ONLY:
+// #include <stdio.h>
+// #include <limits.h>
+
 // int main()
 // {
 //     printf("%d", ft_atoi_base("11", 4));
 //     if (ft_atoi_base("11", 4) == 5)
-//         printf(" ---> OK\n");
+//         printf(" ---> Test 1 OK\n");
 //     else
-//         printf(" ---> NOK\n");
+//         printf(" ---> Test 1 NOK\n");
 //     printf("%d", ft_atoi_base("B", 16));
 //     if (ft_atoi_base("B", 16) == 11)
-//         printf(" ---> OK\n");
+//         printf(" ---> Test 2 OK\n");
 //     else
-//         printf(" ---> NOK\n");
+//         printf(" ---> Test 2 NOK\n");
 //     printf("%d", ft_atoi_base("b", 16));
 //     if (ft_atoi_base("b", 16) == 11)
-//         printf(" ---> OK\n");
+//         printf(" ---> Test 3 OK\n");
 //     else
-//         printf(" ---> NOK\n");
+//         printf(" ---> Test 3 NOK\n");
 //     printf("%d", ft_atoi_base("10", 16));
 //     if (ft_atoi_base("10", 16) == 16)
-//         printf(" ---> OK\n");
+//         printf(" ---> Test 4 OK\n");
 //     else
-//         printf(" ---> NOK\n");
+//         printf(" ---> Test 4 NOK\n");
 //     printf("%d", ft_atoi_base("0", 7));
 //     if (ft_atoi_base("0", 7) == 0)
-//         printf(" ---> OK\n");
+//         printf(" ---> Test 5 OK\n");
 //     else
-//         printf(" ---> NOK\n");
+//         printf(" ---> Test 5 NOK\n");
 //     printf("%d", ft_atoi_base("-11", 4));
 //     if (ft_atoi_base("-11", 4) == -5)
-//         printf(" ---> OK\n");
+//         printf(" ---> Test 6 OK\n");
 //     else
-//         printf(" ---> NOK\n");
+//         printf(" ---> Test 6 NOK\n");
 //     printf("%d", ft_atoi_base("5", 0));
 //     if (ft_atoi_base("5", 0) == 0)
-//         printf(" ---> OK\n");
+//         printf(" ---> Test 7 OK\n");
 //     else
-//         printf(" ---> NOK\n");
+//         printf(" ---> Test 7 NOK\n");
 //     printf("%d", ft_atoi_base("-7", -1));
 //     if (ft_atoi_base("-7", -1) == 0)
-//         printf(" ---> OK\n");
+//         printf(" ---> Test 8 OK\n");
 //     else
-//         printf(" ---> NOK\n");
+//         printf(" ---> Test 8 NOK\n");
 //     printf("%d", ft_atoi_base(" A", 13));
 //     if (ft_atoi_base(" A", 13) == 0)
-//         printf(" ---> OK\n");
+//         printf(" ---> Test 9 OK\n");
 //     else
-//         printf(" ---> NOK\n");
+//         printf(" ---> Test 9 NOK\n");
+//     printf("%d", ft_atoi_base("101010", 2));
+//     if (ft_atoi_base("101010", 2) == 42)
+//         printf(" ---> Test 10 OK\n");
+//     else
+//         printf(" ---> Test 10 NOK\n");
+//     printf("%d", ft_atoi_base("-101010", 2));
+//     if (ft_atoi_base("-101010", 2) == -42)
+//         printf(" ---> Test 11 OK\n");
+//     else
+//         printf(" ---> Test 11 NOK\n");
+//     printf("%d", ft_atoi_base("2147483647", 10));
+//     if (ft_atoi_base("2147483647", 10) == INT_MAX)
+//         printf(" ---> Test 12 OK\n");
+//     else
+//         printf(" ---> Test 12 NOK\n");
+//     printf("%d", ft_atoi_base("-2147483648", 10));
+//     if (ft_atoi_base("-2147483648", 10) == INT_MIN)
+//         printf(" ---> Test 13 OK\n");
+//     else
+//         printf(" ---> Test 13 NOK\n");
+//     printf("%d", ft_atoi_base("5", 3));
+//     if (ft_atoi_base("5", 3) == 0)
+//         printf(" ---> Test 13 OK\n");
+//     else
+//         printf(" ---> Test 13 NOK\n");
 //     return(0);
 // }
