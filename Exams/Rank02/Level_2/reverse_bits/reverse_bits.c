@@ -1,19 +1,3 @@
-// // FOR TESTING ONLY:
-// #include <unistd.h>
-
-// void	print_bits(unsigned char octet)
-// {
-//     unsigned char   bit_mask;
-//     int i = 7;
-
-//     while (i >= 0)
-//     { 
-//         bit_mask = (octet >> i & 1) + '0';
-//         write(1, &bit_mask, 1);
-//         i--;
-//     }
-// }
-
 /* 
     Both options are based on the Positional Notation method
     for conversion of numbers from binary to decimal base:
@@ -53,6 +37,21 @@ unsigned char	reverse_bits(unsigned char octet)
 	return (rev_octet);
 }
 // // FOR TESTING ONLY:
+// #include <unistd.h>
+
+// void	print_bits(unsigned char octet)
+// {
+//     unsigned char   bit_mask;
+//     int i = 7;
+
+//     while (i >= 0)
+//     { 
+//         bit_mask = (octet >> i & 1) + '0';
+//         write(1, &bit_mask, 1);
+//         i--;
+//     }
+// }
+
 // int main()
 // {
 //     print_bits(reverse_bits(2)); // = 01000000
