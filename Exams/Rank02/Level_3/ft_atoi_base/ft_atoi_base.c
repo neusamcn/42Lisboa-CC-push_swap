@@ -1,60 +1,76 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/24 20:37:11 by ncruz-ne          #+#    #+#             */
+/*   Updated: 2025/07/24 20:37:32 by ncruz-ne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 int	ft_atoi_base(const char *str, int str_base)
 {
-    int result_base10 = 0;
-    int sign = 1;
-    int char2int = 0;
-    int i_str = 0;
+	int	result_base10;
+	int	sign;
+	int	char2int;
+	int	i_str;
 
-    // Recognize '-' at index 0 and recognize uppercase letters in rest of str:
-    while (str[i_str] && str[i_str] != '\0')
-    {
-        // Check for negative number:
-        if (str[i_str] == '-')
-        {
-            sign = -1;
-            i_str++;
-        }
-        // Return 0 for unrecognized char:
-        if ((str_base < 1 || str_base > 16)
-        || !((str[i_str] >= '0' && str[i_str] <= '9')
-        || (str[i_str] >= 'A' && str[i_str] <= 'F')
-        || (str[i_str] >= 'a' && str[i_str] <= 'f')))
-            return (0);
-        i_str++;
-    }
-    // Start on the correct index:
-    if (sign == -1)
-        i_str = 1;
-    else
-        i_str = 0;
-    // Convert nb from str_base to decimal base:
-    while (str[i_str] && str[i_str] != '\0')
-    {
-        // Convert chars 'A'/'a' to 'F''f' to int and numeric chars to int:
-        if (str[i_str] == 'A' || str[i_str] == 'a')
-            char2int = 10;
-        else if (str[i_str] == 'B' || str[i_str] == 'b')
-            char2int = 11;
-        else if (str[i_str] == 'C' || str[i_str] == 'b')
-            char2int = 12;
-        else if (str[i_str] == 'D' || str[i_str] == 'c')
-            char2int = 13;
-        else if (str[i_str] == 'E' || str[i_str] == 'e')
-            char2int = 14;
-        else if (str[i_str] == 'F' || str[i_str] == 'f')
-            char2int = 15;
-        else
-            char2int = str[i_str] - '0';
-        // Convert to decimal base:
-        if (char2int < str_base)
-        {
-            result_base10 = result_base10 * str_base + char2int;
-            i_str++;
-        }
-        else
-            return (0);
-    }
-    return (result_base10 * sign);
+	result_base10 = 0;
+	sign = 1;
+	char2int = 0;
+	i_str = 0;
+	// Recognize '-' at index 0 and recognize uppercase letters in rest of str:
+	while (str[i_str] && str[i_str] != '\0')
+	{
+		// Check for negative number:
+		if (str[i_str] == '-')
+		{
+			sign = -1;
+			i_str++;
+		}
+		// Return 0 for unrecognized char:
+		if ((str_base < 1 || str_base > 16) || !((str[i_str] >= '0'
+					&& str[i_str] <= '9') || (str[i_str] >= 'A'
+					&& str[i_str] <= 'F') || (str[i_str] >= 'a'
+					&& str[i_str] <= 'f')))
+			return (0);
+		i_str++;
+	}
+	// Start on the correct index:
+	if (sign == -1)
+		i_str = 1;
+	else
+		i_str = 0;
+	// Convert nb from str_base to decimal base:
+	while (str[i_str] && str[i_str] != '\0')
+	{
+		// Convert chars 'A'/'a' to 'F''f' to int and numeric chars to int:
+		if (str[i_str] == 'A' || str[i_str] == 'a')
+			char2int = 10;
+		else if (str[i_str] == 'B' || str[i_str] == 'b')
+			char2int = 11;
+		else if (str[i_str] == 'C' || str[i_str] == 'b')
+			char2int = 12;
+		else if (str[i_str] == 'D' || str[i_str] == 'c')
+			char2int = 13;
+		else if (str[i_str] == 'E' || str[i_str] == 'e')
+			char2int = 14;
+		else if (str[i_str] == 'F' || str[i_str] == 'f')
+			char2int = 15;
+		else
+			char2int = str[i_str] - '0';
+		// Convert to decimal base:
+		if (char2int < str_base)
+		{
+			result_base10 = result_base10 * str_base + char2int;
+			i_str++;
+		}
+		else
+			return (0);
+	}
+	return (result_base10 * sign);
 }
 // // FOR TESTING ONLY:
 // #include <stdio.h>

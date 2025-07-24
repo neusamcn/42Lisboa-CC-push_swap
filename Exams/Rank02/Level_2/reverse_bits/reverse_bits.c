@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   reverse_bits.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/24 20:42:43 by ncruz-ne          #+#    #+#             */
+/*   Updated: 2025/07/24 20:42:43 by ncruz-ne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 /* 
     Both options are based on the Positional Notation method
     for conversion of numbers from binary to decimal base:
