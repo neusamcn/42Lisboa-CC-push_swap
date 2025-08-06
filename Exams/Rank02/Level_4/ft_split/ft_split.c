@@ -1,16 +1,25 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: neusa <neusa@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 14:51:17 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/08/05 16:31:38 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/08/06 20:26:05 by neusa            ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include <stdlib.h>
+
+size_t	whitespace_skips(char *str)
+{
+	size_t	i = 0;
+	// not considering form feed ('\f') or carriage return ('\r') to skip:
+	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\v'))
+		i++;
+	return (i);
+}
 
 size_t	count_rows(char *str)
 {
@@ -21,46 +30,41 @@ size_t	count_rows(char *str)
 	rows = 0;
 	while (str[i] && str[i] != '\0')
 	{
-		while (str[i] != ' ' || (str[i] >= '\t' && str[i] <= '\v'))
-			i++;
-		if (!(str[i] != ' ' || (str[i] >= '\t' && str[i] <= '\v')))
+		i += whitespace_skips(&str[i]);
+		if (str[i] != '\0' && whitespace_skips(&str[i]) == 0)
 		{
 			rows++;
-			while (!(str[i] != ' ' || (str[i] >= '\t' && str[i] <= '\v')))
+			while (str[i] != '\0' && whitespace_skips(&str[i]) == 0)
 				i++;
 		}
 	}
 	return (rows);
 }
 
-size_t  row_len(char *str)
+size_t  ft_row_len(char *str)
 {
     size_t  row_len = 0;
     
-    while (!(str[row_len] != ' ' || (str[row_len] >= '\t' && str[row_len] <= '\v')))
+    while (str[row_len] != '\0' && whitespace_skips(&str[row_len]) == 0)
         row_len++;
     return (row_len);
 }
 
-int	free_all(char **splat, size_t row)
+void	free_all(char **splat, size_t row)
 {
-	if (!splat[row])
+	while (row > 0)
 	{
-		while (row > 0)
-		{
-			free(splat[row - 1]);
-			row--;
-		}
-		free(splat);
-		return (1);
+		free(splat[row - 1]);
+		row--;
 	}
-	return (0);
+	free(splat);
 }
 
 char	**ft_split(char *str)
 {
 	size_t	i;
 	size_t	row;
+	size_t	total_rows = count_rows(str);
     size_t  row_len;
 	size_t	col;
 	char	**splat;
@@ -68,31 +72,31 @@ char	**ft_split(char *str)
 	if (!str)
 		return (NULL);
 	// Allocating memory for the array of pointers:
-	splat = (char **)malloc(sizeof(char *) * (count_rows(str) + 1));
+	splat = (char **)malloc(sizeof(char *) * (total_rows + 1));
 	if (!splat)
 		return (NULL);
-	// Splitting str
-	// (not considering form feed ('\f') or carriage return ('\r') to skip):
+	// Splitting str:
 	i = 0;
 	row = 0;
-    while (str[i + row_len] != '\0' && row <= count_rows(str))
+    while (str[i] != '\0' && row < total_rows)
     {
         // Skipping spaces, tabs and new lines:
-        while (str[i + row_len] != ' ' || (str[i + row_len] >= '\t' && str[i] <= '\v'))
-            i++;
+        i += whitespace_skips(&str[i]);
         // Calculating length of a row:
-        while (!(str[i + row_len] != ' ' || (str[i + row_len] >= '\t' && str[i + row_len] <= '\v')))
-            row_len++;
+        row_len = ft_row_len(&str[i]);
         // Allocating memory for each row of splat:
         splat[row] = (char *)malloc(sizeof(char) * (row_len + 1));
-        if (free_all(splat, row) == 1)
-            return (NULL);
+        if (!splat[row])
+		{
+			free_all(splat, row);
+			return (NULL);
+		}
         row_len = 0;
         // Create a new splat[row]:
         col = 0;
-        while (!(str[i + row_len] != ' ' || (str[i + row_len] >= '\t' && str[i + row_len] <= '\v')))
+        while (str[i] != '\0' && whitespace_skips(&str[i]) == 0)
         {
-            splat[row][col] = str[i + row_len];
+            splat[row][col] = str[i];
             i++;
             col++;
         }
@@ -113,13 +117,15 @@ int	main(int ac, char **av)
 	{
 		int row = 0;
 		char **splat = ft_split(av[1]);
+		if (!splat)
+			return (1);
 		while (splat[row] != NULL)
 		{
 			printf("%s\n", splat[row]);
+			free(splat[row]);
 			row++;
 		}
-		free(splat[row]);
-		free_all(splat, row);
+		free(splat);
 	}
 	return (0);
 }
