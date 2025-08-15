@@ -51,9 +51,9 @@ int	ft_atoi_base(const char *str, int str_base)
 			char2int = 10;
 		else if (str[i_str] == 'B' || str[i_str] == 'b')
 			char2int = 11;
-		else if (str[i_str] == 'C' || str[i_str] == 'b')
+		else if (str[i_str] == 'C' || str[i_str] == 'c')
 			char2int = 12;
-		else if (str[i_str] == 'D' || str[i_str] == 'c')
+		else if (str[i_str] == 'D' || str[i_str] == 'd')
 			char2int = 13;
 		else if (str[i_str] == 'E' || str[i_str] == 'e')
 			char2int = 14;
