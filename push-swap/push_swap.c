@@ -6,12 +6,15 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/08/24 22:52:40 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/08/25 00:19:38 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "push_swap.h"
 #include <stdio.h>
+
+
+
 int main()
 {
 
@@ -25,12 +28,19 @@ int main()
 
 LOCICAL STEPS:
 1. normalize input data (add left 0s)
-2. separate negatives from positives - if(a[i] < 0){pb;}
+separate negatives from positives - if(a[i] < 0){pb;}
     > stacks a (pos) && b (neg) to join w/ pa() after sort
 (maybe) quick sort up to N items (due to speed)
-3. radix sort on a && b - bucket by lsd
-3.1. inverted sort on negative stack - if(sort(a){+>-}){sort(b){->+}}
-6. join positive stack to negative stack - while(b){pa++;}
+2. radix sort on a && b - bucket by lsd
+inverted sort on negative stack - if(sort(a){+>-}){sort(b){->+}}
+join positive stack to negative stack - while(b){pa++;}
+
+MAIN MECHANISM:
+the least anmount of operations to sort the given stack as argument
+
+
+peak() to check for each BUILD operation
+if(BUILD == RADIX){print("BUILD");} 
 
 BUILD:
 sa: swap a
@@ -45,5 +55,5 @@ rra: reverse rotate a
 rrb
 rrr: rra + rrb
 
-buckets: 
+bucketsort:  how do i make me some buckets?
 */

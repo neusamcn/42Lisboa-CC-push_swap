@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
@@ -6,16 +6,34 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:46:06 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/08/11 12:51:47 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/08/25 00:44:03 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef PUSH_SWAP_H
-#define PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdarg.h>
+
+// DOUBLY LINKED CIRCULAR LIST
+
+typedef struct s_list
+{
+	int				content;
+	struct s_list	*previous;
+	struct s_list	*next;
+}					t_list;
+
+typedef struct s_stack
+{
+	t_list	*head;
+	size_t	size;
+	int	min;
+	int	max;
+}	t_stack;
+
 
 typedef struct s_fmt
 {
