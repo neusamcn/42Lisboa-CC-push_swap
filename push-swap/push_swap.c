@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list.h                                          :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/24 20:36:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/08/08 11:20:56 by ncruz-ne         ###   ########.fr       */
+/*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
+/*   Updated: 2025/08/12 17:22:58 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LIST_H
-# define FT_LIST_H
+#include "push_swap.h"
 
-typedef struct s_list
-{
-	struct s_list	*next;
-	void			*data;
-}					t_list;
 
-void				ft_list_foreach(t_list *begin_list, void (*f)(void *));
 
-#endif
+/* TO-DO:
+- STACK STRUCT:
+-- len : size of the array;
+-- max : highest value;
+-- min : lowest value; 
+*/

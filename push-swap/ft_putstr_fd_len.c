@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list.h                                          :+:      :+:    :+:   */
+/*   ft_putstr_fd_len.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/24 20:36:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/08/08 11:20:56 by ncruz-ne         ###   ########.fr       */
+/*   Created: 2025/05/22 13:15:25 by ncruz-ne          #+#    #+#             */
+/*   Updated: 2025/08/11 15:54:24 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LIST_H
-# define FT_LIST_H
+#include "push_swap.h"
 
-typedef struct s_list
+int	ft_putstr_fd_len(const char *s, int fd)
 {
-	struct s_list	*next;
-	void			*data;
-}					t_list;
+	int	i;
 
-void				ft_list_foreach(t_list *begin_list, void (*f)(void *));
-
-#endif
+	i = 0;
+	if (!s)
+		return (ft_putstr_fd_len("(null)", 1));
+	while (s[i] && s[i] != '%')
+	{
+		ft_putchar_fd_len(s[i], 1);
+		i++;
+	}
+	return (i);
+}

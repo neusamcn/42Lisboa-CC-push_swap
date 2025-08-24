@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list.h                                          :+:      :+:    :+:   */
+/*   ft_putnbr_fd_len.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/24 20:36:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/08/08 11:20:56 by ncruz-ne         ###   ########.fr       */
+/*   Created: 2025/05/20 15:27:50 by ncruz-ne          #+#    #+#             */
+/*   Updated: 2025/08/11 15:54:24 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LIST_H
-# define FT_LIST_H
+#include "push_swap.h"
 
-typedef struct s_list
+int	ft_putnbr_fd_len(long long n, int fd)
 {
-	struct s_list	*next;
-	void			*data;
-}					t_list;
+	int	len;
 
-void				ft_list_foreach(t_list *begin_list, void (*f)(void *));
-
-#endif
+	len = ft_nlen(n);
+	if (n < 0)
+	{
+		ft_putchar_fd_len('-', 1);
+		n = -n;
+	}
+	if (n > 9)
+	{
+		ft_putnbr_fd_len(n / 10, fd);
+		ft_putchar_fd_len((n % 10) + '0', 1);
+	}
+	if (n < 10 && n >= 0)
+	{
+		ft_putchar_fd_len(n + '0', 1);
+	}
+	return (len);
+}

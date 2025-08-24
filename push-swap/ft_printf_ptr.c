@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list.h                                          :+:      :+:    :+:   */
+/*   ft_printf_ptr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/24 20:36:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/08/08 11:20:56 by ncruz-ne         ###   ########.fr       */
+/*   Created: 2025/05/21 22:11:04 by ncruz-ne          #+#    #+#             */
+/*   Updated: 2025/08/11 15:54:24 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LIST_H
-# define FT_LIST_H
+#include "push_swap.h"
 
-typedef struct s_list
+int	ft_printf_ptr(void *ptr)
 {
-	struct s_list	*next;
-	void			*data;
-}					t_list;
-
-void				ft_list_foreach(t_list *begin_list, void (*f)(void *));
-
-#endif
+	if (ptr == NULL)
+		return (ft_putstr_fd_len("(nil)", 1));
+	return (ft_putstr_fd_len("0x", 1) + ft_printf_hex((size_t)ptr, 0, 'x'));
+}

@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list.h                                          :+:      :+:    :+:   */
+/*   ft_nlen.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/24 20:36:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/08/08 11:20:56 by ncruz-ne         ###   ########.fr       */
+/*   Created: 2025/05/18 19:03:10 by ncruz-ne          #+#    #+#             */
+/*   Updated: 2025/08/11 15:54:24 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LIST_H
-# define FT_LIST_H
+#include "push_swap.h"
 
-typedef struct s_list
+int	ft_nlen(long long n)
 {
-	struct s_list	*next;
-	void			*data;
-}					t_list;
+	int	len;
 
-void				ft_list_foreach(t_list *begin_list, void (*f)(void *));
-
-#endif
+	len = 0;
+	if (n < 0)
+	{
+		len++;
+		n *= -1;
+	}
+	if (n >= 0)
+		len++;
+	while (n > 9)
+	{
+		n /= 10;
+		len++;
+	}
+	return (len);
+}

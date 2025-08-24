@@ -21,7 +21,7 @@ int	ft_atoi_base(const char *str, int str_base)
 	sign = 1;
 	char2int = 0;
 	i_str = 0;
-	// Recognize '-' at index 0 and recognize uppercase letters in rest of str:
+	// Recognize '-' at index 0 and recognize valid letters in rest of str:
 	while (str[i_str] && str[i_str] != '\0')
 	{
 		// Check for negative number:
@@ -46,14 +46,14 @@ int	ft_atoi_base(const char *str, int str_base)
 	// Convert nb from str_base to decimal base:
 	while (str[i_str] && str[i_str] != '\0')
 	{
-		// Convert chars 'A'/'a' to 'F''f' to int and numeric chars to int:
+		// Convert chars 'A'/'a' to 'F'/'f' and numeric chars to int:
 		if (str[i_str] == 'A' || str[i_str] == 'a')
 			char2int = 10;
 		else if (str[i_str] == 'B' || str[i_str] == 'b')
 			char2int = 11;
-		else if (str[i_str] == 'C' || str[i_str] == 'b')
+		else if (str[i_str] == 'C' || str[i_str] == 'c')
 			char2int = 12;
-		else if (str[i_str] == 'D' || str[i_str] == 'c')
+		else if (str[i_str] == 'D' || str[i_str] == 'd')
 			char2int = 13;
 		else if (str[i_str] == 'E' || str[i_str] == 'e')
 			char2int = 14;
