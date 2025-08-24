@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:46:06 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/08/25 00:44:03 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/08/25 00:46:24 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -17,8 +17,7 @@
 #include <unistd.h>
 #include <stdarg.h>
 
-// DOUBLY LINKED CIRCULAR LIST
-
+// DOUBLY CIRCULAR LINKED LIST
 typedef struct s_list
 {
 	int				content;
