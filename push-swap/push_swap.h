@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:46:06 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/08/25 00:46:24 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/08/25 01:06:34 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -33,7 +33,7 @@ typedef struct s_stack
 	int	max;
 }	t_stack;
 
-
+// ERROR CHECKER FOR PRINTF()
 typedef struct s_fmt
 {
 	int	i;
