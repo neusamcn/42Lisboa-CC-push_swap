@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd_len.c                                :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 18:53:16 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/08/11 15:54:24 by ncruz-ne         ###   ########.fr       */
+/*   Created: 2025/04/16 19:09:38 by ncruz-ne          #+#    #+#             */
+/*   Updated: 2025/05/08 14:08:26 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	ft_putchar_fd_len(char c, int fd)
+char	*ft_strchr(const char *s, int c)
 {
-	if (fd < 0)
-		return (-1);
-	write(fd, &c, 1);
-	return (1);
+	int				i;
+	unsigned char	chr;
+	char			*p;
+
+	i = 0;
+	chr = (unsigned char)c;
+	p = (char *)s;
+	while (*(p + i))
+	{
+		if (*(p + i) == chr)
+			return (p + i);
+		i++;
+	}
+	if (chr == '\0')
+		return (p + i);
+	return (NULL);
 }

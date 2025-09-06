@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_hex.c                                    :+:      :+:    :+:   */
+/*   ft_printf_ptr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/16 18:34:01 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/08/11 15:54:24 by ncruz-ne         ###   ########.fr       */
+/*   Created: 2025/05/21 22:11:04 by ncruz-ne          #+#    #+#             */
+/*   Updated: 2025/05/26 16:31:03 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	ft_printf_hex(size_t n, int len, char x)
+int	ft_printf_ptr(void *ptr)
 {
-	char	*arr;
-
-	arr = "0123456789abcdef";
-	if (x == 'X')
-		arr = "0123456789ABCDEF";
-	if (n < 16)
-		len += ft_putchar_fd_len(arr[n], 1);
-	if (n >= 16)
-	{
-		len += ft_printf_hex(n / 16, len, x);
-		ft_putchar_fd_len(arr[n % 16], 1);
-		len++;
-	}
-	return (len);
+	if (ptr == NULL)
+		return (ft_putstr_fd_len("(nil)", 1));
+	return (ft_putstr_fd_len("0x", 1) + ft_printf_hex((size_t)ptr, 0, 'x'));
 }

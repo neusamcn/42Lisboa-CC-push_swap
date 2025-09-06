@@ -6,10 +6,11 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/06 00:56:49 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/06 16:38:32 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
+#include "libft/libft.h"
 #include "push_swap.h"
 #include <stdio.h>
 
@@ -38,7 +39,7 @@ int main(int ac, char **av)
         printf("inversions: %d\n", stack_a->head->inversions);
         printf("previous: %p\n", stack_a->head->previous);
         printf("next: %p\n------------\n\n", stack_a->head->next);
-        if (stack_a->head->index == 2)
+        if ((size_t)stack_a->head->index == stack_a->size - 1)
             break;
         stack_a->head = stack_a->head->next;
 

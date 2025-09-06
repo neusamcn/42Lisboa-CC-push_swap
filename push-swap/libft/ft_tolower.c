@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nlen.c                                          :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncruz-ne <ncruz-ne@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/18 19:03:10 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/08/11 15:54:24 by ncruz-ne         ###   ########.fr       */
+/*   Created: 2025/04/16 19:03:48 by ncruz-ne          #+#    #+#             */
+/*   Updated: 2025/04/17 11:46:23 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	ft_nlen(long long n)
+int	ft_tolower(int c)
 {
-	int	len;
-
-	len = 0;
-	if (n < 0)
-	{
-		len++;
-		n *= -1;
-	}
-	if (n >= 0)
-		len++;
-	while (n > 9)
-	{
-		n /= 10;
-		len++;
-	}
-	return (len);
+	if (c > 64 && c < 91)
+		c = c + 32;
+	return (c);
 }

@@ -6,80 +6,57 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:32:52 by ncruz-ne          #+#    #+#              #
-#    Updated: 2025/09/06 00:58:15 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2025/09/06 17:38:24 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
-# If Makefile @ <project root>/TESTS: make <command> -f TESTS/Makefile
-
 NAME = push_swap
+
+LIBFT = libft/libft.a
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra -I.
+CFLAGS = -Wall -Werror -Wextra -g -I.
 
-OBJS = ft_printf.o \
-ft_printf_hex.o \
-ft_printf_ptr.o \
-ft_putnbr_fd_len.o \
-ft_putchar_fd_len.o \
-ft_putstr_fd_len.o \
-ft_nlen.o \
-ft_lstlast.o \
-ft_lstsize.o \
-ft_lstadd_back.o \
-ft_lstadd_front.o \
-ft_atoi.o \
-push_swap.o input_parser.o free_stack.o
-# ft_circlstnew.o ft_lstiter.o \
-
+OBJS = push_swap.o input_parser.o free_stack.o
 
 OBJS_BONUS = 
 
-all: $(NAME)
+TEST_ARGS = 1 2 3
+
+all: $(LIBFT) $(NAME)
+
+$(LIBFT):
+	make -C libft
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -Llibft -lft -o $(NAME)
 
 bonus: .bonus
 
 .bonus: $(NAME) $(OBJS_BONUS)
-	ar rcs $(NAME) $(OBJS) $(OBJS_BONUS)
+	$(CC) $(CFLAGS) $(OBJS) $(OBJS_BONUS) -o $(NAME)
 	touch .bonus
 
-# FOR TESTING ONLY:
-MAIN_SRCS = $(wildcard TESTS/main*.c)
-
-MAIN_OBJS = $(MAIN_SRCS:.c=.o)
-
-EXEC = $(MAIN_SRCS:.c=)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(EXEC): %: %.o $(NAME)
-	$(CC) $(CFLAGS) -g $< $(NAME) -o $@
-
-run: $(EXEC)
-	@for exe in $(EXEC); do \
-		echo "Running $$exe..."; \
-		./$$exe; \
-	done
-
-# FOR TESTING ONLY:
-valgrind: $(EXEC)
-	./TESTS/valgrind_all.sh
+valgrind: $(NAME)
+	valgrind --log-file=valgrind_log --leak-check=full \
+	./$(NAME) $(TEST_ARGS) > test_output.txt
 
 clean:
 	-rm -f $(OBJS) $(MAIN_OBJS) $(OBJS_BONUS) .bonus
+	make -C libft clean
 
 fclean: clean
 	-rm -f $(NAME) $(EXEC)
+	make -C libft fclean
 
 re: fclean all
 
-# REMOVE TESTING COMMANDS:
-.PHONY: all clean fclean re run valgrind bonus
+tclean:
+	rm -f valgrind_log
+	rm -f test_output.txt
+
+.PHONY: all bonus clean fclean re run valgrind tclean

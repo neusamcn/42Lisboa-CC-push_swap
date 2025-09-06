@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd_len.c                                 :+:      :+:    :+:   */
+/*   ft_printf_hex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 15:27:50 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/08/11 15:54:24 by ncruz-ne         ###   ########.fr       */
+/*   Created: 2025/05/16 18:34:01 by ncruz-ne          #+#    #+#             */
+/*   Updated: 2025/05/26 16:31:04 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	ft_putnbr_fd_len(long long n, int fd)
+int	ft_printf_hex(size_t n, int len, char x)
 {
-	int	len;
+	char	*arr;
 
-	len = ft_nlen(n);
-	if (n < 0)
+	arr = "0123456789abcdef";
+	if (x == 'X')
+		arr = "0123456789ABCDEF";
+	if (n < 16)
+		len += ft_putchar_fd_len(arr[n], 1);
+	if (n >= 16)
 	{
-		ft_putchar_fd_len('-', 1);
-		n = -n;
-	}
-	if (n > 9)
-	{
-		ft_putnbr_fd_len(n / 10, fd);
-		ft_putchar_fd_len((n % 10) + '0', 1);
-	}
-	if (n < 10 && n >= 0)
-	{
-		ft_putchar_fd_len(n + '0', 1);
+		len += ft_printf_hex(n / 16, len, x);
+		ft_putchar_fd_len(arr[n % 16], 1);
+		len++;
 	}
 	return (len);
 }

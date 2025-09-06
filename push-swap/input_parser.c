@@ -6,14 +6,14 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:30:34 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/06 01:00:18 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/06 17:01:48 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
+#include "libft/libft.h"
 #include "push_swap.h"
 #include <stdio.h>
 
-// REQUIRES TESTING: 
 int input_err(char *list_item)
 {
     int i;
@@ -31,7 +31,7 @@ int input_err(char *list_item)
 // REQUIRES TESTING:
 // int ft_mk_lst_rank()
 // {
-//     t_list  *lst;
+//     t_circlist  *lst;
     
 //     lst->rank = ft_mk_lst_rank();
 //     lst->inversions = ;
@@ -39,12 +39,23 @@ int input_err(char *list_item)
 // }
 
 // REQUIRES TESTING:
+t_circlist  *mk_circlst()
+{
+    t_circlist  *circlst;
+
+    circlst = malloc(sizeof(t_circlist));
+    if (!circlst)
+        return (NULL);
+    return (circlst);
+}
+
+// REQUIRES TESTING:
 t_stack  *mk_stack(int max_rows_cont, char **rows_cont)
 {
-    t_stack *stack;
-    t_list  *current_node;
-    t_list  *previous_node;
-    int     row;
+    t_stack     *stack;
+    t_circlist  *current_node;
+    t_circlist  *previous_node;
+    int         row;
 
     stack = malloc(sizeof(t_stack));
     if (!stack)
@@ -55,14 +66,10 @@ t_stack  *mk_stack(int max_rows_cont, char **rows_cont)
     stack->max = 0;
     stack->sorted = 0;
     row = 1;
-    previous_node = malloc(sizeof(t_list));
-    if (!previous_node)
-    {   free(stack);
-        return (NULL);
-    }
+    previous_node = NULL;
     while (row < max_rows_cont)
     {
-        current_node = malloc(sizeof(t_list));
+        current_node = malloc(sizeof(t_circlist));
         if (!current_node)
         {    
             free_err_stack(stack);
@@ -78,7 +85,8 @@ t_stack  *mk_stack(int max_rows_cont, char **rows_cont)
         if (row <= max_rows_cont)
         {
             current_node->previous = previous_node;
-            previous_node->next = current_node;
+            if (previous_node)
+                previous_node->next = current_node;
             previous_node = current_node;
             if (row == max_rows_cont)
             {
@@ -88,18 +96,8 @@ t_stack  *mk_stack(int max_rows_cont, char **rows_cont)
         }
         if (row < max_rows_cont)
             current_node->next = NULL;
-        // TESTS START
-        // printf("node: %p\n", current_node);
-        // printf("content: %d\n", current_node->content);
-        // printf("index: %d\n", current_node->index);
-        // printf("rank: %d\n", current_node->rank);
-        // printf("inversions: %d\n", current_node->inversions);
-        // printf("previous: %p\n", current_node->previous);
-        // printf("next: %p\n------------\n\n", current_node->next);
-        // TESTS END
         current_node = current_node->next;
     }
-    free(previous_node);
     // function for ranks, inversions and stack's min, max and sorted
     return (stack);
 }
@@ -108,8 +106,8 @@ t_stack  *mk_stack(int max_rows_cont, char **rows_cont)
 t_stack *parser(int ac, char **av) // should it return a pointer?
 {
     int     row;
-    // t_list  *lst_a;
-    // t_list  *lst_b;
+    // t_circlist  *lst_a;
+    // t_circlist  *lst_b;
     t_stack *stack_a;
     // t_stack *stack_b;
     

@@ -10,12 +10,13 @@
 /*                                                                            */
 /******************************************************************************/
 
+#include "libft/libft.h"
 #include "push_swap.h"
 
 void    free_circlst_stack(t_stack *stack)
 {
-    t_list  *current_node;
-    t_list  *next_node;
+    t_circlist  *current_node;
+    t_circlist  *next_node;
 
     if (!stack || !stack->head)
     {
@@ -36,8 +37,8 @@ void    free_circlst_stack(t_stack *stack)
 
 void    free_err_stack(t_stack *stack)
 {
-    t_list  *current_node;
-    t_list  *next_node;
+    t_circlist  *current_node;
+    t_circlist  *next_node;
 
     if (!stack || !stack->head)
     {

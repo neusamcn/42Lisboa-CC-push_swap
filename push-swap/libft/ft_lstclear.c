@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_ptr.c                                    :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/21 22:11:04 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/08/11 15:54:24 by ncruz-ne         ###   ########.fr       */
+/*   Created: 2025/05/09 22:15:37 by ncruz-ne          #+#    #+#             */
+/*   Updated: 2025/05/11 13:55:50 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	ft_printf_ptr(void *ptr)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	if (ptr == NULL)
-		return (ft_putstr_fd_len("(nil)", 1));
-	return (ft_putstr_fd_len("0x", 1) + ft_printf_hex((size_t)ptr, 0, 'x'));
+	t_list	*currentnode;
+	t_list	*nextnode;
+
+	if (!lst || !del || *lst == NULL)
+		return ;
+	currentnode = *lst;
+	while (currentnode != NULL)
+	{
+		nextnode = currentnode->next;
+		del(currentnode->content);
+		free(currentnode);
+		currentnode = nextnode;
+	}
+	*lst = NULL;
 }
