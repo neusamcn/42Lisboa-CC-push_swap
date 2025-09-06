@@ -6,35 +6,45 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/08/25 01:10:31 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/06 00:56:49 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "push_swap.h"
 #include <stdio.h>
 
-int input_err(int list_item)
-{
-    
-}
-
-// HOW TO RECEIVE DATA AND INTERPRET IT INTO MY LIST
 int main(int ac, char **av)
 {
-    int i_av;
-    i_av = 1;
-    if(ac > 1)
+    t_stack *stack_a;
+    
+    if (ac > 1)
     {
-        while(i_av < ac)
-        {
-            if(input_err(av[i_av]) == 1)
-            {
-                write(2, "Error\n", 6);
-                exit(1) ; // yes?
-            }
-            i_av++;
-        }
+        stack_a = parser(ac, av);
     }
+    // TESTS START
+    printf("STACK_A:\n");
+    printf("head: %p\n", stack_a->head);
+    printf("size: %lu\n", stack_a->size);
+    printf("min: %d\n", stack_a->min);
+    printf("max: %d\n", stack_a->max);
+    printf("sorted: %d\n\n", stack_a->sorted);
+
+    while(stack_a)
+    {
+        printf("node: %p\n", stack_a->head);
+        printf("content: %d\n", stack_a->head->content);
+        printf("index: %d\n", stack_a->head->index);
+        printf("rank: %d\n", stack_a->head->rank);
+        printf("inversions: %d\n", stack_a->head->inversions);
+        printf("previous: %p\n", stack_a->head->previous);
+        printf("next: %p\n------------\n\n", stack_a->head->next);
+        if (stack_a->head->index == 2)
+            break;
+        stack_a->head = stack_a->head->next;
+
+    }
+    // TESTS END
+    free_circlst_stack(stack_a);
     return (0);
 }
 
@@ -54,7 +64,8 @@ inverted sort on negative stack - if(sort(a){+>-}){sort(b){->+}}
 join positive stack to negative stack - while(b){pa++;}
 
 MAIN MECHANISM:
-the least anmount of operations to sort the given stack as argument
+- the least anmount of operations to sort the given stack as argument
+p
 
 
 peak() to check for each BUILD operation

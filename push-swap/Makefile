@@ -1,4 +1,4 @@
-# **************************************************************************** #
+#******************************************************************************#
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
@@ -6,13 +6,13 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:32:52 by ncruz-ne          #+#    #+#              #
-#    Updated: 2025/08/11 12:54:45 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2025/09/06 00:58:15 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
-# **************************************************************************** #
+#******************************************************************************#
 
 # If Makefile @ <project root>/TESTS: make <command> -f TESTS/Makefile
 
-NAME = push_swap.a
+NAME = push_swap
 
 CC = cc
 
@@ -24,7 +24,15 @@ ft_printf_ptr.o \
 ft_putnbr_fd_len.o \
 ft_putchar_fd_len.o \
 ft_putstr_fd_len.o \
-ft_nlen.o
+ft_nlen.o \
+ft_lstlast.o \
+ft_lstsize.o \
+ft_lstadd_back.o \
+ft_lstadd_front.o \
+ft_atoi.o \
+push_swap.o input_parser.o free_stack.o
+# ft_circlstnew.o ft_lstiter.o \
+
 
 OBJS_BONUS = 
 
@@ -34,7 +42,7 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 bonus: .bonus
 

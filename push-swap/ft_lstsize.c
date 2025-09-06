@@ -1,27 +1,27 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd_len.c                                 :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/22 13:15:25 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/05 23:00:33 by ncruz-ne         ###   ########.fr       */
+/*   Created: 2025/05/09 22:14:31 by ncruz-ne          #+#    #+#             */
+/*   Updated: 2025/08/27 20:48:43 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "push_swap.h"
 
-int	ft_putstr_fd_len(const char *s, int fd)
+int	ft_lstsize(t_list *lst)
 {
-	int	i;
+	t_list	*current;
+	int		i;
 
+	current = lst;
 	i = 0;
-	if (!s)
-		return (ft_putstr_fd_len("(null)", fd));
-	while (s[i] && s[i] != '%')
+	while (current != NULL)
 	{
-		ft_putchar_fd_len(s[i], fd);
+		current = current->next;
 		i++;
 	}
 	return (i);

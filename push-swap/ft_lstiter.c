@@ -1,28 +1,27 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd_len.c                                 :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/22 13:15:25 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/05 23:00:33 by ncruz-ne         ###   ########.fr       */
+/*   Created: 2025/05/09 22:15:51 by ncruz-ne          #+#    #+#             */
+/*   Updated: 2025/08/27 20:48:32 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "push_swap.h"
 
-int	ft_putstr_fd_len(const char *s, int fd)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	int	i;
+	t_list	*currentnode;
 
-	i = 0;
-	if (!s)
-		return (ft_putstr_fd_len("(null)", fd));
-	while (s[i] && s[i] != '%')
+	currentnode = lst;
+	if (!lst || !f)
+		return ;
+	while (currentnode != NULL)
 	{
-		ft_putchar_fd_len(s[i], fd);
-		i++;
+		f(currentnode->content);
+		currentnode = currentnode->next;
 	}
-	return (i);
 }
