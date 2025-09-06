@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:30:34 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/06 17:01:48 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/06 20:48:49 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -28,34 +28,67 @@ int input_err(char *list_item)
     return (0);
 }
 
+// function for ranks, inversions and stack's min, max and sorted
+// rank?????
+// inversions = rank - index; goal is 0.
+// min = content if (rank == 0);
+// max = content if (rank == stack->size - 1);
+// sorted = SUM(inversions). goal is 0.
 // REQUIRES TESTING:
-// int ft_mk_lst_rank()
+// void ft_mk_lst_rank(t_stack *stack)
 // {
 //     t_circlist  *lst;
-    
-//     lst->rank = ft_mk_lst_rank();
-//     lst->inversions = ;
-//     return ();
 // }
 
-// REQUIRES TESTING:
-t_circlist  *mk_circlst()
+t_nodes link_circlst(t_stack *stack, t_nodes nodes, int max_rows, int row)
 {
-    t_circlist  *circlst;
+    if (!stack->head)
+        stack->head = nodes.current;
+    if (row <= max_rows)
+    {
+        nodes.current->previous = nodes.previous;
+        if (nodes.previous)
+            nodes.previous->next = nodes.current;
+        nodes.previous = nodes.current;
+        if (row == max_rows)
+        {
+            nodes.current->next = stack->head;
+            stack->head->previous = nodes.current;
+        }
+    }
+    if (row < max_rows)
+        nodes.current->next = NULL;
+    return (nodes);
+}
 
-    circlst = malloc(sizeof(t_circlist));
-    if (!circlst)
-        return (NULL);
-    return (circlst);
+void    mk_circlst(t_stack *stack, int max_rows_cont, char **rows_cont)
+{
+    t_nodes     nodes;
+    int         row;
+
+    nodes.previous = NULL;
+    row = 1;
+    while (row < max_rows_cont)
+    {
+        nodes.current = malloc(sizeof(t_circlist));
+        if (!nodes.current)
+        {    
+            free_err_stack(stack);
+            return ;
+        }
+        nodes.current->content = ft_atoi(rows_cont[row++]);
+        nodes.current->index = stack->size++;
+        nodes.current->rank = 0;
+        nodes.current->inversions = 0;
+        nodes = link_circlst(stack, nodes, max_rows_cont, row);
+        nodes.current = nodes.current->next;
+    }
 }
 
 // REQUIRES TESTING:
 t_stack  *mk_stack(int max_rows_cont, char **rows_cont)
 {
     t_stack     *stack;
-    t_circlist  *current_node;
-    t_circlist  *previous_node;
-    int         row;
 
     stack = malloc(sizeof(t_stack));
     if (!stack)
@@ -65,39 +98,7 @@ t_stack  *mk_stack(int max_rows_cont, char **rows_cont)
     stack->min = 0;
     stack->max = 0;
     stack->sorted = 0;
-    row = 1;
-    previous_node = NULL;
-    while (row < max_rows_cont)
-    {
-        current_node = malloc(sizeof(t_circlist));
-        if (!current_node)
-        {    
-            free_err_stack(stack);
-            free(previous_node);
-            return (NULL);
-        }
-        current_node->content = ft_atoi(rows_cont[row++]);
-        current_node->index = stack->size++;
-        current_node->rank = 0;
-        current_node->inversions = 0;
-        if (!stack->head)
-            stack->head = current_node;
-        if (row <= max_rows_cont)
-        {
-            current_node->previous = previous_node;
-            if (previous_node)
-                previous_node->next = current_node;
-            previous_node = current_node;
-            if (row == max_rows_cont)
-            {
-                current_node->next = stack->head;
-                stack->head->previous = current_node;
-            }
-        }
-        if (row < max_rows_cont)
-            current_node->next = NULL;
-        current_node = current_node->next;
-    }
+    mk_circlst(stack, max_rows_cont, rows_cont);
     // function for ranks, inversions and stack's min, max and sorted
     return (stack);
 }
@@ -106,7 +107,6 @@ t_stack  *mk_stack(int max_rows_cont, char **rows_cont)
 t_stack *parser(int ac, char **av) // should it return a pointer?
 {
     int     row;
-    // t_circlist  *lst_a;
     // t_circlist  *lst_b;
     t_stack *stack_a;
     // t_stack *stack_b;
@@ -120,7 +120,6 @@ t_stack *parser(int ac, char **av) // should it return a pointer?
             exit(EXIT_FAILURE); // yes? or only in main?
         }
     }
-    // convert char to long int in linked list and link it all together
     stack_a = mk_stack(ac, av);
     return (stack_a);
 }
