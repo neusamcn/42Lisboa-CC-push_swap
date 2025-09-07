@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/07 19:18:01 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/07 22:01:57 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,10 +16,12 @@
 int	main(int ac, char **av)
 {
 	t_stack	*stack_a;
+	t_stack	*stack_b;
 
 	if (ac > 1)
 	{
 		stack_a = parser(ac, av);
+		stack_b = create_empty_stack();
 	}
 	// TESTS START
 	printf("STACK_A:\n");
@@ -72,15 +74,12 @@ if(BUILD == RADIX){print("BUILD");}
 BUILD:
 sa: swap a
 sb: swap b
-ss: sa + sb
 pa: push a
 pb
 ra: rotate a
 rb
-rr: ra + rb
 rra: reverse rotate a
 rrb
-rrr: rra + rrb
 
 bucketsort:  how do i make me some buckets?
 */

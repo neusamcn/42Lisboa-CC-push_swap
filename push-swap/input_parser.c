@@ -6,28 +6,12 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:30:34 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/07 19:24:15 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/08 00:44:24 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft/libft.h"
 #include "push_swap.h"
-
-int	input_err(char *list_item)
-{
-	int	i;
-
-	i = 0;
-	if (list_item[i] == '-' || list_item[i] == '+')
-		i++;
-	while (list_item[i])
-	{
-		if (!(list_item[i] >= '0' && list_item[i] <= '9'))
-			return (-1);
-		i++;
-	}
-	return (0);
-}
 
 t_nodes	link_circlst(t_stack *stack, t_nodes nodes, int max_rows, int row)
 {
@@ -105,7 +89,9 @@ t_stack	*parser(int ac, char **av) // should it return a pointer?
 	row = 1;
 	while (row < ac)
 	{
-		if (input_err(av[row++]) == -1)
+		if (err_not_nbr(av[row++]) == -1
+			|| err_exceeds_int_limits(av[row++]) == -1
+			|| err_not_unique(av[row++], ac, av) == -1)
 		{
 			write(2, "Error\n", 6);
 			exit(EXIT_FAILURE); // yes? or only in main?

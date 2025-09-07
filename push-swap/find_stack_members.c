@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 18:17:39 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/07 19:04:59 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/07 23:45:25 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -62,30 +62,49 @@ int	find_radix_max_div(t_stack *stack)
 // sorted = SUM(inversions). goal is 0.
 
 // REQUIRES TESTING:
-void	ft_mk_lst_rank(t_stack *stack)
+int	count_inversions(t_stack *stack, t_circlist *node)
 {
-	t_nodes	nodes;
-	int		lsd;
-	int		bucket;
-	int		div;
+	int			inversions;
+	t_circlist	*current;
 
-	nodes.previous = NULL;
-	nodes.current = NULL;
-	div = find_radix_max_div(stack);
-	while (bucket >= 0)
+	current = node;
+	inversions = 0;
+	while (stack)
 	{
-		bucket = 9;
-		while (stack)
-		{
-			lsd = stack->head->content % div;
-			if (lsd == bucket)
-			{
-
-			}
-			stack->head = stack->head->next;
-			if (stack->head->index == 0)
-				break ;
-		}
-		bucket--;
+		current = current->next;
+		if (current->index == 0)
+			break ;
+		if (node->content > current->content)
+			inversions++;
 	}
+	return (inversions);
 }
+
+// REQUIRES TESTING:
+// void	ft_mk_lst_rank(t_stack *stack)
+// {
+// 	t_nodes	nodes;
+// 	int		lsd;
+// 	int		bucket;
+// 	int		div;
+
+// 	nodes.previous = NULL;
+// 	nodes.current = NULL;
+// 	div = find_radix_max_div(stack);
+// 	while (bucket >= 0)
+// 	{
+// 		bucket = 9;
+// 		while (stack)
+// 		{
+// 			lsd = stack->head->content % div;
+// 			if (lsd == bucket)
+// 			{
+
+// 			}
+// 			stack->head = stack->head->next;
+// 			if (stack->head->index == 0)
+// 				break ;
+// 		}
+// 		bucket--;
+// 	}
+// }

@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:46:06 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/07 19:40:56 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/08 00:11:14 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -43,7 +43,9 @@ typedef struct s_nodes
 	t_circlist	*current;
 }				t_nodes;
 
-int		input_err(char *list_item);
+int		err_not_nbr(char *list_item);
+int		err_not_unique(char *list_item, int ac, char **av);
+int		err_exceeds_int_limits(char *list_item);
 t_stack	*mk_stack(int max_rows_cont, char **rows_cont);
 void	mk_circlst(t_stack *stack, int max_rows_cont, char **rows_cont);
 t_nodes	link_circlst(t_stack *stack, t_nodes nodes, int max_rows, int row);
@@ -62,5 +64,7 @@ int		rotate(t_stack *stack);
 int		rr(t_stack *stack_a, t_stack *stack_b);
 int		rev_rotate(t_stack *stack);
 int		rrr(t_stack *stack_a, t_stack *stack_b);
+t_stack	*create_empty_stack(void);
+int		count_inversions(t_stack *stack, t_circlist *node);
 
 #endif
