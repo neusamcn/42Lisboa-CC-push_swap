@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:30:34 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/07 18:20:28 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/07 19:24:15 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -23,7 +23,7 @@ int	input_err(char *list_item)
 	while (list_item[i])
 	{
 		if (!(list_item[i] >= '0' && list_item[i] <= '9'))
-			return (1);
+			return (-1);
 		i++;
 	}
 	return (0);
@@ -105,7 +105,7 @@ t_stack	*parser(int ac, char **av) // should it return a pointer?
 	row = 1;
 	while (row < ac)
 	{
-		if (input_err(av[row++]) == 1)
+		if (input_err(av[row++]) == -1)
 		{
 			write(2, "Error\n", 6);
 			exit(EXIT_FAILURE); // yes? or only in main?

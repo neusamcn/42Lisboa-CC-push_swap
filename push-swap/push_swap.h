@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:46:06 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/07 18:22:51 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/07 19:40:56 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -52,6 +52,15 @@ void	free_circlst_stack(t_stack *stack);
 void	free_err_stack(t_stack *stack);
 int		find_min(int content, int curr_min);
 int		find_max(int content, int curr_max);
-int		find_max_digits(t_stack *stack);
+int		find_radix_max_div(t_stack *stack);
+int		sa(t_stack *stack_a, t_stack *stack_b);
+int		sb(t_stack *stack_a, t_stack *stack_b);
+int		ss(t_stack *stack_a, t_stack *stack_b);
+int		pa(t_stack *stack_a, t_stack *stack_b);
+int		pb(t_stack *stack_a, t_stack *stack_b);
+int		rotate(t_stack *stack);
+int		rr(t_stack *stack_a, t_stack *stack_b);
+int		rev_rotate(t_stack *stack);
+int		rrr(t_stack *stack_a, t_stack *stack_b);
 
 #endif

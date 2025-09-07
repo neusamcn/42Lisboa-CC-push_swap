@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/07 18:16:02 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/07 19:18:01 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -47,10 +47,6 @@ int	main(int ac, char **av)
 }
 
 /* TO-DO:
-- STACK STRUCT:
--- len : size of the array;
--- max : highest value;
--- min : lowest value;
 
 LOCICAL STEPS:
 1. normalize input data (add left 0s)
@@ -65,6 +61,10 @@ MAIN MECHANISM:
 - the least anmount of operations to sort the given stack as argument
 p
 
+push() to insert an element into the stack.
+pop() to remove an element from the stack.
+top() Returns the top element of the stack.
+isEmpty() returns true if stack is empty else false.
 
 peak() to check for each BUILD operation
 if(BUILD == RADIX){print("BUILD");}
