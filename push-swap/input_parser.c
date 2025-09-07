@@ -6,13 +6,12 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:30:34 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/07 17:54:10 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/07 18:20:28 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft/libft.h"
 #include "push_swap.h"
-#include <stdio.h>
 
 int	input_err(char *list_item)
 {
@@ -29,54 +28,6 @@ int	input_err(char *list_item)
 	}
 	return (0);
 }
-
-// function for ranks, inversions and stack's min, max and sorted
-// rank?????
-// inversions = rank - index; goal is 0.
-// min = content if (rank == 0);
-// max = content if (rank == stack->size - 1);
-// sorted = SUM(inversions). goal is 0.
-// REQUIRES TESTING:
-
-int	find_max(int content, int curr_max)
-{
-	if (content > curr_max)
-		return (content);
-	return (curr_max);
-}
-
-int	find_min(int content, int curr_min)
-{
-	if (content < curr_min)
-		return (content);
-	return (curr_min);
-}
-
-// void	ft_mk_lst_rank(t_stack *stack)
-// {
-// 	t_nodes	nodes;
-// 	int		lsd;
-// 	int		bucket;
-
-// 	nodes.previous = NULL;
-// 	nodes.current = NULL;
-// 	while (bucket >= 0)
-// 	{
-// 		bucket = 9;
-// 		while (stack)
-// 		{
-// 			lsd = stack->head->content % 10;
-// 			if (lsd == bucket)
-// 			{
-
-// 			}
-// 			stack->head = stack->head->next;
-// 			if (stack->head->index == 0)
-// 				break ;
-// 		}
-// 		bucket--;
-// 	}
-// }
 
 t_nodes	link_circlst(t_stack *stack, t_nodes nodes, int max_rows, int row)
 {

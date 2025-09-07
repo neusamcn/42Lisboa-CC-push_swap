@@ -6,13 +6,12 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/06 16:38:32 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/07 18:16:02 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft/libft.h"
 #include "push_swap.h"
-#include <stdio.h>
 
 int	main(int ac, char **av)
 {
