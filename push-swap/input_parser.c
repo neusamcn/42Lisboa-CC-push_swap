@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:30:34 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/07 15:19:36 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/07 17:54:10 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,6 +19,8 @@ int	input_err(char *list_item)
 	int	i;
 
 	i = 0;
+	if (list_item[i] == '-' || list_item[i] == '+')
+		i++;
 	while (list_item[i])
 	{
 		if (!(list_item[i] >= '0' && list_item[i] <= '9'))
@@ -35,9 +37,45 @@ int	input_err(char *list_item)
 // max = content if (rank == stack->size - 1);
 // sorted = SUM(inversions). goal is 0.
 // REQUIRES TESTING:
-// void ft_mk_lst_rank(t_stack *stack)
+
+int	find_max(int content, int curr_max)
+{
+	if (content > curr_max)
+		return (content);
+	return (curr_max);
+}
+
+int	find_min(int content, int curr_min)
+{
+	if (content < curr_min)
+		return (content);
+	return (curr_min);
+}
+
+// void	ft_mk_lst_rank(t_stack *stack)
 // {
-//     t_circlist  *lst;
+// 	t_nodes	nodes;
+// 	int		lsd;
+// 	int		bucket;
+
+// 	nodes.previous = NULL;
+// 	nodes.current = NULL;
+// 	while (bucket >= 0)
+// 	{
+// 		bucket = 9;
+// 		while (stack)
+// 		{
+// 			lsd = stack->head->content % 10;
+// 			if (lsd == bucket)
+// 			{
+
+// 			}
+// 			stack->head = stack->head->next;
+// 			if (stack->head->index == 0)
+// 				break ;
+// 		}
+// 		bucket--;
+// 	}
 // }
 
 t_nodes	link_circlst(t_stack *stack, t_nodes nodes, int max_rows, int row)
@@ -77,6 +115,8 @@ void	mk_circlst(t_stack *stack, int max_rows_cont, char **rows_cont)
 			return ;
 		}
 		nodes.current->content = ft_atoi(rows_cont[row++]);
+		stack->max = find_max(nodes.current->content, stack->max);
+		stack->min = find_min(nodes.current->content, stack->min);
 		nodes.current->index = stack->size++;
 		nodes.current->rank = 0;
 		nodes.current->inversions = 0;
@@ -95,8 +135,8 @@ t_stack	*mk_stack(int max_rows_cont, char **rows_cont)
 		return (NULL);
 	stack->head = NULL;
 	stack->size = 0;
-	stack->min = 0;
-	stack->max = 0;
+	stack->min = ft_atoi(rows_cont[1]);
+	stack->max = ft_atoi(rows_cont[1]);
 	stack->sorted = 0;
 	mk_circlst(stack, max_rows_cont, rows_cont);
 	// function for ranks, inversions and stack's min, max and sorted
