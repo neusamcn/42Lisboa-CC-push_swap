@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 19:57:59 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/07 20:11:24 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/08 19:33:11 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,7 +19,7 @@ t_stack	*create_empty_stack(void)
 
 	empty_stack = malloc(sizeof(t_stack));
 	if (!empty_stack)
-		return ;
+		return (NULL);
 	empty_stack->head = NULL;
 	empty_stack->size = 0;
 	empty_stack->min = 0;

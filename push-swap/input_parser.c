@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:30:34 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/08 00:44:24 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/08 21:03:31 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -89,13 +89,14 @@ t_stack	*parser(int ac, char **av) // should it return a pointer?
 	row = 1;
 	while (row < ac)
 	{
-		if (err_not_nbr(av[row++]) == -1
-			|| err_exceeds_int_limits(av[row++]) == -1
-			|| err_not_unique(av[row++], ac, av) == -1)
+		if (err_not_nbr(av[row]) == -1
+			|| err_exceeds_int_limits(av[row]) == -1
+			|| err_not_unique(row, ac, av) == -1)
 		{
 			write(2, "Error\n", 6);
 			exit(EXIT_FAILURE); // yes? or only in main?
 		}
+		row++;
 	}
 	stack_a = mk_stack(ac, av);
 	return (stack_a);
