@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/08 22:33:06 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/10 00:14:13 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -24,45 +24,70 @@ int	main(int ac, char **av)
 		stack_b = create_empty_stack();
 	}
 	// TESTS START
+	t_circlist	*current = stack_a->head;
 	printf("STACK_A:\n");
 	printf("head: %p\n", stack_a->head);
 	printf("size: %lu\n", stack_a->size);
 	printf("min: %d\n", stack_a->min);
 	printf("max: %d\n", stack_a->max);
 	printf("sorted: %d\n\n", stack_a->sorted);
-	while (stack_a && stack_a->head)
+	while (current != NULL)
 	{
-		printf("node: %p\n", stack_a->head);
-		printf("content: %d\n", stack_a->head->content);
-		printf("index: %d\n", stack_a->head->index);
-		printf("rank: %d\n", stack_a->head->rank);
-		printf("inversions: %d\n", stack_a->head->inversions);
-		printf("previous: %p\n", stack_a->head->previous);
-		printf("next: %p\n------------\n\n", stack_a->head->next);
-		if ((size_t)stack_a->head->index == stack_a->size - 1)
+		printf("node: %p\n", current);
+		printf("content: %d\n", current->content);
+		printf("index: %d\n", current->index);
+		printf("rank: %d\n", current->rank);
+		printf("inversions: %d\n", current->inversions);
+		printf("previous: %p\n", current->previous);
+		printf("next: %p\n------------\n\n", current->next);
+		current = current->next;
+		if (current->index == 0)
 			break ;
-		stack_a->head = stack_a->head->next;
 	}
 
 	printf("><><><><><><><><><><><><><\n");
+	current = stack_b->head;
 	printf("STACK_B:\n");
 	printf("head: %p\n", stack_b->head);
 	printf("size: %lu\n", stack_b->size);
 	printf("min: %d\n", stack_b->min);
 	printf("max: %d\n", stack_b->max);
 	printf("sorted: %d\n\n", stack_b->sorted);
-	while (stack_b && stack_b->head)
+	while (current != NULL)
 	{
-		printf("node: %p\n", stack_b->head);
-		printf("content: %d\n", stack_b->head->content);
-		printf("index: %d\n", stack_b->head->index);
-		printf("rank: %d\n", stack_b->head->rank);
-		printf("inversions: %d\n", stack_b->head->inversions);
-		printf("previous: %p\n", stack_b->head->previous);
-		printf("next: %p\n------------\n\n", stack_b->head->next);
-		if ((size_t)stack_b->head->index == stack_b->size - 1)
+		printf("node: %p\n", current);
+		printf("content: %d\n", current->content);
+		printf("index: %d\n", current->index);
+		printf("rank: %d\n", current->rank);
+		printf("inversions: %d\n", current->inversions);
+		printf("previous: %p\n", current->previous);
+		printf("next: %p\n------------\n\n", current->next);
+		current = current->next;
+		if (current->index == 0)
 			break ;
-		stack_b->head = stack_b->head->next;
+	}
+	
+	printf("><><><><><><><><><><><><><\n");
+	count_stack_inversions(stack_a);
+	current = stack_a->head;
+	printf("STACK_A:\n");
+	printf("head: %p\n", stack_a->head);
+	printf("size: %lu\n", stack_a->size);
+	printf("min: %d\n", stack_a->min);
+	printf("max: %d\n", stack_a->max);
+	printf("sorted: %d\n\n", stack_a->sorted);
+	while (current != NULL)
+	{
+		printf("node: %p\n", current);
+		printf("content: %d\n", current->content);
+		printf("index: %d\n", current->index);
+		printf("rank: %d\n", current->rank);
+		printf("inversions: %d\n", current->inversions);
+		printf("previous: %p\n", current->previous);
+		printf("next: %p\n------------\n\n", current->next);
+		current = current->next;
+		if (current->index == 0)
+			break ;
 	}
 	// TESTS END
 	free_circlst_stack(stack_a);

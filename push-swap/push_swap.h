@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:46:06 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/08 22:16:53 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/09 20:59:55 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -65,6 +65,8 @@ int		find_radix_max_div(t_stack *stack);
 // int		rev_rotate(t_stack *stack);
 // int		rrr(t_stack *stack_a, t_stack *stack_b);
 t_stack	*create_empty_stack(void);
-int		count_inversions(t_stack *stack, t_circlist *node);
+int		count_node_inversions(t_stack *stack, t_circlist *node);
+void	count_stack_inversions(t_stack *stack);
+// t_stack	*hoares_partition(t_stack *stack);
 
 #endif

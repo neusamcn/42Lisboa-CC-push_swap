@@ -6,7 +6,7 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:32:52 by ncruz-ne          #+#    #+#              #
-#    Updated: 2025/09/08 22:20:30 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2025/09/09 23:10:11 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -44,7 +44,7 @@ bonus: .bonus
 	touch .bonus
 
 valgrind: $(NAME)
-	valgrind --log-file=valgrind_log --leak-check=full \
+	valgrind --log-file=valgrind_log --leak-check=full --show-leak-kinds=all \
 	./$(NAME) $(TEST_ARGS) > test_output.txt
 
 clean:
