@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:30:34 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/08 21:03:31 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/10 00:25:00 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -74,7 +74,8 @@ t_stack	*mk_stack(int max_rows_cont, char **rows_cont)
 	stack->max = ft_atoi(rows_cont[1]);
 	stack->sorted = 0;
 	mk_circlst(stack, max_rows_cont, rows_cont);
-	// function for ranks, inversions and stack's min, max and sorted
+	count_stack_inversions(stack);
+	// function for ranks
 	return (stack);
 }
 
