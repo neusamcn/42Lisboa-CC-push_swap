@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:46:06 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/10 20:39:41 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/17 18:02:28 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -52,8 +52,8 @@ t_nodes	link_circlst(t_stack *stack, t_nodes nodes, int max_rows, int row);
 t_stack	*parser(int ac, char **av);
 void	free_circlst_stack(t_stack *stack);
 void	free_err_stack(t_stack *stack);
-int		find_min(int content, int curr_min);
-int		find_max(int content, int curr_max);
+int		is_stack_min(int content, int curr_min);
+int		is_stack_max(int content, int curr_max);
 int		find_radix_max_div(t_stack *stack);
 int		sa(t_stack *stack_a);
 int		sb(t_stack *stack_b);

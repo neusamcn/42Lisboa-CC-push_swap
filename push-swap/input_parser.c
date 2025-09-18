@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:30:34 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/10 00:25:00 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/17 18:02:28 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -50,8 +50,8 @@ void	mk_circlst(t_stack *stack, int max_rows_cont, char **rows_cont)
 			return ;
 		}
 		nodes.current->content = ft_atoi(rows_cont[row++]);
-		stack->max = find_max(nodes.current->content, stack->max);
-		stack->min = find_min(nodes.current->content, stack->min);
+		stack->max = is_stack_max(nodes.current->content, stack->max);
+		stack->min = is_stack_min(nodes.current->content, stack->min);
 		nodes.current->index = stack->size++;
 		nodes.current->rank = 0;
 		nodes.current->inversions = 0;

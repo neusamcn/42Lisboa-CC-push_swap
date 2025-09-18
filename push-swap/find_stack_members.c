@@ -6,21 +6,21 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 18:17:39 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/10 00:39:33 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/17 18:02:28 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft/libft.h"
 #include "push_swap.h"
 
-int	find_min(int content, int curr_min)
+int	is_stack_min(int content, int curr_min)
 {
 	if (content < curr_min)
 		return (content);
 	return (curr_min);
 }
 
-int	find_max(int content, int curr_max)
+int	is_stack_max(int content, int curr_max)
 {
 	if (content > curr_max)
 		return (content);
