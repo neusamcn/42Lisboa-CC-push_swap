@@ -6,89 +6,60 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/17 18:39:34 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/18 20:02:10 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft/libft.h"
 #include "push_swap.h"
 
+void	print_stack(t_stack *stack, char stack_name)
+{
+	t_circlist	*current = stack->head;
+
+	printf("STACK_%c:\n", stack_name);
+	printf("head: %p\n", stack->head);
+	printf("size: %lu\n", stack->size);
+	printf("min: %d\n", stack->min);
+	printf("max: %d\n", stack->max);
+	printf("sorted: %d\n\n", stack->sorted);
+	while (current != NULL)
+	{
+		printf("node: %p\n", current);
+		printf("content: %d\n", current->content);
+		printf("index: %d\n", current->index);
+		printf("rank: %d\n", current->rank);
+		printf("inversions: %d\n", current->inversions);
+		printf("previous: %p\n", current->previous);
+		printf("next: %p\n------------\n\n", current->next);
+		current = current->next;
+		if (current->index == 0)
+			break ;
+	}
+}
+
 int	main(int ac, char **av)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
-	if (ac > 1)
+	if (ac < 3)
 	{
-		stack_a = parser(ac, av);
-		stack_b = create_empty_stack();
+		write(2, "Error\n", 6);
+		exit(EXIT_FAILURE); // yes? or only in main?
 	}
+	stack_a = parser(ac, av);
+	stack_b = create_empty_stack();
 	// TESTS START
-	t_circlist	*current = stack_a->head;
-	printf("STACK_A:\n");
-	printf("head: %p\n", stack_a->head);
-	printf("size: %lu\n", stack_a->size);
-	printf("min: %d\n", stack_a->min);
-	printf("max: %d\n", stack_a->max);
-	printf("sorted: %d\n\n", stack_a->sorted);
-	while (current != NULL)
-	{
-		printf("node: %p\n", current);
-		printf("content: %d\n", current->content);
-		printf("index: %d\n", current->index);
-		printf("rank: %d\n", current->rank);
-		printf("inversions: %d\n", current->inversions);
-		printf("previous: %p\n", current->previous);
-		printf("next: %p\n------------\n\n", current->next);
-		current = current->next;
-		if (current->index == 0)
-			break ;
-	}
-
-	// printf("><><><><><><><><><><><><><\n");
-	// current = stack_b->head;
-	// printf("STACK_B:\n");
-	// printf("head: %p\n", stack_b->head);
-	// printf("size: %lu\n", stack_b->size);
-	// printf("min: %d\n", stack_b->min);
-	// printf("max: %d\n", stack_b->max);
-	// printf("sorted: %d\n\n", stack_b->sorted);
-	// while (current != NULL)
-	// {
-	// 	printf("node: %p\n", current);
-	// 	printf("content: %d\n", current->content);
-	// 	printf("index: %d\n", current->index);
-	// 	printf("rank: %d\n", current->rank);
-	// 	printf("inversions: %d\n", current->inversions);
-	// 	printf("previous: %p\n", current->previous);
-	// 	printf("next: %p\n------------\n\n", current->next);
-	// 	current = current->next;
-	// 	if (current->index == 0)
-	// 		break ;
-	// }
-
-	sa(stack_a);
+	print_stack(stack_a, 'A');
 	printf("><><><><><><><><><><><><><\n");
-	current = stack_a->head;
-	printf("STACK_A:\n");
-	printf("head: %p\n", stack_a->head);
-	printf("size: %lu\n", stack_a->size);
-	printf("min: %d\n", stack_a->min);
-	printf("max: %d\n", stack_a->max);
-	printf("sorted: %d\n\n", stack_a->sorted);
-	while (current != NULL)
-	{
-		printf("node: %p\n", current);
-		printf("content: %d\n", current->content);
-		printf("index: %d\n", current->index);
-		printf("rank: %d\n", current->rank);
-		printf("inversions: %d\n", current->inversions);
-		printf("previous: %p\n", current->previous);
-		printf("next: %p\n------------\n\n", current->next);
-		current = current->next;
-		if (current->index == 0)
-			break ;
-	}
+	print_stack(stack_b, 'B');
+	printf("><><><><><><><><><><><><><\n");
+	printf("pb(stack_a, stack_b) = %d\n", pb(stack_a, stack_b));
+	printf("><><><><><><><><><><><><><\n");
+	print_stack(stack_a, 'A');
+	printf("><><><><><><><><><><><><><\n");
+	print_stack(stack_b, 'B');
 	// TESTS END
 	free_circlst_stack(stack_a);
 	free_circlst_stack(stack_b);

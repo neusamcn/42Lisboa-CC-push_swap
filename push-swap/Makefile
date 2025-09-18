@@ -6,7 +6,7 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:32:52 by ncruz-ne          #+#    #+#              #
-#    Updated: 2025/09/10 18:12:11 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2025/09/18 19:59:15 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -19,7 +19,7 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra -g -I.
 
 OBJS = push_swap.o input_parser.o free_stack.o find_stack_members.o \
-	stack_operations.o err_handler.o \
+	stack_operations.o err_handler.o swaps_and_pushes.o \
 
 
 OBJS_BONUS = 
@@ -44,7 +44,7 @@ bonus: .bonus
 	touch .bonus
 
 valgrind: $(NAME)
-	valgrind --log-file=valgrind_log --leak-check=full --show-leak-kinds=all \
+	valgrind --log-file=valgrind_log --leak-check=full --show-leak-kinds=all -s \
 	./$(NAME) $(TEST_ARGS) > test_output.txt
 
 clean:
