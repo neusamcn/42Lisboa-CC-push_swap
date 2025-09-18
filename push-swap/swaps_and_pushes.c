@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 19:21:19 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/18 19:48:36 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/18 22:49:08 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -69,14 +69,15 @@ int	pa(t_stack *stack_a, t_stack *stack_b)
 {
 	t_circlist	*push_node;
 
-	if (!stack_b || !stack_b->head || stack_b->size == 0)
+	if (!stack_a || !stack_b || !stack_b->head || stack_b->size == 0)
 		return (-1);
 	push_node = stack_b->head;
-	if (stack_b->size == 1 || stack_b->head->next == NULL)
+	if (stack_b->head->next == stack_b->head || stack_b->size == 1)
 	{
 		stack_b->head = NULL;
-		stack_b->min = 0;
-		stack_b->max = 0;
+		stack_b->min = 1;
+		stack_b->max = -1;
+		// representation for empty. use for flags later
 	}
 	else
 	{
@@ -96,8 +97,8 @@ int	pa(t_stack *stack_a, t_stack *stack_b)
 		stack_a->head = push_node;
 		push_node->rank = 0;
 		push_node->inversions = 0;
-		push_node->previous = NULL;
-		push_node->next = NULL;
+		push_node->previous = push_node;
+		push_node->next = push_node;
 		stack_a->min = push_node->content;
 		stack_a->max = push_node->content;
 	}
@@ -115,7 +116,6 @@ int	pa(t_stack *stack_a, t_stack *stack_b)
 	}
 	stack_a->size++;
 	stack_a->sorted += push_node->inversions;
-	// need to free the node ?
 	return (0);
 }
 
@@ -124,14 +124,15 @@ int	pb(t_stack *stack_a, t_stack *stack_b)
 {
 	t_circlist	*push_node;
 
-	if (!stack_a || !stack_a->head || stack_a->size == 0)
+	if (!stack_b || !stack_a || !stack_a->head || stack_a->size == 0)
 		return (-1);
 	push_node = stack_a->head;
-	if (stack_a->size == 1 || stack_a->head->next == NULL)
+	if (stack_a->head->next == stack_a->head || stack_a->size == 1)
 	{
 		stack_a->head = NULL;
-		stack_a->min = 0;
-		stack_a->max = 0;
+		stack_a->min = 1;
+		stack_a->max = -1;
+		// representation for empty. use for flags later
 	}
 	else
 	{
@@ -151,8 +152,8 @@ int	pb(t_stack *stack_a, t_stack *stack_b)
 		stack_b->head = push_node;
 		push_node->rank = 0;
 		push_node->inversions = 0;
-		push_node->previous = NULL;
-		push_node->next = NULL;
+		push_node->previous = push_node;
+		push_node->next = push_node;
 		stack_b->min = push_node->content;
 		stack_b->max = push_node->content;
 	}
@@ -170,6 +171,5 @@ int	pb(t_stack *stack_a, t_stack *stack_b)
 	}
 	stack_b->size++;
 	stack_b->sorted += push_node->inversions;
-	// need to free the node ?
 	return (0);
 }

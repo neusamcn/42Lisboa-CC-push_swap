@@ -6,18 +6,23 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/18 20:02:10 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/18 22:39:35 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft/libft.h"
 #include "push_swap.h"
 
+// TESTER:
 void	print_stack(t_stack *stack, char stack_name)
 {
-	t_circlist	*current = stack->head;
+	t_circlist	*current;
+	t_circlist	*start;
 
+	current = stack->head;
+	start = stack->head;
 	printf("STACK_%c:\n", stack_name);
+	printf("stack_%c: %p\n", stack_name + 32, stack);
 	printf("head: %p\n", stack->head);
 	printf("size: %lu\n", stack->size);
 	printf("min: %d\n", stack->min);
@@ -33,7 +38,7 @@ void	print_stack(t_stack *stack, char stack_name)
 		printf("previous: %p\n", current->previous);
 		printf("next: %p\n------------\n\n", current->next);
 		current = current->next;
-		if (current->index == 0)
+		if (current == start)
 			break ;
 	}
 }
