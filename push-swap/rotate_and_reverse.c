@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 19:35:20 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/19 02:35:22 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/19 02:40:51 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -50,6 +50,7 @@ int	rotate(t_stack *stack)
 	return (0);
 }
 
+// Consider removing due to redundancy
 // REQUIRES TESTING:
 int	rr(t_stack *stack_a, t_stack *stack_b)
 {
@@ -102,6 +103,7 @@ int	rev_rotate(t_stack *stack)
 	return (0);
 }
 
+// Consider removing due to redundancy
 // REQUIRES TESTING:
 int	rrr(t_stack *stack_a, t_stack *stack_b)
 {

@@ -6,7 +6,7 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:32:52 by ncruz-ne          #+#    #+#              #
-#    Updated: 2025/09/19 01:27:30 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2025/09/19 02:42:45 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -20,7 +20,7 @@ CFLAGS = -Wall -Werror -Wextra -g -I.
 
 OBJS = push_swap.o input_parser.o free_stack.o find_stack_members.o \
 	stack_operations.o err_handler.o swaps_and_pushes.o rotate_and_reverse.o \
-
+	quick_sort.o
 
 OBJS_BONUS = 
 
