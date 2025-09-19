@@ -6,7 +6,7 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:32:52 by ncruz-ne          #+#    #+#              #
-#    Updated: 2025/09/18 19:59:15 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2025/09/19 01:27:30 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -19,12 +19,12 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra -g -I.
 
 OBJS = push_swap.o input_parser.o free_stack.o find_stack_members.o \
-	stack_operations.o err_handler.o swaps_and_pushes.o \
+	stack_operations.o err_handler.o swaps_and_pushes.o rotate_and_reverse.o \
 
 
 OBJS_BONUS = 
 
-TEST_ARGS = 1 2 5000 7 2147483647 3 9 -3 388 -25 5 0 -2147483648
+TEST_ARGS = 3 4 # 1 2 5000 7 2147483647 3 9 -3 388 -25 5 0 -2147483648
 
 all: $(LIBFT) $(NAME)
 

@@ -6,14 +6,14 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/18 22:39:35 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/19 00:39:42 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft/libft.h"
 #include "push_swap.h"
 
-// TESTER:
+// TESTERS:
 void	print_stack(t_stack *stack, char stack_name)
 {
 	t_circlist	*current;
@@ -21,8 +21,7 @@ void	print_stack(t_stack *stack, char stack_name)
 
 	current = stack->head;
 	start = stack->head;
-	printf("STACK_%c:\n", stack_name);
-	printf("stack_%c: %p\n", stack_name + 32, stack);
+	printf("STACK_%c: %p\n", stack_name, stack);
 	printf("head: %p\n", stack->head);
 	printf("size: %lu\n", stack->size);
 	printf("min: %d\n", stack->min);
@@ -95,10 +94,6 @@ peak() to check for each BUILD operation
 if(BUILD == RADIX){print("BUILD");}
 
 BUILD:
-sa: swap a
-sb: swap b
-pa: push a
-pb
 ra: rotate a
 rb
 rra: reverse rotate a

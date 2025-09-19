@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 18:17:39 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/17 18:02:28 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/19 00:54:54 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -27,6 +27,50 @@ int	is_stack_max(int content, int curr_max)
 	return (curr_max);
 }
 
+int	find_min(t_stack *stack)
+{
+	t_circlist	*current;
+	t_circlist	*start;
+	int			min;
+
+	// worth it to keep as an err checker?
+	if (!stack || !stack->head/* || stack->head->previous->next != stack->head */)
+		return (1);
+	current = stack->head;
+	start = stack->head;
+	min = stack->head->content;
+	while (current)
+	{
+		min = is_stack_min(current->content, min);
+		current = current->next;
+		if (current == start)
+			break ;
+	}
+	return (min);
+}
+
+int	find_max(t_stack *stack)
+{
+	t_circlist	*current;
+	t_circlist	*start;
+	int			max;
+
+	// worth it to keep as an err checker?
+	if (!stack || !stack->head/*  || stack->head->previous->next != stack->head */)
+		return (-1);
+	current = stack->head;
+	start = stack->head;
+	max = stack->head->content;
+	while (current)
+	{
+		max = is_stack_max(current->content, max);
+		current = current->next;
+		if (current == start)
+			break ;
+	}
+	return (max);
+}
+
 int	find_radix_max_div(t_stack *stack)
 {
 	int	position;
@@ -35,6 +79,8 @@ int	find_radix_max_div(t_stack *stack)
 	int	max;
 	int	longest_nb;
 
+	if (!stack || !stack->head || stack->min > stack->max)
+		return (-1);
 	min = stack->min;
 	if (stack->min < 0)
 		min = -stack->min;

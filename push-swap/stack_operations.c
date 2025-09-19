@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 19:57:59 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/10 16:49:29 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/18 23:24:28 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,8 +22,9 @@ t_stack	*create_empty_stack(void)
 		return (NULL);
 	empty_stack->head = NULL;
 	empty_stack->size = 0;
-	empty_stack->min = 0;
-	empty_stack->max = 0;
+	empty_stack->min = 1;
+	empty_stack->max = -1;
+	// representation for empty. use for flags later
 	empty_stack->sorted = 0;
 	return (empty_stack);
 }

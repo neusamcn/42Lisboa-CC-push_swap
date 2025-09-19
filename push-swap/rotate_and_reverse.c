@@ -6,19 +6,20 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 19:35:20 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/08 19:32:01 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/19 01:26:51 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft/libft.h"
 #include "push_swap.h"
 
-// // REQUIRES TESTING:
-// int	rotate(t_stack *stack)
-// {
-// 	// return (-1) on error;
-// 	return (0);
-// }
+// REQUIRES TESTING:
+int	rotate(t_stack *stack)
+{
+	if (!stack || !stack->head)
+		return (-1);
+	return (0);
+}
 
 // // REQUIRES TESTING:
 // int	rr(t_stack *stack_a, t_stack *stack_b)
