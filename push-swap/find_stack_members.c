@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 18:17:39 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/19 00:54:54 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/19 02:34:10 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -104,24 +104,26 @@ int	count_node_inversions(t_stack *stack, t_circlist *node)
 {
 	int			inversions;
 	t_circlist	*current;
+	t_circlist	*start;
 
 	inversions = 0;
 	current = stack->head;
+	start = stack->head;
 	while (current != NULL)
 	{
 		if (current->content == node->content)
 		{
-			while (current != NULL)
+			while (current)
 			{
 				current = current->next;
-				if (current->index == 0)
+				if (current == start)
 					return (inversions);
 				if (node->content > current->content)
 					inversions++;
 			}
 		}
 		current = current->next;
-		if (current->index == 0)
+		if (current == start)
 			break ;
 	}
 	return (inversions);

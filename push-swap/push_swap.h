@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:46:06 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/19 01:25:59 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/19 02:37:02 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -63,9 +63,9 @@ int		ss(t_stack *stack_a, t_stack *stack_b);
 int		pa(t_stack *stack_a, t_stack *stack_b);
 int		pb(t_stack *stack_a, t_stack *stack_b);
 int		rotate(t_stack *stack);
-// int		rr(t_stack *stack_a, t_stack *stack_b);
-// int		rev_rotate(t_stack *stack);
-// int		rrr(t_stack *stack_a, t_stack *stack_b);
+int		rr(t_stack *stack_a, t_stack *stack_b);
+int		rev_rotate(t_stack *stack);
+int		rrr(t_stack *stack_a, t_stack *stack_b);
 t_stack	*create_empty_stack(void);
 int		count_node_inversions(t_stack *stack, t_circlist *node);
 void	count_stack_inversions(t_stack *stack);

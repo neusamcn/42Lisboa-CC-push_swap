@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/19 00:39:42 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/19 02:36:47 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -59,7 +59,7 @@ int	main(int ac, char **av)
 	printf("><><><><><><><><><><><><><\n");
 	print_stack(stack_b, 'B');
 	printf("><><><><><><><><><><><><><\n");
-	printf("pb(stack_a, stack_b) = %d\n", pb(stack_a, stack_b));
+	printf("rrev_rotate(stack_a) = %d\n", rev_rotate(stack_a));
 	printf("><><><><><><><><><><><><><\n");
 	print_stack(stack_a, 'A');
 	printf("><><><><><><><><><><><><><\n");
@@ -94,10 +94,7 @@ peak() to check for each BUILD operation
 if(BUILD == RADIX){print("BUILD");}
 
 BUILD:
-ra: rotate a
-rb
-rra: reverse rotate a
-rrb
+quick_sort
 
 bucketsort:  how do i make me some buckets?
 */
