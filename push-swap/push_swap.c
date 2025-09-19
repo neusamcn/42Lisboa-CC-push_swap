@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/19 02:36:47 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/19 22:41:14 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -27,7 +27,7 @@ void	print_stack(t_stack *stack, char stack_name)
 	printf("min: %d\n", stack->min);
 	printf("max: %d\n", stack->max);
 	printf("sorted: %d\n\n", stack->sorted);
-	while (current != NULL)
+	while (current)
 	{
 		printf("node: %p\n", current);
 		printf("content: %d\n", current->content);
@@ -59,7 +59,7 @@ int	main(int ac, char **av)
 	printf("><><><><><><><><><><><><><\n");
 	print_stack(stack_b, 'B');
 	printf("><><><><><><><><><><><><><\n");
-	printf("rrev_rotate(stack_a) = %d\n", rev_rotate(stack_a));
+	printf("freestylin(stack_a, stack_b) moves = %d\n", freestylin(stack_a, stack_b));
 	printf("><><><><><><><><><><><><><\n");
 	print_stack(stack_a, 'A');
 	printf("><><><><><><><><><><><><><\n");

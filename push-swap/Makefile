@@ -6,7 +6,7 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:32:52 by ncruz-ne          #+#    #+#              #
-#    Updated: 2025/09/19 02:42:45 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2025/09/19 21:31:38 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -24,7 +24,7 @@ OBJS = push_swap.o input_parser.o free_stack.o find_stack_members.o \
 
 OBJS_BONUS = 
 
-TEST_ARGS = 3 4 # 1 2 5000 7 2147483647 3 9 -3 388 -25 5 0 -2147483648
+TEST_ARGS = 3 4 1 2 # 5000 7 2147483647 3 9 -3 388 -25 5 0 -2147483648
 
 all: $(LIBFT) $(NAME)
 
