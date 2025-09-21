@@ -6,12 +6,12 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 19:35:20 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/19 02:40:51 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/21 21:30:59 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft/libft.h"
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 // REQUIRES NORME:
 int	rotate(t_stack *stack)

@@ -6,12 +6,12 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 02:42:28 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/19 23:09:49 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/21 21:28:13 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft/libft.h"
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 // quick_sort()
 // Hoare's partition

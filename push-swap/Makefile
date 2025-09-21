@@ -6,36 +6,47 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:32:52 by ncruz-ne          #+#    #+#              #
-#    Updated: 2025/09/19 21:31:38 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2025/09/21 22:53:29 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME = push_swap
+HEADER = include/push_swap.h
 
 LIBFT = libft/libft.a
 
-CC = cc
+SRC_DIR = src
+OBJ_DIR = obj
+SRC_BONUS_DIR = src/bonus
+OBJ_BONUS_DIR = obj/bonus
 
+CC = cc
 CFLAGS = -Wall -Werror -Wextra -g -I.
 
-OBJS = push_swap.o input_parser.o free_stack.o find_stack_members.o \
-	stack_operations.o err_handler.o swaps_and_pushes.o rotate_and_reverse.o \
-	quick_sort.o
-
+SRCS = $(wildcard $(SRC_DIR)/*.c)
+OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
+SRCS_BONUS =
 OBJS_BONUS = 
 
+TEST_DIR = TESTS
 TEST_ARGS = 3 4 1 2 # 5000 7 2147483647 3 9 -3 388 -25 5 0 -2147483648
 
-all: $(LIBFT) $(NAME)
+all: $(LIBFT) $(OBJ_DIR) $(NAME)
 
 $(LIBFT):
 	make -C libft
 
-%.o: %.c
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -Llibft -lft -o $(NAME)
+
+$(TEST_DIR):
+	mkdir -p $(TEST_DIR)
 
 bonus: .bonus
 
@@ -43,22 +54,23 @@ bonus: .bonus
 	$(CC) $(CFLAGS) $(OBJS) $(OBJS_BONUS) -o $(NAME)
 	touch .bonus
 
-valgrind: $(NAME)
-	valgrind --log-file=valgrind_log --leak-check=full --show-leak-kinds=all -s \
-	./$(NAME) $(TEST_ARGS) > test_output.txt
+valgrind: $(NAME) $(TEST_DIR)
+	valgrind --log-file=$(TEST_DIR)/valgrind_log --leak-check=full --show-leak-kinds=all -s \
+	./$(NAME) $(TEST_ARGS) > $(TEST_DIR)/test_output.txt
 
 clean:
 	-rm -f $(OBJS) $(MAIN_OBJS) $(OBJS_BONUS) .bonus
 	make -C libft clean
 
 fclean: clean
-	-rm -f $(NAME) $(EXEC)
+	-rm -f $(NAME)
 	make -C libft fclean
+	-rm -fr $(OBJ_DIR)
 
 re: fclean all
 
 tclean:
-	rm -f valgrind_log
-	rm -f test_output.txt
+	rm -f $(TEST_DIR)/valgrind_log
+	rm -f $(TEST_DIR)/test_output.txt
 
 .PHONY: all bonus clean fclean re run valgrind tclean

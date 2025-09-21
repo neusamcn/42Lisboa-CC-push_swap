@@ -6,12 +6,12 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 00:55:56 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/07 15:27:41 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/21 21:29:32 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft/libft.h"
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 void	free_circlst_stack(t_stack *stack)
 {

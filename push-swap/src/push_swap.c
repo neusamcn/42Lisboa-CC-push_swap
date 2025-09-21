@@ -6,12 +6,12 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/19 22:41:14 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/21 22:32:06 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft/libft.h"
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 // TESTERS:
 void	print_stack(t_stack *stack, char stack_name)

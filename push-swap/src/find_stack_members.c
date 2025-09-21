@@ -6,12 +6,12 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 18:17:39 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/19 23:03:52 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/21 21:29:21 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft/libft.h"
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 int	is_stack_min(int content, int curr_min)
 {
