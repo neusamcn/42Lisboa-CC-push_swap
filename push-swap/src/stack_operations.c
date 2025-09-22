@@ -6,11 +6,10 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 19:57:59 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/21 21:31:25 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/22 19:06:35 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "libft/libft.h"
 #include "../include/push_swap.h"
 
 t_stack	*create_empty_stack(void)

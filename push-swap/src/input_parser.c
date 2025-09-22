@@ -6,11 +6,10 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:30:34 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/21 21:30:07 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/22 19:06:26 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "libft/libft.h"
 #include "../include/push_swap.h"
 
 t_nodes	link_circlst(t_stack *stack, t_nodes nodes, int max_rows, int row)

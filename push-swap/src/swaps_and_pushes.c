@@ -6,11 +6,10 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 19:21:19 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/21 21:31:34 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/22 19:06:44 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "libft/libft.h"
 #include "../include/push_swap.h"
 
 // Consider later to have only swap(source, dest);

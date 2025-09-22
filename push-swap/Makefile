@@ -6,7 +6,7 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:32:52 by ncruz-ne          #+#    #+#              #
-#    Updated: 2025/09/21 22:53:29 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2025/09/22 21:13:30 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -23,13 +23,17 @@ OBJ_BONUS_DIR = obj/bonus
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g -I.
 
-SRCS = $(wildcard $(SRC_DIR)/*.c)
+SRCS = $(SRC_DIR)/err_handler.c $(SRC_DIR)/free_stack.c $(SRC_DIR)/input_parser.c \
+	$(SRC_DIR)/main.c $(SRC_DIR)/pre_sort.c $(SRC_DIR)/quick_sort.c \
+	$(SRC_DIR)/rotate_and_reverse.c $(SRC_DIR)/sortedness.c \
+	$(SRC_DIR)/stack_min_max.c $(SRC_DIR)/stack_operations.c \
+	$(SRC_DIR)/swaps_and_pushes.c
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 SRCS_BONUS =
 OBJS_BONUS = 
 
 TEST_DIR = TESTS
-TEST_ARGS = 3 4 1 2 # 5000 7 2147483647 3 9 -3 388 -25 5 0 -2147483648
+TEST_ARGS = 3 4 1 2 # 5000 7 2147483647 9 -3 388 -25 5 0 -2147483648
 
 all: $(LIBFT) $(OBJ_DIR) $(NAME)
 
@@ -39,6 +43,7 @@ $(LIBFT):
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
+# Redundant ?
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 

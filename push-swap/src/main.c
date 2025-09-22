@@ -1,16 +1,15 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/21 22:32:06 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/22 22:20:47 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "libft/libft.h"
 #include "../include/push_swap.h"
 
 // TESTERS:
@@ -67,7 +66,7 @@ int	main(int ac, char **av)
 	// TESTS END
 	free_circlst_stack(stack_a);
 	free_circlst_stack(stack_b);
-	return (0);
+	exit(EXIT_SUCCESS);
 }
 
 /* TO-DO:
@@ -97,4 +96,22 @@ BUILD:
 quick_sort
 
 bucketsort:  how do i make me some buckets?
+
+7 digits visualizer:
+https://push-swap42-visualizer.vercel.app/
+pb
+pb
+ra
+ra
+ra
+ss
+ra
+pa
+rra
+pa
+rra
+rra
+sa
+rra
+sa
 */

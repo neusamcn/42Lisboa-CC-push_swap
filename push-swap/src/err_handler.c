@@ -6,11 +6,10 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 23:48:41 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/21 21:29:02 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/22 19:06:16 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "libft/libft.h"
 #include "../include/push_swap.h"
 
 int	err_not_nbr(char *list_item)

@@ -6,16 +6,17 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 02:42:28 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/21 21:28:13 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/22 22:45:42 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "libft/libft.h"
 #include "../include/push_swap.h"
 
 // quick_sort()
 // Hoare's partition
 // https://www.geeksforgeeks.org/dsa/hoare-s-partition-algorithm/
+// Bentley-McIlroy 3-way partitioning
+// https://sedgewick.io/wp-content/themes/sedgewick/talks/2002QuicksortIsOptimal.pdf
 // REQUIRES TESTING:
 t_stack	*hoares_partition(t_stack *stack)
 {
@@ -65,29 +66,35 @@ t_stack	*hoares_partition(t_stack *stack)
 int	freestylin(t_stack *stack_a, t_stack *stack_b)
 {
 	t_circlist	*current;
+	t_circlist	*tail;
+	t_circlist	*top;
 	int			inversions;
 	int			moves_count;
 
-	inversions = 1;
-	moves_count = 0;
 	current = stack_a->head;
+	tail = stack_a->head->previous;
+	moves_count = 0;
+	inversions = 1;
 	// iterate through stack_a to find inv == 1 closest to head
 	while (current)
 	{
-		if (current->inversions > (int)stack_a->size / 2)
+		if (current->inversions > 0 && current != tail)
 		{
 			// move to head (ra()) and pb()
-			while (current != stack_a->head)
+			if (current->inversions > 1)
 			{
-				rotate(stack_a);
-				moves_count++;
-			}
-			if (current == stack_a->head)
-			{
-				pb(stack_a, stack_b);
-				moves_count++;
-				count_stack_inversions(stack_a);
-				count_stack_inversions(stack_b);
+				while (current != stack_a->head)
+				{
+					rotate(stack_a);
+					moves_count++;
+				}
+				if (current == stack_a->head)
+				{
+					pb(stack_a, stack_b);
+					moves_count++;
+					// count_stack_inversions(stack_a);
+					count_stack_inversions(stack_b);
+				}
 			}
 			continue ;
 		}
@@ -117,3 +124,60 @@ int	freestylin(t_stack *stack_a, t_stack *stack_b)
 	}
 	return (moves_count);
 }
+
+
+// int	freestylin(t_stack *stack_a, t_stack *stack_b)
+// {
+// 	t_circlist	*current;
+// 	int			inversions;
+// 	int			moves_count;
+
+// 	current = stack_a->head;
+// 	moves_count = 0;
+// 	inversions = 1;
+// 	// iterate through stack_a to find inv == 1 closest to head
+// 	while (current)
+// 	{
+// 		if (current->inversions > (int)stack_a->size / 2)
+// 		{
+// 			// move to head (ra()) and pb()
+// 			while (current != stack_a->head)
+// 			{
+// 				rotate(stack_a);
+// 				moves_count++;
+// 			}
+// 			if (current == stack_a->head)
+// 			{
+// 				pb(stack_a, stack_b);
+// 				moves_count++;
+// 				count_stack_inversions(stack_a);
+// 				count_stack_inversions(stack_b);
+// 			}
+// 			continue ;
+// 		}
+// 		if (current->inversions == inversions)
+// 		{
+// 			// move to head (ra()) and use sa()
+// 			while (current != stack_a->head)
+// 			{
+// 				rotate(stack_a);
+// 				moves_count++;
+// 			}
+// 			if (current == stack_a->head)
+// 			{
+// 				sa(stack_a);
+// 				moves_count++;
+// 				count_stack_inversions(stack_a);
+// 			}
+// 			continue ;
+// 		}
+// 		if (current == stack_a->head->previous
+// 			&& inversions < (int)stack_a->size / 2)
+// 			inversions++;
+// 		else if (current->index == (int)stack_a->size - 1)
+// 			break ;
+// 		current = current->next;
+// 		moves_count++;
+// 	}
+// 	return (moves_count);
+// }
