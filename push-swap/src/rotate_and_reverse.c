@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 19:35:20 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/23 09:48:49 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/23 20:59:34 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,37 +15,37 @@
 // REQUIRES NORME:
 int	rotate(t_stack *stack)
 {
-	t_circlist	*current;
-	t_circlist	*start;
+	// t_circlist	*current;
+	// t_circlist	*start;
 
 	if (!stack || stack->head->previous->next != stack->head || stack->size < 2)
 		return (-1);
 	// update head & reset sorted
 	stack->head = stack->head->next;
-	current = stack->head;
-	start = stack->head;
+	// current = stack->head;
+	// start = stack->head;
 	// stack->sorted = 0;
-	// update indexes, inversions & sorted
-	while (current)
-	{
-		if (current != start->previous)
-		{
-			current->index--;
-			// if (current->content > start->previous->content)
-			// {
-			// 	current->inversions++;
-			// 	stack->sorted++;
-			// }
-		}
-		else
-		{
-			current->index = stack->size - 1;
-			// current->inversions = 0;
-		}
-		current = current->next;
-		if (current == start)
-			break ;
-	}
+	// // update indexes, inversions & sorted
+	// while (current)
+	// {
+	// 	if (current != start->previous)
+	// 	{
+	// 		current->index--;
+	// 		if (current->content > start->previous->content)
+	// 		{
+	// 			current->inversions++;
+	// 			stack->sorted++;
+	// 		}
+	// 	}
+	// 	else
+	// 	{
+	// 		current->index = stack->size - 1;
+	// 		current->inversions = 0;
+	// 	}
+	// 	current = current->next;
+	// 	if (current == start)
+	// 		break ;
+	// }
 	return (0);
 }
 
@@ -67,38 +67,38 @@ int	rr(t_stack *stack_a, t_stack *stack_b)
 // REQUIRES NORME:
 int	rev_rotate(t_stack *stack)
 {
-	t_circlist	*current;
-	t_circlist	*start;
+	// t_circlist	*current;
+	// t_circlist	*start;
 
 	if (!stack || stack->head->previous->next != stack->head || stack->size < 2)
 		return (-1);
 	// update head & reset sorted
 	stack->head = stack->head->previous;
-	current = stack->head;
-	start = stack->head;
-	stack->sorted = 0;
-	// update indexes, inversions & sorted
-	while (current)
-	{
-		if (current == start)
-		{
-			current->index = 0;
-			// current->inversions = count_node_inversions(stack, current);
-			// stack->sorted += current->inversions;
-		}
-		else
-		{
-			current->index++;
-			// if (current->content > start->content)
-			// {
-			// 	current->inversions--;
-			// 	stack->sorted--;
-			// }
-		}
-		current = current->next;
-		if (current == start)
-			break ;
-	}
+	// current = stack->head;
+	// start = stack->head;
+	// stack->sorted = 0;
+	// // update indexes, inversions & sorted
+	// while (current)
+	// {
+	// 	if (current == start)
+	// 	{
+	// 		current->index = 0;
+	// 		current->inversions = count_node_inversions(stack, current);
+	// 		stack->sorted += current->inversions;
+	// 	}
+	// 	else
+	// 	{
+	// 		current->index++;
+	// 		if (current->content > start->content)
+	// 		{
+	// 			current->inversions--;
+	// 			stack->sorted--;
+	// 		}
+	// 	}
+	// 	current = current->next;
+	// 	if (current == start)
+	// 		break ;
+	// }
 	return (0);
 }
 

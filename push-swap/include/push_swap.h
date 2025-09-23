@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:46:06 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/23 11:04:59 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/23 23:34:53 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -57,9 +57,9 @@ int		is_stack_max(int content, int curr_max);
 int		find_min(t_stack *t_stack);
 int		find_max(t_stack *t_stack);
 int		find_radix_max_div(t_stack *stack);
-int		sa(t_stack *stack_a);
+int		sa(t_stack *stack_a, int max_index);
 int		sb(t_stack *stack_b);
-int		ss(t_stack *stack_a, t_stack *stack_b);
+int		ss(t_stack *stack_a, t_stack *stack_b, int max_index);
 int		pa(t_stack *stack_a, t_stack *stack_b);
 int		pb(t_stack *stack_a, t_stack *stack_b);
 int		rotate(t_stack *stack);
@@ -70,9 +70,9 @@ t_stack	*create_empty_stack(void);
 int		count_node_inversions(t_stack *stack, t_circlist *node);
 void	count_stack_inversions(t_stack *stack);
 t_stack	*hoares_partition(t_stack *stack);
-int		traverse2tail(t_stack *stack_a, t_stack *stack_b);
+int		traverse2tail(t_stack *stack_a, t_stack *stack_b, int max_index);
 void	sort_sorter(t_stack *stack);
-int		sa_or_ss(t_stack *stack_a, t_stack *stack_b, int moves_count);
+int		sa_or_ss(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_count);
 // TESTER
 void	print_stack(t_stack *stack, char stack_name);
 
