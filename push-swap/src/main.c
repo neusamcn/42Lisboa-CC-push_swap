@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/22 22:20:47 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/23 10:53:28 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -58,7 +58,9 @@ int	main(int ac, char **av)
 	printf("><><><><><><><><><><><><><\n");
 	print_stack(stack_b, 'B');
 	printf("><><><><><><><><><><><><><\n");
-	printf("freestylin(stack_a, stack_b) moves = %d\n", freestylin(stack_a, stack_b));
+	int	moves = traverse2tail(stack_a, stack_b);
+	printf("traverse2tail(stack_a, stack_b) moves = %d\n", moves);
+	printf("sa_or_ss(stack_a, stack_b, moves) moves = %d\n", sa_or_ss(stack_a, stack_b, moves));
 	printf("><><><><><><><><><><><><><\n");
 	print_stack(stack_a, 'A');
 	printf("><><><><><><><><><><><><><\n");
@@ -114,4 +116,18 @@ rra
 sa
 rra
 sa
+
+12 instructions:
+pb
+ra
+ra
+pb
+ra
+ss
+ra
+pa
+ra
+ra
+pa
+ra
 */

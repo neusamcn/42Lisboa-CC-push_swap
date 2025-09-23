@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 02:42:28 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/22 22:45:42 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/23 11:26:53 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -63,70 +63,104 @@ t_stack	*hoares_partition(t_stack *stack)
 }
 
 // REQUIRES WORKING AND TESTING:
-int	freestylin(t_stack *stack_a, t_stack *stack_b)
+int	traverse2tail(t_stack *stack_a, t_stack *stack_b)
 {
 	t_circlist	*current;
 	t_circlist	*tail;
-	t_circlist	*top;
-	int			inversions;
 	int			moves_count;
 
 	current = stack_a->head;
 	tail = stack_a->head->previous;
 	moves_count = 0;
-	inversions = 1;
 	// iterate through stack_a to find inv == 1 closest to head
 	while (current)
 	{
-		if (current->inversions > 0 && current != tail)
+		if (current == tail)
 		{
-			// move to head (ra()) and pb()
-			if (current->inversions > 1)
-			{
-				while (current != stack_a->head)
-				{
-					rotate(stack_a);
-					moves_count++;
-				}
-				if (current == stack_a->head)
-				{
-					pb(stack_a, stack_b);
-					moves_count++;
-					// count_stack_inversions(stack_a);
-					count_stack_inversions(stack_b);
-				}
-			}
-			continue ;
+			// count_stack_inversions(stack_a);
+			// needed?:
+			count_stack_inversions(stack_b);
+			break ;
 		}
-		if (current->inversions == inversions)
+		// move to head (ra()) and pb()
+		if (current->inversions > 1 && current != tail)
 		{
-			// move to head (ra()) and use sa()
 			while (current != stack_a->head)
 			{
 				rotate(stack_a);
 				moves_count++;
+				printf("%d: ra\n", moves_count);
 			}
 			if (current == stack_a->head)
 			{
-				sa(stack_a);
+				pb(stack_a, stack_b);
+				current = stack_a->head;
 				moves_count++;
-				count_stack_inversions(stack_a);
+				printf("%d: pb(%d)\n", moves_count, stack_b->head->content);
 			}
 			continue ;
 		}
-		if (current == stack_a->head->previous
-			&& inversions < (int)stack_a->size / 2)
-			inversions++;
-		else if (current->index == (int)stack_a->size - 1)
-			break ;
 		current = current->next;
-		moves_count++;
+	}
+	// count_stack_inversions(stack_a);
+	return (moves_count);
+}
+
+int	sa_or_ss(t_stack *stack_a, t_stack *stack_b, int moves_count)
+{
+	t_circlist	*current;
+	t_circlist	*tail;
+	int			anext_bhead;
+	int			anext_bnext;
+
+	current = stack_a->head;
+	tail = stack_a->head->previous;
+	while (current)
+	{
+		if (current == tail)
+		{
+			// count_stack_inversions(stack_a);
+			// needed?:
+			count_stack_inversions(stack_b);
+			break ;
+		}
+		if (current->inversions > 0 && current != tail)
+		{
+			while (current != stack_a->head)
+			{
+				rotate(stack_a);
+				moves_count++;
+				printf("%d: ra\n", moves_count);
+			}
+			if (current == stack_a->head)
+			{
+				anext_bhead = current->next->content - stack_b->head->content;
+				if (anext_bhead < 0)
+					anext_bhead *= -1;
+				anext_bnext = current->next->content - stack_b->head->next->content;
+				if (anext_bnext < 0)
+					anext_bnext *= -1;
+				if (anext_bhead > anext_bnext)
+				{
+					ss(stack_a, stack_b);
+					moves_count++;
+					// printf("%d: ss (sa: %d & %d; sb: %d & %d)\n", moves_count, stack_a->head->content, stack_a->head->next->content, stack_b->head->content, stack_b->head->next->content);
+				}
+				else
+				{
+					sa(stack_a);
+					moves_count++;
+					// printf("%d: sa (%d & %d)\n", moves_count, stack_a->head->content, stack_a->head->next->content);
+				}
+			}
+			continue ;
+		}
+		current = current->next;
 	}
 	return (moves_count);
 }
 
-
-// int	freestylin(t_stack *stack_a, t_stack *stack_b)
+// int	traverse2tail(t_stack *stack_a, t_stack *stack_b)
 // {
 // 	t_circlist	*current;
 // 	int			inversions;

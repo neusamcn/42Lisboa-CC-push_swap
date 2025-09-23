@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 20:48:52 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/22 21:16:16 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/23 10:33:09 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,11 +19,11 @@ void	sort_sorter(t_stack *stack)
 	int			inversions;
 	int			sortedness;
 
-	if (stack->sorted == 0)
+	if (stack->sorted == 0 && stack->head->content == stack->min)
 		exit(EXIT_SUCCESS);
 	current = stack->head;
-	while (sortedness > 0)
-		sortedness += --sortedness;
+	// while (sortedness > 0)
+	// 	sortedness += --sortedness;
 	inversions = stack->size - 1;
 	sortedness = inversions;
 	// confirm if necessary after final algorithm is done:

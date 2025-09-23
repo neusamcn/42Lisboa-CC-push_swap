@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 19:04:57 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/22 20:03:37 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/23 09:46:32 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,11 +16,11 @@ int	count_node_inversions(t_stack *stack, t_circlist *node)
 {
 	int			inversions;
 	t_circlist	*current;
-	t_circlist	*start;
+	// t_circlist	*start;
 
 	inversions = 0;
 	current = stack->head;
-	start = stack->head;
+	// start = stack->head;
 	while (current != NULL)
 	{
 		if (current->content == node->content)
@@ -28,14 +28,14 @@ int	count_node_inversions(t_stack *stack, t_circlist *node)
 			while (current)
 			{
 				current = current->next;
-				if (current == start)
+				if (current->index == 0)
 					return (inversions);
 				if (node->content > current->content)
 					inversions++;
 			}
 		}
 		current = current->next;
-		if (current == start)
+		if (current->index == 0)
 			break ;
 	}
 	return (inversions);
@@ -44,15 +44,15 @@ int	count_node_inversions(t_stack *stack, t_circlist *node)
 // REQUIRES TESTING:
 void	count_stack_inversions(t_stack *stack)
 {
-	t_circlist	*start;
+	// t_circlist	*start;
 
-	start = stack->head;
+	// start = stack->head;
 	while (stack && stack->head)
 	{
 		stack->head->inversions = count_node_inversions(stack, stack->head);
 		stack->sorted += stack->head->inversions;
 		stack->head = stack->head->next;
-		if (stack->head == start)
+		if (stack->head->index == 0)
 			break ;
 	}
 }

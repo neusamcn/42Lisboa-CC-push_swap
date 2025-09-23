@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:46:06 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/22 20:54:14 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/23 11:04:59 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -70,7 +70,10 @@ t_stack	*create_empty_stack(void);
 int		count_node_inversions(t_stack *stack, t_circlist *node);
 void	count_stack_inversions(t_stack *stack);
 t_stack	*hoares_partition(t_stack *stack);
-int		freestylin(t_stack *stack_a, t_stack *stack_b);
+int		traverse2tail(t_stack *stack_a, t_stack *stack_b);
 void	sort_sorter(t_stack *stack);
+int		sa_or_ss(t_stack *stack_a, t_stack *stack_b, int moves_count);
+// TESTER
+void	print_stack(t_stack *stack, char stack_name);
 
 #endif

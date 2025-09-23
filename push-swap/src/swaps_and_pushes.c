@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 19:21:19 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/22 19:06:44 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/09/23 10:21:42 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -23,9 +23,9 @@ int	sa(t_stack *stack_a)
 	swap_node->content = stack_a->head->content;
 	stack_a->head->content = stack_a->head->next->content;
 	stack_a->head->next->content = swap_node->content;
-	swap_node->rank = stack_a->head->rank;
-	stack_a->head->rank = stack_a->head->next->rank;
-	stack_a->head->next->rank = swap_node->rank;
+	// swap_node->rank = stack_a->head->rank;
+	// stack_a->head->rank = stack_a->head->next->rank;
+	// stack_a->head->next->rank = swap_node->rank;
 	if (stack_a->head->content > swap_node->content)
 		stack_a->head->inversions++;
 	free(swap_node);
@@ -43,9 +43,9 @@ int	sb(t_stack *stack_b)
 	swap_node->content = stack_b->head->content;
 	stack_b->head->content = stack_b->head->next->content;
 	stack_b->head->next->content = swap_node->content;
-	swap_node->rank = stack_b->head->rank;
-	stack_b->head->rank = stack_b->head->next->rank;
-	stack_b->head->next->rank = swap_node->rank;
+	// swap_node->rank = stack_b->head->rank;
+	// stack_b->head->rank = stack_b->head->next->rank;
+	// stack_b->head->next->rank = swap_node->rank;
 	if (stack_b->head->content > swap_node->content)
 		stack_b->head->inversions++;
 	free(swap_node);
@@ -110,7 +110,7 @@ int	pop_stack_head(t_stack *stack, t_circlist *pop_node)
 		pop_node->previous = pop_node;
 	}
 	stack->size--;
-	stack->sorted -= pop_node->inversions;
+	// stack->sorted -= pop_node->inversions;
 	return (0);
 }
 
@@ -123,8 +123,8 @@ int	push_stack_head(t_stack *stack, t_circlist *push_node)
 	if (!stack->head)
 	{
 		stack->head = push_node;
-		push_node->rank = 0;
-		push_node->inversions = 0;
+		// push_node->rank = 0;
+		// push_node->inversions = 0;
 		push_node->previous = push_node;
 		push_node->next = push_node;
 		stack->min = push_node->content;
@@ -138,12 +138,12 @@ int	push_stack_head(t_stack *stack, t_circlist *push_node)
 		stack->head->previous = push_node;
 		stack->head = push_node;
 		// push_node->rank = ;
-		push_node->inversions = count_node_inversions(stack, push_node);
+		// push_node->inversions = count_node_inversions(stack, push_node);
 		stack->min = is_stack_min(push_node->content, stack->min);
 		stack->max = is_stack_max(push_node->content, stack->max);
 	}
 	stack->size++;
-	stack->sorted += push_node->inversions;
+	// stack->sorted += push_node->inversions;
 	return (0);
 }
 
