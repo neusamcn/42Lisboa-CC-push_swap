@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   input_parser.c                                     :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:30:34 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/22 19:06:26 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/19 20:51:43 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
@@ -74,7 +74,7 @@ t_stack	*mk_stack(int max_rows_cont, char **rows_cont)
 	stack->sorted = 0;
 	mk_circlst(stack, max_rows_cont, rows_cont);
 	count_stack_inversions(stack);
-	// function for ranks
+	printf("rank worked? %d\n", rank(stack));
 	return (stack);
 }
 

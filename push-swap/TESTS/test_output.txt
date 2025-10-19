@@ -1,0 +1,167 @@
+rank worked? 0
+STACK_A: 0x4a78040
+head: 0x4a780a0
+size: 7
+min: 0
+max: 6
+sorted: 8
+
+node: 0x4a780a0
+content: 4
+index: 0
+rank: 4
+inversions: 4
+previous: 0x4a782e0
+next: 0x4a78100
+------------
+
+node: 0x4a78100
+content: 0
+index: 1
+rank: 0
+inversions: 0
+previous: 0x4a780a0
+next: 0x4a78160
+------------
+
+node: 0x4a78160
+content: 1
+index: 2
+rank: 1
+inversions: 0
+previous: 0x4a78100
+next: 0x4a781c0
+------------
+
+node: 0x4a781c0
+content: 6
+index: 3
+rank: 6
+inversions: 3
+previous: 0x4a78160
+next: 0x4a78220
+------------
+
+node: 0x4a78220
+content: 2
+index: 4
+rank: 2
+inversions: 0
+previous: 0x4a781c0
+next: 0x4a78280
+------------
+
+node: 0x4a78280
+content: 5
+index: 5
+rank: 5
+inversions: 1
+previous: 0x4a78220
+next: 0x4a782e0
+------------
+
+node: 0x4a782e0
+content: 3
+index: 6
+rank: 3
+inversions: 0
+previous: 0x4a78280
+next: 0x4a780a0
+------------
+
+><><><><><><><><><><><><><
+STACK_B: 0x4a79380
+head: (nil)
+size: 0
+min: 1
+max: -1
+sorted: 0
+
+><><><><><><><><><><><><><
+1: pb(4)
+2: ra
+3: ra
+4: pb(6)
+traverse2tail(stack_a, stack_b) moves = 4
+5: ra
+6: ss (sa: 3 & 5; sb: 4 & 6)
+sa_or_ss(stack_a, stack_b, moves) moves = 6
+><><><><><><><><><><><><><
+STACK_A: 0x4a78040
+head: 0x4a78280
+size: 5
+min: 0
+max: 5
+sorted: 0
+
+node: 0x4a78280
+content: 3
+index: 5
+rank: 3
+inversions: 0
+previous: 0x4a78220
+next: 0x4a782e0
+------------
+
+node: 0x4a782e0
+content: 5
+index: 6
+rank: 5
+inversions: 0
+previous: 0x4a78280
+next: 0x4a78100
+------------
+
+node: 0x4a78100
+content: 0
+index: 1
+rank: 0
+inversions: 0
+previous: 0x4a782e0
+next: 0x4a78160
+------------
+
+node: 0x4a78160
+content: 1
+index: 2
+rank: 1
+inversions: 0
+previous: 0x4a78100
+next: 0x4a78220
+------------
+
+node: 0x4a78220
+content: 2
+index: 4
+rank: 2
+inversions: 0
+previous: 0x4a78160
+next: 0x4a78280
+------------
+
+><><><><><><><><><><><><><
+STACK_B: 0x4a79380
+head: 0x4a781c0
+size: 2
+min: 4
+max: 6
+sorted: 0
+
+node: 0x4a781c0
+content: 4
+index: 3
+rank: 4
+inversions: 0
+previous: 0x4a780a0
+next: 0x4a780a0
+------------
+
+node: 0x4a780a0
+content: 6
+index: 0
+rank: 6
+inversions: 0
+previous: 0x4a781c0
+next: 0x4a781c0
+------------
+

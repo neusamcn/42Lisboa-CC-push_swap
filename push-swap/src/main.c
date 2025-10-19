@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/23 23:21:03 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/19 21:41:35 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
@@ -46,11 +46,11 @@ int	main(int ac, char **av)
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
-	if (ac < 3)
-	{
-		write(2, "Error\n", 6);
-		exit(EXIT_FAILURE); // yes? or only in main?
-	}
+	// if (ac < 3)
+	// {
+	// 	write(2, "Error\n", 6);
+	// 	exit(EXIT_FAILURE); // yes? or only in main?
+	// }
 	stack_a = parser(ac, av);
 	stack_b = create_empty_stack();
 	// TESTS START

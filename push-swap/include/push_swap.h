@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
@@ -6,14 +6,14 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:46:06 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/23 23:34:53 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/19 20:40:36 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libft/libft.h"
+# include "../libft/libft.h"
 // TESTING ONLY:
 # include <stdio.h>
 
@@ -71,8 +71,11 @@ int		count_node_inversions(t_stack *stack, t_circlist *node);
 void	count_stack_inversions(t_stack *stack);
 t_stack	*hoares_partition(t_stack *stack);
 int		traverse2tail(t_stack *stack_a, t_stack *stack_b, int max_index);
+int		traverse2head(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_count);
 void	sort_sorter(t_stack *stack);
 int		sa_or_ss(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_count);
+int		inv_algo(t_stack *stack_a, t_stack *stack_b, int max_index);
+int 	rank(t_stack *stack_a);
 // TESTER
 void	print_stack(t_stack *stack, char stack_name);
 

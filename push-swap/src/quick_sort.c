@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   quick_sort.c                                       :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 02:42:28 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/23 23:49:36 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/19 21:37:39 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
@@ -158,3 +158,46 @@ int	sa_or_ss(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_count)
 // { SORT STACK_B TO SORTED == 0 ??
 // AND/OR
 // ROTATE STACK_A TO PA() }
+
+// REQUIRES WORKING AND TESTING:
+int		traverse2head(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_count)
+{
+	t_circlist	*current_a;
+	t_circlist	*current_b;
+
+	current_a = stack_a->head;
+	current_b = stack_b->head;
+	// iterate through stack_a to find current_a->rank + 1 in stack_b->head
+	while (current_a && current_b && current_a->index <= 0)
+	{
+		if (current_a->rank == current_b->rank + 1)
+		{
+			while (current_a != stack_a->head)
+			{
+				rotate(stack_a);
+				moves_count++;
+				printf("%d: ra\n", moves_count);
+			}
+			current_b = current_b->next;
+			pa(stack_a, stack_b);
+		}
+		current_a = current_a->previous;
+	}
+	// needed?:
+	// count_stack_inversions(stack_a);
+	// count_stack_inversions(stack_b);
+	return (moves_count);
+}
+
+// REQUIRES WORKING AND TESTING:
+int	inv_algo(t_stack *stack_a, t_stack *stack_b, int max_index)
+{
+	int	moves = 0;
+	
+	traverse2tail(stack_a, stack_b, max_index);
+	sa_or_ss(stack_a, stack_b, max_index, moves);
+	traverse2head(stack_a, stack_b, max_index, moves);
+	// return (-1) on error
+	return (0);
+}
+

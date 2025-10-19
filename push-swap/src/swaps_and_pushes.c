@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   swaps_and_pushes.c                                 :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 19:21:19 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/23 23:46:40 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/19 21:07:48 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
@@ -28,6 +28,9 @@ int	sa(t_stack *stack_a, int max_index)
 		stack_a->head->inversions--;
 		stack_a->sorted--;
 	}
+	swap = stack_a->head->rank;
+	stack_a->head->rank = stack_a->head->next->rank;
+	stack_a->head->next->rank = swap;
 	// swap_node = malloc(sizeof(t_circlist));
 	// swap_node = stack_a->head;
 	// // swap_node->content = stack_a->head->content;
@@ -59,6 +62,9 @@ int	sb(t_stack *stack_b)
 	// 	stack_b->head->inversions++;
 	// 	stack_b->sorted++;
 	// }
+	swap = stack_b->head->rank;
+	stack_b->head->rank = stack_b->head->next->rank;
+	stack_b->head->next->rank = swap;
 	// swap_node = malloc(sizeof(t_circlist));
 	// swap_node = stack_b->head;
 	// // swap_node->content = stack_b->head->content;

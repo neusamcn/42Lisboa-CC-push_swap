@@ -1,4 +1,4 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
@@ -6,9 +6,9 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:32:52 by ncruz-ne          #+#    #+#              #
-#    Updated: 2025/09/23 09:22:56 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2025/10/19 20:59:13 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
 NAME = push_swap
 HEADER = include/push_swap.h
@@ -27,13 +27,14 @@ SRCS = $(SRC_DIR)/err_handler.c $(SRC_DIR)/free_stack.c $(SRC_DIR)/input_parser.
 	$(SRC_DIR)/main.c $(SRC_DIR)/pre_sort.c $(SRC_DIR)/quick_sort.c \
 	$(SRC_DIR)/rotate_and_reverse.c $(SRC_DIR)/sortedness.c \
 	$(SRC_DIR)/stack_min_max.c $(SRC_DIR)/stack_operations.c \
-	$(SRC_DIR)/swaps_and_pushes.c
+	$(SRC_DIR)/swaps_and_pushes.c $(SRC_DIR)/ranker.c
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 SRCS_BONUS =
 OBJS_BONUS = 
 
 TEST_DIR = TESTS
-TEST_ARGS = 4 0 1 6 2 5 3 # 3 4 1 2 5000 7 2147483647 9 -3 388 -25 5 0 -2147483648
+TEST_ARGS = 4 0 "1" 6 2 5 3 # "-"2 4 1 2 5000 7 2147483647 9 -3 388 -25 5 0 -2147483648
+# fix t be able to work with "-"2
 
 all: $(LIBFT) $(OBJ_DIR) $(NAME)
 
@@ -60,7 +61,7 @@ bonus: .bonus
 	touch .bonus
 
 valgrind: $(NAME) $(TEST_DIR)
-	valgrind --log-file=$(TEST_DIR)/valgrind_log --leak-check=full --show-leak-kinds=all -s \
+	valgrind --log-file=$(TEST_DIR)/valgrind_log.log --leak-check=full --show-leak-kinds=all -s \
 	./$(NAME) $(TEST_ARGS) > $(TEST_DIR)/test_output.txt
 
 clean:
@@ -75,7 +76,8 @@ fclean: clean
 re: fclean all
 
 tclean:
-	rm -f $(TEST_DIR)/valgrind_log
+	rm -f $(TEST_DIR)/valgrind_log.log
 	rm -f $(TEST_DIR)/test_output.txt
+	rm -fr $(TEST_DIR)
 
 .PHONY: all bonus clean fclean re run valgrind tclean
