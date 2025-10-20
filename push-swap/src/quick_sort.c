@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 02:42:28 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/19 21:37:39 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/20 11:28:44 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,13 @@ int		traverse2head(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_
 			pa(stack_a, stack_b);
 		}
 		current_a = current_a->previous;
+	}
+	// ensure stack_a->min is at head
+	while (stack_a->head)
+	{
+		if (stack_a->head->content == stack_a->min)
+			break ;
+		stack_a->head = stack_a->head->next;
 	}
 	// needed?:
 	// count_stack_inversions(stack_a);

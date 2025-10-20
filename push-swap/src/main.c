@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/19 21:41:35 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/20 11:24:29 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	main(int ac, char **av)
 	int	moves = traverse2tail(stack_a, stack_b, max_index);
 	printf("traverse2tail(stack_a, stack_b) moves = %d\n", moves);
 	printf("sa_or_ss(stack_a, stack_b, moves) moves = %d\n", sa_or_ss(stack_a, stack_b, max_index, moves));
+	printf("traverse2head(stack_a, stack_b, moves) moves = %d\n", traverse2head(stack_a, stack_b, max_index, moves));
 	printf("><><><><><><><><><><><><><\n");
 	print_stack(stack_a, 'A');
 	printf("><><><><><><><><><><><><><\n");
