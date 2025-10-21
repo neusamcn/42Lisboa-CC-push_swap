@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 20:19:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/19 21:11:00 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/21 10:28:06 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 int rank(t_stack *stack)
 {
     t_circlist  *current;
+    t_circlist  *start;
     int         max;
     int         rank;
 
@@ -23,19 +24,21 @@ int rank(t_stack *stack)
         return (-1);
     max = stack->max;
     current = stack->head;
+    start = current->previous;
     // 1st => rank == 0:
     rank = (int)stack->size - 1;
-    while (current && rank >= 0)
+    while (max >= stack->min && rank >= 0)
     {
         if (current->content == max)
         {
             current->rank = rank;
-            max--;
             rank--;
+            start = current->previous;
         }
-        else if ()
+        if (current == start)
         {
-            
+            max--;
+            start = current->previous;
         }
         current = current->next;
     }

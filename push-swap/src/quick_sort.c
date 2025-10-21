@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 02:42:28 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/20 11:28:44 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/21 16:53:18 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,30 @@ int		traverse2head(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_
 	// iterate through stack_a to find current_a->rank + 1 in stack_b->head
 	while (current_a && current_b)
 	{
+		// if (current_a->rank == current_a->next->rank + 1 ||
+		// 	current_a->rank == current_a->next->rank - 1 ||
+		// 	current_a->rank == current_a->previous->rank + 1 ||
+		// 	current_a->rank == current_a->previous->rank - 1)
+		// {
+		// 	if (current_a->rank < max_index / 2)
+		// 	{
+		// 		while (current_a != stack_a->head)
+		// 		{
+		// 			rotate(stack_a);
+		// 			moves_count++;
+		// 			printf("%d: ra\n", moves_count);
+		// 		}
+		// 	}
+		// 	else
+		// 	{
+		// 		rev_rotate(stack_a);
+		// 		moves_count++;
+		// 		printf("%d: rra\n", moves_count);
+		// 	}
+		// 	sa(stack_a, max_index);
+		// 	moves_count++;
+		// 	printf("%d: sa (%d & %d)\n", moves_count, stack_a->head->content, stack_a->head->next->content);
+		// }
 		if (stack_b->head && (current_a->rank == current_b->rank + 1 ||
 			(current_a->rank == 0 && current_b->rank == max_index)))
 		{

@@ -1,0 +1,178 @@
+rank worked? -1
+STACK_A: 0x4a77040
+head: 0x4a770a0
+size: 7
+min: 0
+max: 6
+sorted: 8
+
+node: 0x4a770a0
+content: 4
+index: 0
+rank: 4
+inversions: 4
+previous: 0x4a772e0
+next: 0x4a77100
+------------
+
+node: 0x4a77100
+content: 0
+index: 1
+rank: 0
+inversions: 0
+previous: 0x4a770a0
+next: 0x4a77160
+------------
+
+node: 0x4a77160
+content: 1
+index: 2
+rank: 2
+inversions: 0
+previous: 0x4a77100
+next: 0x4a771c0
+------------
+
+node: 0x4a771c0
+content: 6
+index: 3
+rank: 6
+inversions: 3
+previous: 0x4a77160
+next: 0x4a77220
+------------
+
+node: 0x4a77220
+content: 2
+index: 4
+rank: 3
+inversions: 0
+previous: 0x4a771c0
+next: 0x4a77280
+------------
+
+node: 0x4a77280
+content: 5
+index: 5
+rank: 5
+inversions: 1
+previous: 0x4a77220
+next: 0x4a772e0
+------------
+
+node: 0x4a772e0
+content: 3
+index: 6
+rank: 0
+inversions: 0
+previous: 0x4a77280
+next: 0x4a770a0
+------------
+
+><><><><><><><><><><><><><
+STACK_B: 0x4a78380
+head: (nil)
+size: 0
+min: 1
+max: -1
+sorted: 0
+
+><><><><><><><><><><><><><
+1: pb(4)
+2: ra
+3: ra
+4: pb(6)
+5: ra
+6: ss (sa: 3 & 5; sb: 4 & 6)
+7: ra
+8: pa(4)
+9: ra
+10: ra
+11: ra
+12: ra
+13: ra
+14: pa(6)
+15: ra
+16: ra
+17: ra
+18: ra
+inv_algo(stack_a, stack_b, max_index) moves = 18
+><><><><><><><><><><><><><
+STACK_A: 0x4a77040
+head: 0x4a77100
+size: 7
+min: 0
+max: 6
+sorted: 15
+
+node: 0x4a77100
+content: 0
+index: 1
+rank: 0
+inversions: 0
+previous: 0x4a772e0
+next: 0x4a77160
+------------
+
+node: 0x4a77160
+content: 1
+index: 2
+rank: 2
+inversions: 0
+previous: 0x4a77100
+next: 0x4a77220
+------------
+
+node: 0x4a77220
+content: 2
+index: 4
+rank: 3
+inversions: 0
+previous: 0x4a77160
+next: 0x4a770a0
+------------
+
+node: 0x4a770a0
+content: 6
+index: 0
+rank: 6
+inversions: 6
+previous: 0x4a77220
+next: 0x4a77280
+------------
+
+node: 0x4a77280
+content: 3
+index: 5
+rank: 0
+inversions: 3
+previous: 0x4a770a0
+next: 0x4a771c0
+------------
+
+node: 0x4a771c0
+content: 4
+index: 3
+rank: 4
+inversions: 3
+previous: 0x4a77280
+next: 0x4a772e0
+------------
+
+node: 0x4a772e0
+content: 5
+index: 6
+rank: 5
+inversions: 3
+previous: 0x4a771c0
+next: 0x4a77100
+------------
+
+><><><><><><><><><><><><><
+STACK_B: 0x4a78380
+head: (nil)
+size: 0
+min: 1
+max: -1
+sorted: -3
+

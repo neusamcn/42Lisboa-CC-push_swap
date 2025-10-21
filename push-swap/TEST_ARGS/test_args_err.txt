@@ -6,7 +6,7 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/19 21:50:20 by ncruz-ne          #+#    #+#              #
-#    Updated: 2025/10/19 22:16:05 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2025/10/21 16:16:53 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ TEST_ARGS = break
 text. Expected: Error
 
 TEST_ARGS = "2 43 5665634 " 23 345
-Expected: " is ignored and considers 2 43 and 5665634 as 3 args (???)
+Expected: " is ignored and considers 2 43 and 5665634 as 3 args
 
 TEST_ARGS = "" 32 3234 5464
 Cannot have empty arguments. Expected: Error
@@ -39,7 +39,7 @@ TEST_ARGS = 32 3 5464 23535345325
 23535345325 > INT_MAX. Expected: Error
 
 TEST_ARGS = 32 34 5464 -2135344233
--2135344233 > INT_MIN. Expected: Error
+-2135344233 < INT_MIN. Expected: Error
 
 TEST_ARGS =
 TEST_ARGS =
