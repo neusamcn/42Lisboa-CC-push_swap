@@ -164,13 +164,18 @@ int		traverse2head(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_
 {
 	t_circlist	*current_a;
 	t_circlist	*current_b;
+	t_circlist	*start_a;
 
+	if (!stack_a || !stack_a->head)
+		return (moves_count);
 	current_a = stack_a->head;
+	start_a = stack_a->head;
 	current_b = stack_b->head;
 	// iterate through stack_a to find current_a->rank + 1 in stack_b->head
-	while (current_a && current_b && current_a->index <= 0)
+	while (current_a && current_b)
 	{
-		if (current_a->rank == current_b->rank + 1)
+		if (stack_b->head && (current_a->rank == current_b->rank + 1 ||
+			(current_a->rank == 0 && current_b->rank == max_index)))
 		{
 			while (current_a != stack_a->head)
 			{
@@ -180,15 +185,22 @@ int		traverse2head(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_
 			}
 			current_b = current_b->next;
 			pa(stack_a, stack_b);
+			moves_count++;
+			printf("%d: pa(%d)\n", moves_count, stack_a->head->content);
 		}
 		current_a = current_a->previous;
+		if (!stack_b->head && current_a->index == start_a->index)
+			break ;
 	}
 	// ensure stack_a->min is at head
-	while (stack_a->head)
+	// consider separating as individual ft() w/ check !stack_b->head
+	if (!stack_b->head)
+		count_stack_inversions(stack_a);
+	while (stack_a->head->content != stack_a->min)
 	{
-		if (stack_a->head->content == stack_a->min)
-			break ;
-		stack_a->head = stack_a->head->next;
+		rotate(stack_a);
+		moves_count++;
+		printf("%d: ra\n", moves_count);
 	}
 	// needed?:
 	// count_stack_inversions(stack_a);
@@ -199,12 +211,11 @@ int		traverse2head(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_
 // REQUIRES WORKING AND TESTING:
 int	inv_algo(t_stack *stack_a, t_stack *stack_b, int max_index)
 {
-	int	moves = 0;
+	int	moves;
 	
-	traverse2tail(stack_a, stack_b, max_index);
-	sa_or_ss(stack_a, stack_b, max_index, moves);
-	traverse2head(stack_a, stack_b, max_index, moves);
-	// return (-1) on error
-	return (0);
+	moves = traverse2tail(stack_a, stack_b, max_index);
+	moves = sa_or_ss(stack_a, stack_b, max_index, moves);
+	moves = traverse2head(stack_a, stack_b, max_index, moves);
+	return (moves);
 }
 

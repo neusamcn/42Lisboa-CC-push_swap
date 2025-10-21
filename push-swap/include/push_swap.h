@@ -57,6 +57,7 @@ int		is_stack_max(int content, int curr_max);
 int		find_min(t_stack *t_stack);
 int		find_max(t_stack *t_stack);
 int		find_radix_max_div(t_stack *stack);
+int 	rank(t_stack *stack_a);
 int		sa(t_stack *stack_a, int max_index);
 int		sb(t_stack *stack_b);
 int		ss(t_stack *stack_a, t_stack *stack_b, int max_index);
@@ -75,7 +76,6 @@ int		traverse2head(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_
 void	sort_sorter(t_stack *stack);
 int		sa_or_ss(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_count);
 int		inv_algo(t_stack *stack_a, t_stack *stack_b, int max_index);
-int 	rank(t_stack *stack_a);
 // TESTER
 void	print_stack(t_stack *stack, char stack_name);
 

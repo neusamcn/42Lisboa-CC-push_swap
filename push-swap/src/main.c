@@ -59,10 +59,11 @@ int	main(int ac, char **av)
 	print_stack(stack_b, 'B');
 	printf("><><><><><><><><><><><><><\n");
 	int	max_index = (int)stack_a->size - 1;
-	int	moves = traverse2tail(stack_a, stack_b, max_index);
-	printf("traverse2tail(stack_a, stack_b) moves = %d\n", moves);
-	printf("sa_or_ss(stack_a, stack_b, moves) moves = %d\n", sa_or_ss(stack_a, stack_b, max_index, moves));
-	printf("traverse2head(stack_a, stack_b, moves) moves = %d\n", traverse2head(stack_a, stack_b, max_index, moves));
+	int	moves = inv_algo(stack_a, stack_b, max_index);
+	// printf("traverse2tail(stack_a, stack_b) moves = %d\n", moves);
+	// printf("sa_or_ss(stack_a, stack_b, moves) moves = %d\n", moves = sa_or_ss(stack_a, stack_b, max_index, moves));
+	// printf("traverse2head(stack_a, stack_b, moves) moves = %d\n", traverse2head(stack_a, stack_b, max_index, moves));
+	printf("inv_algo(stack_a, stack_b, max_index) moves = %d\n", moves);	
 	printf("><><><><><><><><><><><><><\n");
 	print_stack(stack_a, 'A');
 	printf("><><><><><><><><><><><><><\n");

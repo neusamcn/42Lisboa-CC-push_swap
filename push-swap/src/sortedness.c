@@ -21,7 +21,7 @@ int	count_node_inversions(t_stack *stack, t_circlist *node)
 	inversions = 0;
 	current = stack->head;
 	// start = stack->head;
-	while (current != NULL)
+	while (current)
 	{
 		if (current->content == node->content)
 		{

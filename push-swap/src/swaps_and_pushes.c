@@ -164,12 +164,12 @@ int	push_stack_head(t_stack *stack, t_circlist *push_node)
 		stack->head->previous = push_node;
 		stack->head = push_node;
 		// push_node->rank = ;
-		push_node->inversions = count_node_inversions(stack, push_node);
+		// push_node->inversions = count_node_inversions(stack, push_node);
 		stack->min = is_stack_min(push_node->content, stack->min);
 		stack->max = is_stack_max(push_node->content, stack->max);
 	}
 	stack->size++;
-	stack->sorted += push_node->inversions;
+	// stack->sorted += push_node->inversions;
 	return (0);
 }
 

@@ -1,14 +1,38 @@
-==6055== Memcheck, a memory error detector
-==6055== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
-==6055== Using Valgrind-3.25.1 and LibVEX; rerun with -h for copyright info
-==6055== Command: ./push_swap 4 0 1 6 2 5 3
-==6055== Parent PID: 6054
-==6055== 
-==6055== 
-==6055== HEAP SUMMARY:
-==6055==     in use at exit: 0 bytes in 0 blocks
-==6055==   total heap usage: 10 allocs, 10 frees, 4,384 bytes allocated
-==6055== 
-==6055== All heap blocks were freed -- no leaks are possible
-==6055== 
-==6055== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==10687== Memcheck, a memory error detector
+==10687== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==10687== Using Valgrind-3.25.1 and LibVEX; rerun with -h for copyright info
+==10687== Command: ./push_swap 4 0 1
+==10687== Parent PID: 10686
+==10687== 
+==10687== 
+==10687== Process terminating with default action of signal 2 (SIGINT)
+==10687==    at 0x4002C81: rank (ranker.c:29)
+==10687==    by 0x4001695: mk_stack (input_parser.c:77)
+==10687==    by 0x4001770: parser (input_parser.c:101)
+==10687==    by 0x400196B: main (main.c:54)
+==10687== 
+==10687== HEAP SUMMARY:
+==10687==     in use at exit: 128 bytes in 4 blocks
+==10687==   total heap usage: 4 allocs, 0 frees, 128 bytes allocated
+==10687== 
+==10687== 32 bytes in 1 blocks are still reachable in loss record 1 of 2
+==10687==    at 0x484B858: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10687==    by 0x40015FD: mk_stack (input_parser.c:67)
+==10687==    by 0x4001770: parser (input_parser.c:101)
+==10687==    by 0x400196B: main (main.c:54)
+==10687== 
+==10687== 96 bytes in 3 blocks are still reachable in loss record 2 of 2
+==10687==    at 0x484B858: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10687==    by 0x40014ED: mk_circlst (input_parser.c:45)
+==10687==    by 0x400167D: mk_stack (input_parser.c:75)
+==10687==    by 0x4001770: parser (input_parser.c:101)
+==10687==    by 0x400196B: main (main.c:54)
+==10687== 
+==10687== LEAK SUMMARY:
+==10687==    definitely lost: 0 bytes in 0 blocks
+==10687==    indirectly lost: 0 bytes in 0 blocks
+==10687==      possibly lost: 0 bytes in 0 blocks
+==10687==    still reachable: 128 bytes in 4 blocks
+==10687==         suppressed: 0 bytes in 0 blocks
+==10687== 
+==10687== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

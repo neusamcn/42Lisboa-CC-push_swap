@@ -12,6 +12,7 @@
 
 #include "../include/push_swap.h"
 
+// REQUIRES TESTING:
 int rank(t_stack *stack)
 {
     t_circlist  *current;
@@ -31,6 +32,10 @@ int rank(t_stack *stack)
             current->rank = rank;
             max--;
             rank--;
+        }
+        else if ()
+        {
+            
         }
         current = current->next;
     }

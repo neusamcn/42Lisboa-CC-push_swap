@@ -33,7 +33,7 @@ SRCS_BONUS =
 OBJS_BONUS = 
 
 TEST_DIR = TESTS
-TEST_ARGS = 4 0 "1" 6 2 5 3 # "-"2 4 1 2 5000 7 2147483647 9 -3 388 -25 5 0 -2147483648
+TEST_ARGS = 4 0 "1" # 6 2 5 3 # "-"2 4 1 2 5000 7 2147483647 9 -3 388 -25 5 0 -2147483648
 # fix t be able to work with "-"2
 
 all: $(LIBFT) $(OBJ_DIR) $(NAME)
