@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 02:42:28 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/21 16:53:18 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/22 17:14:12 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,43 @@ t_stack	*hoares_partition(t_stack *stack)
 }
 
 // REQUIRES WORKING AND TESTING:
+int	check_rot_only(t_stack *stack_a)
+{
+	t_circlist	*current;
+	t_circlist	*start_a;
+	int			index;
+
+	current = stack_a->head;
+	if (!stack_a->head)
+		return (-1);
+	while (current->inversions == 0)
+		current = current->next;
+	if (current->inversions > 0 && current->inversions == current->rank)
+	{
+		while (current->content != stack_a->min)
+			current = current->next;
+		start_a = current;
+		index = 0;
+		current->index = index;
+		current = current->next;
+		while (current != start_a)
+		{
+			current->index = ++index;
+			current = current->next;
+		}
+		count_stack_inversions(stack_a);
+	}
+	return (0);
+}
+
+// REQUIRES WORKING AND TESTING:
 int	traverse2tail(t_stack *stack_a, t_stack *stack_b, int max_index)
 {
 	t_circlist	*current;
 	int			moves_count;
 
 	current = stack_a->head;
-	moves_count = 0;
+	moves_count = 0; // tester
 	// iterate through stack_a to find inv == 1 closest to head
 	while (current && current->index < max_index)
 	{
@@ -79,15 +109,15 @@ int	traverse2tail(t_stack *stack_a, t_stack *stack_b, int max_index)
 			while (current != stack_a->head)
 			{
 				rotate(stack_a);
-				moves_count++;
-				printf("%d: ra\n", moves_count);
+				moves_count++; // tester
+				printf("%d: ra\n", moves_count); // tester
 			}
 			if (current == stack_a->head)
-			{
+			{				
 				pb(stack_a, stack_b);
 				current = stack_a->head;
-				moves_count++;
-				printf("%d: pb(%d)\n", moves_count, stack_b->head->content);
+				moves_count++; // tester
+				printf("%d: pb(%d)\n", moves_count, stack_b->head->content);// tester
 			}
 			continue ;
 		}
@@ -113,37 +143,37 @@ int	sa_or_ss(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_count)
 			while (current != stack_a->head)
 			{
 				rotate(stack_a);
-				moves_count++;
-				printf("%d: ra\n", moves_count);
+				moves_count++; // tester
+				printf("%d: ra\n", moves_count); // tester
 			}
 			if (current == stack_a->head)
 			{
 				if (stack_b->head && stack_b->size > 1)
 				{
-					anext_bhead = current->next->content - stack_b->head->content;
+					anext_bhead = current->next->rank - stack_b->head->rank;
 					if (anext_bhead < 0)
 						anext_bhead *= -1;
-					anext_bnext = current->next->content - stack_b->head->next->content;
+					anext_bnext = current->next->rank - stack_b->head->next->rank;
 					if (anext_bnext < 0)
 						anext_bnext *= -1;
 					if (anext_bhead > anext_bnext)
 					{
 						ss(stack_a, stack_b, max_index);
-						moves_count++;
-						printf("%d: ss (sa: %d & %d; sb: %d & %d)\n", moves_count, stack_a->head->content, stack_a->head->next->content, stack_b->head->content, stack_b->head->next->content);
+						moves_count++; // tester
+						printf("%d: ss (sa: %d & %d; sb: %d & %d)\n", moves_count, stack_a->head->content, stack_a->head->next->content, stack_b->head->content, stack_b->head->next->content); // tester
 					}
 					else if (anext_bhead < anext_bnext)
 					{
 						sa(stack_a, max_index);
-						moves_count++;
-						printf("%d: sa (%d & %d)\n", moves_count, stack_a->head->content, stack_a->head->next->content);
+						moves_count++; // tester
+						printf("%d: sa (%d & %d)\n", moves_count, stack_a->head->content, stack_a->head->next->content); // tester
 					}
 				}
-				else if (stack_b->head && stack_b->size < 2)
+				else if (stack_b->size < 2)
 				{
 					sa(stack_a, max_index);
-					moves_count++;
-					printf("%d: sa (%d & %d)\n", moves_count, stack_a->head->content, stack_a->head->next->content);
+					moves_count++; // tester
+					printf("%d: sa (%d & %d)\n", moves_count, stack_a->head->content, stack_a->head->next->content); // tester
 				}
 			}
 		}
@@ -160,59 +190,113 @@ int	sa_or_ss(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_count)
 // ROTATE STACK_A TO PA() }
 
 // REQUIRES WORKING AND TESTING:
+int	min_to_head(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_count)
+{
+	if (!stack_a->head)
+		return (-1);
+	if (!stack_b->head && stack_a->sorted == 0)
+	{
+		while (stack_a->head->content != stack_a->min)
+		{
+			if (stack_a->head->rank > max_index / 2)
+			{
+				rotate(stack_a);
+				moves_count++; // tester
+				printf("%d: ra\n", moves_count); // tester
+			}
+			else
+			{
+				rev_rotate(stack_a);
+				moves_count++; // tester
+				printf("%d: rra\n", moves_count); // tester
+			}
+		}
+	}
+	return (moves_count);
+}
+
+// REQUIRES WORKING AND TESTING:
 int		traverse2head(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_count)
 {
 	t_circlist	*current_a;
 	t_circlist	*current_b;
 	t_circlist	*start_a;
+	t_circlist	*start_b;
+	int			full_rot;
+	int			revrot_a;
+	int			revrot_b;
 
 	if (!stack_a || !stack_a->head)
 		return (moves_count);
 	current_a = stack_a->head;
 	start_a = stack_a->head;
 	current_b = stack_b->head;
+	start_b = stack_b->head;
+	full_rot = 0;
 	// iterate through stack_a to find current_a->rank + 1 in stack_b->head
 	while (current_a && current_b)
 	{
-		// if (current_a->rank == current_a->next->rank + 1 ||
-		// 	current_a->rank == current_a->next->rank - 1 ||
-		// 	current_a->rank == current_a->previous->rank + 1 ||
-		// 	current_a->rank == current_a->previous->rank - 1)
-		// {
-		// 	if (current_a->rank < max_index / 2)
-		// 	{
-		// 		while (current_a != stack_a->head)
-		// 		{
-		// 			rotate(stack_a);
-		// 			moves_count++;
-		// 			printf("%d: ra\n", moves_count);
-		// 		}
-		// 	}
-		// 	else
-		// 	{
-		// 		rev_rotate(stack_a);
-		// 		moves_count++;
-		// 		printf("%d: rra\n", moves_count);
-		// 	}
-		// 	sa(stack_a, max_index);
-		// 	moves_count++;
-		// 	printf("%d: sa (%d & %d)\n", moves_count, stack_a->head->content, stack_a->head->next->content);
-		// }
 		if (stack_b->head && (current_a->rank == current_b->rank + 1 ||
 			(current_a->rank == 0 && current_b->rank == max_index)))
 		{
+			if (current_a != stack_a->head && current_b != stack_b->head)
+			{
+				while (revrot_a > 0 && revrot_b > 0)
+				{
+					rrr(stack_a, stack_b);
+					revrot_a--;
+					revrot_b--;
+					moves_count++; // tester
+					printf("%d: rrr\n", moves_count); // tester
+				}
+			}
 			while (current_a != stack_a->head)
 			{
-				rotate(stack_a);
-				moves_count++;
-				printf("%d: ra\n", moves_count);
+				rev_rotate(stack_a);
+				revrot_a--;
+				moves_count++; // tester
+				printf("%d: rra\n", moves_count); // tester
+			}
+			while (current_b != stack_b->head)
+			{
+				rev_rotate(stack_b);
+				revrot_b--;
+				moves_count++; // tester
+				printf("%d: rrb\n", moves_count); // tester
 			}
 			current_b = current_b->next;
 			pa(stack_a, stack_b);
-			moves_count++;
-			printf("%d: pa(%d)\n", moves_count, stack_a->head->content);
+			current_a = stack_a->head;
+			start_a = stack_a->head;
+			moves_count++; // tester
+			printf("%d: pa(%d)\n", moves_count, stack_a->head->content); // tester
+			if (current_a == start_a && full_rot == 0)
+			{
+				full_rot = 1;
+				break ;
+			}
 		}
-		current_a = current_a->previous;
+		if (full_rot == 0)
+		{	
+			current_a = current_a->previous;
+			revrot_a++;
+		}
+		if (full_rot == 1)
+		{
+			revrot_a = 0;	
+			start_b = current_b;
+			if (current_b != start_b)
+			{	
+				current_b = current_b->previous;
+				revrot_b++;
+				continue ;
+			}
+			else
+			{	full_rot = 0;
+				revrot_b = 0;
+				continue ;
+			}
+		}
 		if (!stack_b->head && current_a->index == start_a->index)
 			break ;
 	}
@@ -220,14 +304,8 @@ int		traverse2head(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_
 	// consider separating as individual ft() w/ check !stack_b->head
 	if (!stack_b->head)
 		count_stack_inversions(stack_a);
-	while (stack_a->head->content != stack_a->min)
-	{
-		rotate(stack_a);
-		moves_count++;
-		printf("%d: ra\n", moves_count);
-	}
+	moves_count = min_to_head(stack_a, stack_b, max_index, moves_count);
 	// needed?:
-	// count_stack_inversions(stack_a);
 	// count_stack_inversions(stack_b);
 	return (moves_count);
 }
@@ -237,6 +315,7 @@ int	inv_algo(t_stack *stack_a, t_stack *stack_b, int max_index)
 {
 	int	moves;
 	
+	check_rot_only(stack_a);
 	moves = traverse2tail(stack_a, stack_b, max_index);
 	moves = sa_or_ss(stack_a, stack_b, max_index, moves);
 	moves = traverse2head(stack_a, stack_b, max_index, moves);

@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   sortedness.c                                       :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 19:04:57 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/23 09:46:32 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/22 17:22:07 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
@@ -44,15 +44,16 @@ int	count_node_inversions(t_stack *stack, t_circlist *node)
 // REQUIRES TESTING:
 void	count_stack_inversions(t_stack *stack)
 {
-	// t_circlist	*start;
+	t_circlist	*current;
 
-	// start = stack->head;
-	while (stack && stack->head)
+	current = stack->head;
+	stack->sorted = 0;
+	while (current)
 	{
-		stack->head->inversions = count_node_inversions(stack, stack->head);
-		stack->sorted += stack->head->inversions;
-		stack->head = stack->head->next;
-		if (stack->head->index == 0)
+		current->inversions = count_node_inversions(stack, current);
+		stack->sorted += current->inversions;
+		current = current->next;
+		if (current->index == 0)
 			break ;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:46:06 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/19 20:40:36 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/22 16:59:40 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ int		traverse2head(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_
 void	sort_sorter(t_stack *stack);
 int		sa_or_ss(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_count);
 int		inv_algo(t_stack *stack_a, t_stack *stack_b, int max_index);
+int		check_rot_only(t_stack *stack_a);
+int		min_to_head(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_count);
 // TESTER
 void	print_stack(t_stack *stack, char stack_name);
 

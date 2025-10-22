@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 20:19:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/21 10:28:06 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/22 13:10:33 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,10 @@ int rank(t_stack *stack)
             start = current->previous;
         }
         if (current == start)
-        {
             max--;
-            start = current->previous;
-        }
         current = current->next;
     }
-    if (rank != -1 || max != stack->min - 1)
+    if (rank != -1)
         return (-1);
     return (0);
 }
