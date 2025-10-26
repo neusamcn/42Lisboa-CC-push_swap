@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:46:06 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/26 21:45:31 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/26 22:50:13 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -44,10 +44,12 @@ typedef struct s_nodes
 }				t_nodes;
 
 char	**ft_split_ps(char const *str, char *skip);
-int	freeall(char **splat, size_t j);
+int		ft_atoi_ps(const char *nptr);
+int		freeall(char **splat, size_t j);
 int		err_not_nbr(char *list_item);
 int		err_not_unique(int li_row, char **av);
 int		err_exceeds_int_limits(char *list_item);
+int		err_empty(char *list_item);
 void	error(void);
 t_stack	*mk_stack(int max_rows_cont, char **rows_cont);
 void	mk_circlst(t_stack *stack, int max_rows_cont, char **rows_cont);

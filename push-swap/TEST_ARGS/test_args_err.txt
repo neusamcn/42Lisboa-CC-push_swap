@@ -1,4 +1,4 @@
-# **************************************************************************** #
+#******************************************************************************#
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    test_args_err.txt                                  :+:      :+:    :+:    #
@@ -6,9 +6,9 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/19 21:50:20 by ncruz-ne          #+#    #+#              #
-#    Updated: 2025/10/21 16:16:53 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2025/10/26 22:43:55 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
-# **************************************************************************** #
+#******************************************************************************#
 
 TEST_ARGS =
 Expected: program displays nothing and returns to prompt
@@ -38,8 +38,10 @@ Expected: Error
 TEST_ARGS = 32 3 5464 23535345325
 23535345325 > INT_MAX. Expected: Error
 
-TEST_ARGS = 32 34 5464 -2135344233
--2135344233 < INT_MIN. Expected: Error
+TEST_ARGS = 32 34 5464 -21353442334
+-21353442334 < INT_MIN. Expected: Error
 
-TEST_ARGS =
+TEST_ARGS = 1 3687 997 6 9876 9 4 6 584
+6 has a duplicate. Expected: Error
+
 TEST_ARGS =

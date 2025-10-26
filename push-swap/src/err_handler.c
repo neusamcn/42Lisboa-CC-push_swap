@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 23:48:41 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/25 23:50:32 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/26 22:51:38 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,26 +19,36 @@ int	err_not_nbr(char *list_item)
 	i = 0;
 	while (list_item[i] == ' ' || (list_item[i] > 8 && list_item[i] < 14))
 		i++;
-	if (list_item[i] == '-' || list_item[i] == '+')
+	if (list_item[i] == '\0')
+		return (-1);
+	else if (list_item[i] == '-' || list_item[i] == '+')
 		i++;
-	while (list_item[i])
+	if (!(list_item[i] >= '0' && list_item[i] <= '9'))
+		return (-1);
+	else
 	{
-		if (!(list_item[i] >= '0' && list_item[i] <= '9'))
-			return (-1);
-		i++;
+		while (list_item[i])
+		{
+			if (!(list_item[i] >= '0' && list_item[i] <= '9'))
+				return (-1);
+			i++;
+		}
+		if (list_item[i] == '\0')
+			return (0);
 	}
-	return (0);
+	return (-1);
 }
 
 int	err_exceeds_int_limits(char *list_item)
 {
+	int	li_int;
 	int	i;
 
+	li_int = ft_atoi_ps(list_item);
 	i = 0;
 	while (list_item[i])
 	{
-		if ((list_item[i] >= '1' && list_item[i] <= '9')
-			&& ft_atoi(list_item) == 0)
+		if ((list_item[i] >= '1' && list_item[i] <= '9') && li_int == 0)
 			return (-1);
 		i++;
 	}
@@ -61,6 +71,20 @@ int	err_not_unique(int row, char **av)
 		i++;
 	}
 	return (0);
+}
+
+int	err_empty(char *list_item)
+{
+	int	i;
+
+	i = 0;
+	while (list_item[i])
+	{
+		if (list_item[i] >= '0' && list_item[i] <= '9')
+			return (0);
+		i++;
+	}
+	return (-1);
 }
 
 void	error(void)

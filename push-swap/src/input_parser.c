@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:30:34 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/26 21:55:40 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/26 22:52:08 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -69,8 +69,8 @@ t_stack	*mk_stack(int max_rows_cont, char **rows_cont)
 		return (NULL);
 	stack->head = NULL;
 	stack->size = 0;
-	stack->min = ft_atoi(rows_cont[0]);
-	stack->max = ft_atoi(rows_cont[0]);
+	stack->min = ft_atoi_ps(rows_cont[0]);
+	stack->max = ft_atoi_ps(rows_cont[0]);
 	stack->sorted = 0;
 	mk_circlst(stack, max_rows_cont, rows_cont);
 	count_stack_inversions(stack);
@@ -92,12 +92,11 @@ t_stack	*parser(int ac, char **av) // should it return a pointer?
 	char	**list_matrix;
 
 	row = 1;
-	// something's fucking wrong idk what and it doesn't make sense fuck this
 	temp_join1 = NULL;
 	str_args = NULL;
 	while (row < ac)
 	{
-		if (*av[row] == '\0')
+		if (err_empty(av[row]) == -1)
 			error();
 		temp_join1 = ft_strjoin(av[row], " ");
 		if (temp_join1 && str_args)
@@ -124,7 +123,12 @@ t_stack	*parser(int ac, char **av) // should it return a pointer?
 		if (err_not_nbr(list_matrix[li]) == -1
 			|| err_exceeds_int_limits(list_matrix[li]) == -1
 			|| err_not_unique(li, list_matrix) == -1)
+		{
+			while (list_matrix[li])
+				li++;
+			freeall(list_matrix, (size_t)li);
 			error();
+		}
 		li++;
 	}
 	stack_a = mk_stack(li, list_matrix);
