@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 02:42:28 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/22 17:14:12 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/22 21:25:36 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int	traverse2tail(t_stack *stack_a, t_stack *stack_b, int max_index)
 				pb(stack_a, stack_b);
 				current = stack_a->head;
 				moves_count++; // tester
-				printf("%d: pb(%d)\n", moves_count, stack_b->head->content);// tester
+				printf("%d: pb(%d)\n", moves_count, stack_b->head->content); // tester
 			}
 			continue ;
 		}
