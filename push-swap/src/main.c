@@ -6,13 +6,26 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/26 22:55:17 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/26 23:20:58 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "../include/push_swap.h"
 
 // TESTERS:
+void	print_bits(int octet)
+{
+    int bit_mask;
+    int i = 7;
+
+    while (i >= 0)
+    { 
+        bit_mask = (octet >> i & 1);
+        printf("%d", bit_mask);
+        i--;
+    }
+}
+
 void	print_stack(t_stack *stack, char stack_name)
 {
 	t_circlist	*current;
@@ -32,6 +45,9 @@ void	print_stack(t_stack *stack, char stack_name)
 		printf("content: %d\n", current->content);
 		printf("index: %d\n", current->index);
 		printf("rank: %d\n", current->rank);
+		printf("octet rank: ");
+		print_bits(current->rank);
+		printf("\n");
 		printf("inversions: %d\n", current->inversions);
 		printf("previous: %p\n", current->previous);
 		printf("next: %p\n------------\n\n", current->next);
@@ -57,10 +73,6 @@ int	main(int ac, char **av)
 	printf("><><><><><><><><><><><><><\n");
 	print_stack(stack_b, 'B');
 	printf("><><><><><><><><><><><><><\n");
-	printf("%d\n", ft_atoi("23535345325"));
-	printf("%d\n", ft_atoi("-2135344233"));
-	printf("%d\n", atoi("23535345325"));
-	printf("%d\n", atoi("-2135344233"));
 	// int	max_index = (int)stack_a->size - 1;
 	// int	moves = inv_algo(stack_a, stack_b, max_index);
 	// // printf("traverse2tail(stack_a, stack_b) moves = %d\n", moves);

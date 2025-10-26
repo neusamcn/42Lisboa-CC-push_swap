@@ -1,0 +1,87 @@
+rank worked? 0
+STACK_A: 0x4a75930
+head: 0x4a75990
+size: 7
+min: 0
+max: 6
+sorted: 8
+
+node: 0x4a75990
+content: 4
+index: 0
+rank: 4
+octet rank: 00000100
+inversions: 4
+previous: 0x4a75bd0
+next: 0x4a759f0
+------------
+
+node: 0x4a759f0
+content: 0
+index: 1
+rank: 0
+octet rank: 00000000
+inversions: 0
+previous: 0x4a75990
+next: 0x4a75a50
+------------
+
+node: 0x4a75a50
+content: 1
+index: 2
+rank: 1
+octet rank: 00000001
+inversions: 0
+previous: 0x4a759f0
+next: 0x4a75ab0
+------------
+
+node: 0x4a75ab0
+content: 6
+index: 3
+rank: 6
+octet rank: 00000110
+inversions: 3
+previous: 0x4a75a50
+next: 0x4a75b10
+------------
+
+node: 0x4a75b10
+content: 2
+index: 4
+rank: 2
+octet rank: 00000010
+inversions: 0
+previous: 0x4a75ab0
+next: 0x4a75b70
+------------
+
+node: 0x4a75b70
+content: 5
+index: 5
+rank: 5
+octet rank: 00000101
+inversions: 1
+previous: 0x4a75b10
+next: 0x4a75bd0
+------------
+
+node: 0x4a75bd0
+content: 3
+index: 6
+rank: 3
+octet rank: 00000011
+inversions: 0
+previous: 0x4a75b70
+next: 0x4a75990
+------------
+
+><><><><><><><><><><><><><
+STACK_B: 0x4a75e70
+head: (nil)
+size: 0
+min: 1
+max: -1
+sorted: 0
+
+><><><><><><><><><><><><><
