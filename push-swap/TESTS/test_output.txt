@@ -1,0 +1,62 @@
+rank worked? 0
+STACK_A: 0x4a75500
+head: 0x4a75560
+size: 5
+min: 2
+max: 5665634
+sorted: 3
+
+node: 0x4a75560
+content: 2
+index: 0
+rank: 0
+inversions: 0
+previous: 0x4a756e0
+next: 0x4a755c0
+------------
+
+node: 0x4a755c0
+content: 43
+index: 1
+rank: 2
+inversions: 1
+previous: 0x4a75560
+next: 0x4a75620
+------------
+
+node: 0x4a75620
+content: 5665634
+index: 2
+rank: 4
+inversions: 2
+previous: 0x4a755c0
+next: 0x4a75680
+------------
+
+node: 0x4a75680
+content: 23
+index: 3
+rank: 1
+inversions: 0
+previous: 0x4a75620
+next: 0x4a756e0
+------------
+
+node: 0x4a756e0
+content: 345
+index: 4
+rank: 3
+inversions: 0
+previous: 0x4a75680
+next: 0x4a75560
+------------
+
+><><><><><><><><><><><><><
+STACK_B: 0x4a75980
+head: (nil)
+size: 0
+min: 1
+max: -1
+sorted: 0
+
+><><><><><><><><><><><><><

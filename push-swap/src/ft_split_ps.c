@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 22:14:29 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/26 00:08:54 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/26 21:45:22 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -51,7 +51,7 @@ static char	*allocncpy(char const *str, int len)
 	return (word);
 }
 
-static int	freeall(char **splat, size_t j)
+int	freeall(char **splat, size_t j)
 {
 	if (!splat[j])
 	{
