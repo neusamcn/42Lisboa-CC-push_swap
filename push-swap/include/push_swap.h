@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:46:06 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/22 16:59:40 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/25 23:46:42 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
@@ -43,9 +43,11 @@ typedef struct s_nodes
 	t_circlist	*current;
 }				t_nodes;
 
+char	**ft_split_ps(char const *str, char *skip);
 int		err_not_nbr(char *list_item);
-int		err_not_unique(int li_row, int ac, char **av);
+int		err_not_unique(int li_row, char **av);
 int		err_exceeds_int_limits(char *list_item);
+int		err_empty_str(char *list_item);
 t_stack	*mk_stack(int max_rows_cont, char **rows_cont);
 void	mk_circlst(t_stack *stack, int max_rows_cont, char **rows_cont);
 t_nodes	link_circlst(t_stack *stack, t_nodes nodes, int max_rows, int row);

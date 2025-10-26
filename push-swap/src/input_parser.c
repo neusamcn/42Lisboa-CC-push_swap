@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   input_parser.c                                     :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:30:34 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/19 20:51:43 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/26 00:27:24 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../include/push_swap.h"
 
@@ -82,21 +82,41 @@ t_stack	*mk_stack(int max_rows_cont, char **rows_cont)
 t_stack	*parser(int ac, char **av) // should it return a pointer?
 {
 	int row;
+	int	li;
 	// t_circlist  *lst_b;
 	t_stack *stack_a;
 	// t_stack *stack_b;
+	char	*list_str;
+	char	**list_matrix;
 
 	row = 1;
+	// something's fucking wrong idk what and it doesn't make sense fuck this
+	list_str = NULL;
 	while (row < ac)
 	{
-		if (err_not_nbr(av[row]) == -1
-			|| err_exceeds_int_limits(av[row]) == -1
-			|| err_not_unique(row, ac, av) == -1)
+		if (*av[row] == '\0')
 		{
 			write(2, "Error\n", 6);
 			exit(EXIT_FAILURE); // yes? or only in main?
 		}
+		list_str = ft_strjoin(list_str, av[row]);
+		list_str = ft_strjoin(list_str, " ");
 		row++;
+	}
+	list_matrix = ft_split_ps(list_str, " \f\n\r\t\v");
+	free(list_str);
+	list_str = NULL;
+	li = 0;
+	while (list_matrix)
+	{
+		if (err_not_nbr(av[row]) == -1
+			|| err_exceeds_int_limits(list_matrix[li]) == -1
+			|| err_not_unique(li, list_matrix) == -1)
+		{
+			write(2, "Error\n", 6);
+			exit(EXIT_FAILURE); // yes? or only in main?
+		}
+		li++;
 	}
 	stack_a = mk_stack(ac, av);
 	return (stack_a);

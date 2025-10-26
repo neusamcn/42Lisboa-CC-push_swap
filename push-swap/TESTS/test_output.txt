@@ -1,76 +1,49 @@
 rank worked? 0
-STACK_A: 0x4a78040
-head: 0x4a780a0
-size: 7
+STACK_A: 0x4a75040
+head: 0x4a750a0
+size: 4
 min: 0
-max: 6
-sorted: 8
+max: 345
+sorted: 3
 
-node: 0x4a780a0
-content: 4
+node: 0x4a750a0
+content: 2
 index: 0
-rank: 4
-inversions: 4
-previous: 0x4a782e0
-next: 0x4a78100
+rank: 1
+inversions: 1
+previous: 0x4a751c0
+next: 0x4a75100
 ------------
 
-node: 0x4a78100
-content: 0
+node: 0x4a75100
+content: 23
 index: 1
+rank: 2
+inversions: 1
+previous: 0x4a750a0
+next: 0x4a75160
+------------
+
+node: 0x4a75160
+content: 345
+index: 2
+rank: 3
+inversions: 1
+previous: 0x4a75100
+next: 0x4a751c0
+------------
+
+node: 0x4a751c0
+content: 0
+index: 3
 rank: 0
 inversions: 0
-previous: 0x4a780a0
-next: 0x4a78160
-------------
-
-node: 0x4a78160
-content: 1
-index: 2
-rank: 1
-inversions: 0
-previous: 0x4a78100
-next: 0x4a781c0
-------------
-
-node: 0x4a781c0
-content: 6
-index: 3
-rank: 6
-inversions: 3
-previous: 0x4a78160
-next: 0x4a78220
-------------
-
-node: 0x4a78220
-content: 2
-index: 4
-rank: 2
-inversions: 0
-previous: 0x4a781c0
-next: 0x4a78280
-------------
-
-node: 0x4a78280
-content: 5
-index: 5
-rank: 5
-inversions: 1
-previous: 0x4a78220
-next: 0x4a782e0
-------------
-
-node: 0x4a782e0
-content: 3
-index: 6
-rank: 3
-inversions: 0
-previous: 0x4a78280
-next: 0x4a780a0
+previous: 0x4a75160
+next: 0x4a750a0
 ------------
 
 ><><><><><><><><><><><><><
-STACK_B: 0x4a79380
+STACK_B: 0x4a75460
 head: (nil)
 size: 0
 min: 1
@@ -78,84 +51,3 @@ max: -1
 sorted: 0
 
 ><><><><><><><><><><><><><
-1: ra
-inv_algo(stack_a, stack_b, max_index) moves = 1
-><><><><><><><><><><><><><
-STACK_A: 0x4a78040
-head: 0x4a78100
-size: 7
-min: 0
-max: 6
-sorted: 0
-
-node: 0x4a78100
-content: 0
-index: 0
-rank: 0
-inversions: 0
-previous: 0x4a780a0
-next: 0x4a78160
-------------
-
-node: 0x4a78160
-content: 1
-index: 1
-rank: 1
-inversions: 0
-previous: 0x4a78100
-next: 0x4a781c0
-------------
-
-node: 0x4a781c0
-content: 6
-index: 2
-rank: 6
-inversions: 3
-previous: 0x4a78160
-next: 0x4a78220
-------------
-
-node: 0x4a78220
-content: 2
-index: 3
-rank: 2
-inversions: 0
-previous: 0x4a781c0
-next: 0x4a78280
-------------
-
-node: 0x4a78280
-content: 5
-index: 4
-rank: 5
-inversions: 1
-previous: 0x4a78220
-next: 0x4a782e0
-------------
-
-node: 0x4a782e0
-content: 3
-index: 5
-rank: 3
-inversions: 0
-previous: 0x4a78280
-next: 0x4a780a0
-------------
-
-node: 0x4a780a0
-content: 4
-index: 6
-rank: 4
-inversions: 0
-previous: 0x4a782e0
-next: 0x4a78100
-------------
-
-><><><><><><><><><><><><><
-STACK_B: 0x4a79380
-head: (nil)
-size: 0
-min: 1
-max: -1
-sorted: 0
-

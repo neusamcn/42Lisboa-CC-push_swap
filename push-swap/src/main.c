@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/20 11:24:29 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/26 00:06:16 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../include/push_swap.h"
 
@@ -47,10 +47,7 @@ int	main(int ac, char **av)
 	t_stack	*stack_b;
 
 	// if (ac < 3)
-	// {
-	// 	write(2, "Error\n", 6);
-	// 	exit(EXIT_FAILURE); // yes? or only in main?
-	// }
+	// 	exit(EXIT_SUCCESS); // yes? or only in main?
 	stack_a = parser(ac, av);
 	stack_b = create_empty_stack();
 	// TESTS START
@@ -58,16 +55,16 @@ int	main(int ac, char **av)
 	printf("><><><><><><><><><><><><><\n");
 	print_stack(stack_b, 'B');
 	printf("><><><><><><><><><><><><><\n");
-	int	max_index = (int)stack_a->size - 1;
-	int	moves = inv_algo(stack_a, stack_b, max_index);
-	// printf("traverse2tail(stack_a, stack_b) moves = %d\n", moves);
-	// printf("sa_or_ss(stack_a, stack_b, moves) moves = %d\n", moves = sa_or_ss(stack_a, stack_b, max_index, moves));
-	// printf("traverse2head(stack_a, stack_b, moves) moves = %d\n", traverse2head(stack_a, stack_b, max_index, moves));
-	printf("inv_algo(stack_a, stack_b, max_index) moves = %d\n", moves);	
-	printf("><><><><><><><><><><><><><\n");
-	print_stack(stack_a, 'A');
-	printf("><><><><><><><><><><><><><\n");
-	print_stack(stack_b, 'B');
+	// int	max_index = (int)stack_a->size - 1;
+	// int	moves = inv_algo(stack_a, stack_b, max_index);
+	// // printf("traverse2tail(stack_a, stack_b) moves = %d\n", moves);
+	// // printf("sa_or_ss(stack_a, stack_b, moves) moves = %d\n", moves = sa_or_ss(stack_a, stack_b, max_index, moves));
+	// // printf("traverse2head(stack_a, stack_b, moves) moves = %d\n", traverse2head(stack_a, stack_b, max_index, moves));
+	// printf("inv_algo(stack_a, stack_b, max_index) moves = %d\n", moves);	
+	// printf("><><><><><><><><><><><><><\n");
+	// print_stack(stack_a, 'A');
+	// printf("><><><><><><><><><><><><><\n");
+	// print_stack(stack_b, 'B');
 	// TESTS END
 	free_circlst_stack(stack_a);
 	free_circlst_stack(stack_b);

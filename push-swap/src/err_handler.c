@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 23:48:41 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/22 19:06:16 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/25 23:50:32 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -17,6 +17,8 @@ int	err_not_nbr(char *list_item)
 	int	i;
 
 	i = 0;
+	while (list_item[i] == ' ' || (list_item[i] > 8 && list_item[i] < 14))
+		i++;
 	if (list_item[i] == '-' || list_item[i] == '+')
 		i++;
 	while (list_item[i])
@@ -43,7 +45,7 @@ int	err_exceeds_int_limits(char *list_item)
 	return (0);
 }
 
-int	err_not_unique(int row, int ac, char **av)
+int	err_not_unique(int row, char **av)
 {
 	int	i;
 	int	li_nbr;
@@ -51,10 +53,24 @@ int	err_not_unique(int row, int ac, char **av)
 
 	i = row + 1;
 	li_nbr = ft_atoi(av[row]);
-	while (i < ac)
+	while (av[i])
 	{
 		av_nbr = ft_atoi(av[i]);
 		if (li_nbr == av_nbr)
+			return (-1);
+		i++;
+	}
+	return (0);
+}
+
+int	err_empty_str(char *list_item)
+{
+	int	i;
+
+	i = 0;
+	while (list_item[i])
+	{
+		if (list_item == NULL)
 			return (-1);
 		i++;
 	}
