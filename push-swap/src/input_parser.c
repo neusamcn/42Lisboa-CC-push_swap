@@ -86,6 +86,7 @@ t_stack	*parser(int ac, char **av) // should it return a pointer?
 	// t_circlist  *lst_b;
 	t_stack *stack_a;
 	// t_stack *stack_b;
+	char	*join_space;
 	char	*list_str;
 	char	**list_matrix;
 
@@ -95,27 +96,24 @@ t_stack	*parser(int ac, char **av) // should it return a pointer?
 	while (row < ac)
 	{
 		if (*av[row] == '\0')
-		{
-			write(2, "Error\n", 6);
-			exit(EXIT_FAILURE); // yes? or only in main?
-		}
-		list_str = ft_strjoin(list_str, av[row]);
-		list_str = ft_strjoin(list_str, " ");
+			error();
+		join_space = ft_strjoin(av[row], " ");
+		if (list_str)
+			list_str = ft_strjoin(list_str, join_space);
+		list_str = ft_strdup(join_space);
+		free(join_space);
 		row++;
 	}
 	list_matrix = ft_split_ps(list_str, " \f\n\r\t\v");
 	free(list_str);
-	list_str = NULL;
+	// list_str = NULL;
 	li = 0;
 	while (list_matrix)
 	{
 		if (err_not_nbr(av[row]) == -1
 			|| err_exceeds_int_limits(list_matrix[li]) == -1
 			|| err_not_unique(li, list_matrix) == -1)
-		{
-			write(2, "Error\n", 6);
-			exit(EXIT_FAILURE); // yes? or only in main?
-		}
+			error();
 		li++;
 	}
 	stack_a = mk_stack(ac, av);

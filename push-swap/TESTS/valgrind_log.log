@@ -1,14 +1,71 @@
-==41453== Memcheck, a memory error detector
-==41453== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==41453== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
-==41453== Command: ./push_swap 2\ 43\ 5665634\  23 345 
-==41453== Parent PID: 41452
-==41453== 
-==41453== 
-==41453== HEAP SUMMARY:
-==41453==     in use at exit: 0 bytes in 0 blocks
-==41453==   total heap usage: 7 allocs, 7 frees, 704 bytes allocated
-==41453== 
-==41453== All heap blocks were freed -- no leaks are possible
-==41453== 
-==41453== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==3089== Memcheck, a memory error detector
+==3089== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==3089== Using Valgrind-3.25.1 and LibVEX; rerun with -h for copyright info
+==3089== Command: ./push_swap 2\ 43\ 5665634\  23 345
+==3089== Parent PID: 3088
+==3089== 
+==3089== Invalid read of size 1
+==3089==    at 0x40011AB: err_not_nbr (err_handler.c:20)
+==3089==    by 0x4001836: parser (input_parser.c:113)
+==3089==    by 0x4001A91: main (main.c:51)
+==3089==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
+==3089== 
+==3089== 
+==3089== Process terminating with default action of signal 11 (SIGSEGV)
+==3089==  Access not within mapped region at address 0x0
+==3089==    at 0x40011AB: err_not_nbr (err_handler.c:20)
+==3089==    by 0x4001836: parser (input_parser.c:113)
+==3089==    by 0x4001A91: main (main.c:51)
+==3089==  If you believe this happened as a result of a stack
+==3089==  overflow in your program's main thread (unlikely but
+==3089==  possible), you can try to increase the size of the
+==3089==  main thread stack using the --main-stacksize= flag.
+==3089==  The main thread stack size used in this run was 8388608.
+==3089== 
+==3089== HEAP SUMMARY:
+==3089==     in use at exit: 65 bytes in 6 blocks
+==3089==   total heap usage: 10 allocs, 4 frees, 94 bytes allocated
+==3089== 
+==3089== 4 bytes in 1 blocks are still reachable in loss record 1 of 4
+==3089==    at 0x484C858: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3089==    by 0x400315A: allocncpy (ft_split_ps.c:42)
+==3089==    by 0x4003397: ft_split_ps (ft_split_ps.c:102)
+==3089==    by 0x40017FE: parser (input_parser.c:107)
+==3089==    by 0x4001A91: main (main.c:51)
+==3089== 
+==3089== 16 bytes in 1 blocks are still reachable in loss record 2 of 4
+==3089==    at 0x484C858: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3089==    by 0x4003267: in2damatrix (ft_split_ps.c:77)
+==3089==    by 0x40032B3: ft_split_ps (ft_split_ps.c:92)
+==3089==    by 0x40017FE: parser (input_parser.c:107)
+==3089==    by 0x4001A91: main (main.c:51)
+==3089== 
+==3089== 19 bytes in 2 blocks are definitely lost in loss record 3 of 4
+==3089==    at 0x484C858: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3089==    by 0x4003655: ft_strdup (in /home/ncruz-ne/Documents/ProjectsNeusa/CC/push_swap_neusamcn.worktrees/simple/push-swap/push_swap)
+==3089==    by 0x40017C8: parser (input_parser.c:103)
+==3089==    by 0x4001A91: main (main.c:51)
+==3089== 
+==3089== 26 bytes in 2 blocks are definitely lost in loss record 4 of 4
+==3089==    at 0x484C858: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3089==    by 0x4003720: ft_strjoin (in /home/ncruz-ne/Documents/ProjectsNeusa/CC/push_swap_neusamcn.worktrees/simple/push-swap/push_swap)
+==3089==    by 0x40017B8: parser (input_parser.c:102)
+==3089==    by 0x4001A91: main (main.c:51)
+==3089== 
+==3089== LEAK SUMMARY:
+==3089==    definitely lost: 45 bytes in 4 blocks
+==3089==    indirectly lost: 0 bytes in 0 blocks
+==3089==      possibly lost: 0 bytes in 0 blocks
+==3089==    still reachable: 20 bytes in 2 blocks
+==3089==         suppressed: 0 bytes in 0 blocks
+==3089== 
+==3089== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 0 from 0)
+==3089== 
+==3089== 1 errors in context 1 of 3:
+==3089== Invalid read of size 1
+==3089==    at 0x40011AB: err_not_nbr (err_handler.c:20)
+==3089==    by 0x4001836: parser (input_parser.c:113)
+==3089==    by 0x4001A91: main (main.c:51)
+==3089==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
+==3089== 
+==3089== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 0 from 0)

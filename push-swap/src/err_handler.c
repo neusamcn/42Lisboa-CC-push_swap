@@ -63,16 +63,8 @@ int	err_not_unique(int row, char **av)
 	return (0);
 }
 
-int	err_empty_str(char *list_item)
+void	error(void)
 {
-	int	i;
-
-	i = 0;
-	while (list_item[i])
-	{
-		if (list_item == NULL)
-			return (-1);
-		i++;
-	}
-	return (0);
+	write(2, "Error\n", 6);
+	exit(EXIT_FAILURE); // yes? or only in main?
 }

@@ -47,7 +47,7 @@ char	**ft_split_ps(char const *str, char *skip);
 int		err_not_nbr(char *list_item);
 int		err_not_unique(int li_row, char **av);
 int		err_exceeds_int_limits(char *list_item);
-int		err_empty_str(char *list_item);
+void	error(void);
 t_stack	*mk_stack(int max_rows_cont, char **rows_cont);
 void	mk_circlst(t_stack *stack, int max_rows_cont, char **rows_cont);
 t_nodes	link_circlst(t_stack *stack, t_nodes nodes, int max_rows, int row);
