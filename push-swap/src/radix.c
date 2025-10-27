@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:03:09 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/27 21:53:52 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/27 22:45:12 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -46,7 +46,7 @@ int	radix_btoa(t_stack *stack_a, t_stack *stack_b, int pos, int moves_count)
 		while (current)
 		{
 			bitmask = current->rank >> pos & 1;
-			if (bitmask == 1)
+			if (bitmask == 1 || (pos == 0 && bitmask == 0))
 			{
 				while (current != stack_b->head)
 				{
@@ -64,7 +64,7 @@ int	radix_btoa(t_stack *stack_a, t_stack *stack_b, int pos, int moves_count)
 					}
 					if (current == start)
 						start = stack_b->head->next;
-					current = current->next;
+					current = stack_b->head->next;
 				}
 				pa(stack_a, stack_b);
 				moves_count++; // tester
@@ -78,7 +78,12 @@ int	radix_btoa(t_stack *stack_a, t_stack *stack_b, int pos, int moves_count)
 					current = current->previous;
 			}
 			if (current == start)
-				break ;
+			{
+				if (pos > 0)
+					break ;
+				else
+					continue ;
+			}
 		}
 	}
 	return (moves_count);

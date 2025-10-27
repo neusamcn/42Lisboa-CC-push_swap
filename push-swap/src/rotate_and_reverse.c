@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 19:35:20 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/23 20:59:34 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/27 22:54:25 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -18,7 +18,7 @@ int	rotate(t_stack *stack)
 	// t_circlist	*current;
 	// t_circlist	*start;
 
-	if (!stack || stack->head->previous->next != stack->head || stack->size < 2)
+	if (!stack->head || stack->head->previous == stack->head || stack->size < 2)
 		return (-1);
 	// update head & reset sorted
 	stack->head = stack->head->next;
@@ -70,7 +70,7 @@ int	rev_rotate(t_stack *stack)
 	// t_circlist	*current;
 	// t_circlist	*start;
 
-	if (!stack || stack->head->previous->next != stack->head || stack->size < 2)
+	if (!stack->head || stack->head->previous == stack->head || stack->size < 2)
 		return (-1);
 	// update head & reset sorted
 	stack->head = stack->head->previous;
