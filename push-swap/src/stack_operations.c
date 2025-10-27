@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 19:57:59 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/22 19:06:35 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/27 17:07:59 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -33,7 +33,6 @@ t_stack	*create_empty_stack(void)
 // always check if stack->size == 0 before doing operations ()
 
 
-// function for rank?????
 // inversions = rank - index; goal is 0.
 // sorted => SUM(inversions). goal is 0.
 

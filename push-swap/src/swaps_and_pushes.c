@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   swaps_and_pushes.c                                 :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 19:21:19 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/19 21:07:48 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/27 19:12:20 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../include/push_swap.h"
 
@@ -185,6 +185,8 @@ int	pa(t_stack *stack_a, t_stack *stack_b)
 		return (-1);
 	if (push_stack_head(stack_a, push_node) == -1)
 		return (-1);
+	stack_index(stack_a); // add due to radix
+	stack_index(stack_b); // add due to radix
 	return (0);
 }
 
@@ -200,5 +202,7 @@ int	pb(t_stack *stack_a, t_stack *stack_b)
 		return (-1);
 	if (push_stack_head(stack_b, push_node) == -1)
 		return (-1);
+	stack_index(stack_a); // add due to radix
+	stack_index(stack_b); // add due to radix
 	return (0);
 }

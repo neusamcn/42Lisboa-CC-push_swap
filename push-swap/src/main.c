@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/26 23:20:58 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/27 20:31:29 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -45,9 +45,9 @@ void	print_stack(t_stack *stack, char stack_name)
 		printf("content: %d\n", current->content);
 		printf("index: %d\n", current->index);
 		printf("rank: %d\n", current->rank);
-		printf("octet rank: ");
-		print_bits(current->rank);
-		printf("\n");
+		// printf("octet rank: ");
+		// print_bits(current->rank);
+		// printf("\n");
 		printf("inversions: %d\n", current->inversions);
 		printf("previous: %p\n", current->previous);
 		printf("next: %p\n------------\n\n", current->next);
@@ -73,16 +73,18 @@ int	main(int ac, char **av)
 	printf("><><><><><><><><><><><><><\n");
 	print_stack(stack_b, 'B');
 	printf("><><><><><><><><><><><><><\n");
+	int	moves = 0;
+	radix_atob(stack_a, stack_b, moves);
 	// int	max_index = (int)stack_a->size - 1;
 	// int	moves = inv_algo(stack_a, stack_b, max_index);
 	// // printf("traverse2tail(stack_a, stack_b) moves = %d\n", moves);
 	// // printf("sa_or_ss(stack_a, stack_b, moves) moves = %d\n", moves = sa_or_ss(stack_a, stack_b, max_index, moves));
 	// // printf("traverse2head(stack_a, stack_b, moves) moves = %d\n", traverse2head(stack_a, stack_b, max_index, moves));
 	// printf("inv_algo(stack_a, stack_b, max_index) moves = %d\n", moves);	
-	// printf("><><><><><><><><><><><><><\n");
-	// print_stack(stack_a, 'A');
-	// printf("><><><><><><><><><><><><><\n");
-	// print_stack(stack_b, 'B');
+	printf("><><><><><><><><><><><><><\n");
+	print_stack(stack_a, 'A');
+	printf("><><><><><><><><><><><><><\n");
+	print_stack(stack_b, 'B');
 	// TESTS END
 	free_circlst_stack(stack_a);
 	free_circlst_stack(stack_b);

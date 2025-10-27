@@ -1,12 +1,12 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_stack_members.c                               :+:      :+:    :+:   */
+/*   stack_min_max.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 18:17:39 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/09/22 19:05:56 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/27 17:11:37 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -74,21 +74,11 @@ int	find_radix_max_div(t_stack *stack)
 {
 	int	position;
 	int	radix_max_div;
-	int	min;
-	int	max;
 	int	longest_nb;
 
 	if (!stack || !stack->head || stack->min > stack->max)
 		return (-1);
-	min = stack->min;
-	if (stack->min < 0)
-		min = -stack->min;
-	max = stack->max;
-	if (stack->max < 0)
-		max = -stack->max;
-	longest_nb = max;
-	if (min > max)
-		longest_nb = min;
+	longest_nb = stack->size - 1;
 	position = 1;
 	radix_max_div = 1;
 	while (position < ft_nlen(longest_nb))
