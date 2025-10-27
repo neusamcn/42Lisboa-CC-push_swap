@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:03:09 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/27 20:51:03 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/27 21:53:52 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -18,7 +18,7 @@ void	stack_index(t_stack *stack)
 	t_circlist	*current;
 	int			index;
 
-	if (!stack)
+	if (!stack || !stack->head)
 		return ;
 	current = stack->head;
 	start = stack->head;
@@ -33,13 +33,12 @@ void	stack_index(t_stack *stack)
 	}
 }
 
-void	radix_btoa(t_stack *stack_a, t_stack *stack_b, int pos, int moves_count)
+int	radix_btoa(t_stack *stack_a, t_stack *stack_b, int pos, int moves_count)
 {
 	int			bitmask;
 	t_circlist	*start;
 	t_circlist	*current;
 
-	pos = find_radix_max_div(stack_a);
 	current = stack_b->head;
 	if (pos >= 0)
 	{
@@ -63,35 +62,43 @@ void	radix_btoa(t_stack *stack_a, t_stack *stack_b, int pos, int moves_count)
 						moves_count++; // tester
 						printf("%d: rrb\n", moves_count); // tester
 					}
+					if (current == start)
+						start = stack_b->head->next;
+					current = current->next;
 				}
 				pa(stack_a, stack_b);
 				moves_count++; // tester
 				printf("%d: pa(%d)\n", moves_count, stack_a->head->rank); // tester
 			}
-			if (current->index < (int)stack_b->size / 2)
-				current = current->next;
 			else
-				current = current->previous;
+			{
+				if (current->index < (int)stack_b->size / 2)
+					current = current->next;
+				else
+					current = current->previous;
+			}
 			if (current == start)
 				break ;
 		}
-		radix_atob(stack_a, stack_b, moves_count);
 	}
+	return (moves_count);
 }
 
 void	radix_atob(t_stack *stack_a, t_stack *stack_b, int moves_count)
 {
 	int			bitmask;
 	int			pos;
+	int			rot;
 	t_circlist	*start;
 	t_circlist	*current;
 
 	pos = find_radix_max_div(stack_a);
 	current = stack_a->head;
+	rot = 0;
 	while (pos >= 0)
 	{
 		start = stack_a->head;
-		while (current)
+		while (current != start || rot != 1)
 		{
 			bitmask = current->rank >> pos & 1;
 			if (bitmask == 0)
@@ -102,15 +109,20 @@ void	radix_atob(t_stack *stack_a, t_stack *stack_b, int moves_count)
 					moves_count++; // tester
 					printf("%d: ra\n", moves_count); // tester
 				}
+				if (current == start)
+					start = stack_a->head->next;
+				current = current->next;
 				pb(stack_a, stack_b);
 				moves_count++; // tester
 				printf("%d: pb(%d)\n", moves_count, stack_b->head->rank); // tester
+				continue ;
 			}
-			current = current->next;
-			if (current == start)
-				break ;
+			else
+				current = current->next;
+			if (current == start && rot == 0)
+				rot = 1;
 		}
-		radix_btoa(stack_a, stack_b, pos, moves_count);
+		moves_count = radix_btoa(stack_a, stack_b, pos, moves_count);
 		pos--;
 	}
 }

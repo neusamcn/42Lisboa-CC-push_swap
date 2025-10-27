@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/27 20:31:29 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/27 21:19:00 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,7 +16,7 @@
 void	print_bits(int octet)
 {
     int bit_mask;
-    int i = 7;
+    int i = 1;
 
     while (i >= 0)
     { 
@@ -45,9 +45,9 @@ void	print_stack(t_stack *stack, char stack_name)
 		printf("content: %d\n", current->content);
 		printf("index: %d\n", current->index);
 		printf("rank: %d\n", current->rank);
-		// printf("octet rank: ");
-		// print_bits(current->rank);
-		// printf("\n");
+		printf("octet rank: ");
+		print_bits(current->rank);
+		printf("\n");
 		printf("inversions: %d\n", current->inversions);
 		printf("previous: %p\n", current->previous);
 		printf("next: %p\n------------\n\n", current->next);
