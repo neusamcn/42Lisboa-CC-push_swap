@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:46:06 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/27 21:15:23 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/28 15:54:53 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -63,14 +63,19 @@ int		find_min(t_stack *t_stack);
 int		find_max(t_stack *t_stack);
 int		find_radix_max_div(t_stack *stack);
 int 	rank(t_stack *stack_a);
+int		swap(t_stack *stack, int max_index);
 int		sa(t_stack *stack_a, int max_index);
-int		sb(t_stack *stack_b);
+int		sb(t_stack *stack_b, int max_index);
 int		ss(t_stack *stack_a, t_stack *stack_b, int max_index);
 int		pa(t_stack *stack_a, t_stack *stack_b);
 int		pb(t_stack *stack_a, t_stack *stack_b);
 int		rotate(t_stack *stack);
+int		ra(t_stack *stack_a);
+int		rb(t_stack *stack_b);
 int		rr(t_stack *stack_a, t_stack *stack_b);
 int		rev_rotate(t_stack *stack);
+int		rra(t_stack *stack_a);
+int		rrb(t_stack *stack_b);
 int		rrr(t_stack *stack_a, t_stack *stack_b);
 t_stack	*create_empty_stack(void);
 int		count_node_inversions(t_stack *stack, t_circlist *node);

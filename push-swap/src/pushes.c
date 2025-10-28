@@ -1,96 +1,16 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swaps_and_pushes.c                                 :+:      :+:    :+:   */
+/*   pushes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/07 19:21:19 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/27 19:12:20 by ncruz-ne         ###   ########.fr       */
+/*   Created: 2025/10/28 15:45:50 by ncruz-ne          #+#    #+#             */
+/*   Updated: 2025/10/28 15:47:55 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "../include/push_swap.h"
-
-// Consider later to have only swap(source, dest);
-int	sa(t_stack *stack_a, int max_index)
-{
-	// t_circlist	*swap_node;
-	int	swap;
-
-	if (!stack_a->head || stack_a->size == 1)
-		return (-1);
-	swap = stack_a->head->content;
-	stack_a->head->content = stack_a->head->next->content;
-	stack_a->head->next->content = swap;
-	if (stack_a->head->content < swap && stack_a->head->index < max_index)
-	{
-		stack_a->head->inversions--;
-		stack_a->sorted--;
-	}
-	swap = stack_a->head->rank;
-	stack_a->head->rank = stack_a->head->next->rank;
-	stack_a->head->next->rank = swap;
-	// swap_node = malloc(sizeof(t_circlist));
-	// swap_node = stack_a->head;
-	// // swap_node->content = stack_a->head->content;
-	// stack_a->head->content = stack_a->head->next->content;
-	// stack_a->head->next->content = swap_node->content;
-	// // swap_node->rank = stack_a->head->rank;
-	// // stack_a->head->rank = stack_a->head->next->rank;
-	// // stack_a->head->next->rank = swap_node->rank;
-	// if (stack_a->head->content > swap_node->content)
-		// stack_a->head->inversions++;
-	// free(swap_node);
-	return (0);
-}
-
-// Consider later to have only swap(source, dest);
-int	sb(t_stack *stack_b)
-{
-	// t_circlist	*swap_node;
-	int	swap;
-
-	if (!stack_b->head || stack_b->size == 1)
-		return (-1);
-	swap = stack_b->head->content;
-	stack_b->head->content = stack_b->head->next->content;
-	stack_b->head->next->content = swap;
-	// REVIEW:
-	// if (stack_b->head->content > swap)
-	// {
-	// 	stack_b->head->inversions++;
-	// 	stack_b->sorted++;
-	// }
-	swap = stack_b->head->rank;
-	stack_b->head->rank = stack_b->head->next->rank;
-	stack_b->head->next->rank = swap;
-	// swap_node = malloc(sizeof(t_circlist));
-	// swap_node = stack_b->head;
-	// // swap_node->content = stack_b->head->content;
-	// stack_b->head->content = stack_b->head->next->content;
-	// stack_b->head->next->content = swap_node->content;
-	// // swap_node->rank = stack_b->head->rank;
-	// // stack_b->head->rank = stack_b->head->next->rank;
-	// // stack_b->head->next->rank = swap_node->rank;
-	// if (stack_b->head->content > swap_node->content)
-	// 	stack_b->head->inversions++;
-	// free(swap_node);
-	return (0);
-}
-
-// REQUIRES TESTING:
-int	ss(t_stack *stack_a, t_stack *stack_b, int max_index)
-{
-	int	err_check_a;
-	int	err_check_b;
-
-	err_check_a = sa(stack_a, max_index);
-	err_check_b = sb(stack_b);
-	if (err_check_a == -1 || err_check_b == -1)
-		return (-1);
-	return (0);
-}
 
 // Consider generalising the function to pop any node of stack
 // REQUIRES TESTING:
@@ -187,6 +107,7 @@ int	pa(t_stack *stack_a, t_stack *stack_b)
 		return (-1);
 	stack_index(stack_a); // add due to radix
 	stack_index(stack_b); // add due to radix
+	write(1, "pa\n", 3);
 	return (0);
 }
 
@@ -204,5 +125,6 @@ int	pb(t_stack *stack_a, t_stack *stack_b)
 		return (-1);
 	stack_index(stack_a); // add due to radix
 	stack_index(stack_b); // add due to radix
+	write(1, "pb\n", 3);
 	return (0);
 }

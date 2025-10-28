@@ -6,7 +6,7 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:32:52 by ncruz-ne          #+#    #+#              #
-#    Updated: 2025/10/27 20:39:24 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2025/10/28 15:55:17 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -25,10 +25,10 @@ CFLAGS = -Wall -Werror -Wextra -g -I.
 
 SRCS = $(SRC_DIR)/err_handler.c $(SRC_DIR)/free_stack.c $(SRC_DIR)/input_parser.c \
 	$(SRC_DIR)/main.c $(SRC_DIR)/pre_sort.c $(SRC_DIR)/quick_sort.c \
-	$(SRC_DIR)/rotate_and_reverse.c $(SRC_DIR)/sortedness.c \
+	$(SRC_DIR)/rotate.c $(SRC_DIR)/reverse.c $(SRC_DIR)/sortedness.c \
 	$(SRC_DIR)/stack_min_max.c $(SRC_DIR)/stack_operations.c \
-	$(SRC_DIR)/swaps_and_pushes.c $(SRC_DIR)/ranker.c $(SRC_DIR)/ft_split_ps.c \
-	$(SRC_DIR)/ft_atoi_ps.c $(SRC_DIR)/radix.c
+	$(SRC_DIR)/swaps.c $(SRC_DIR)/pushes.c $(SRC_DIR)/ranker.c \
+	$(SRC_DIR)/ft_split_ps.c $(SRC_DIR)/ft_atoi_ps.c $(SRC_DIR)/radix.c
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 SRCS_BONUS =
 OBJS_BONUS = 
