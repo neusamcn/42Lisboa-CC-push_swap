@@ -39,4 +39,65 @@ next: 0x4a75470
 ><><><><><><><><><><><><><
 STACK_B: 0x4a757d0
 head: (nil)
-sipbpb
+sipb
+pa
+pb
+ra
+pa
+ze: 0
+min: 1
+max: -1
+sorted: 0
+
+><><><><><><><><><><><><><
+1: pb(0)
+2: pa(0)
+3: pb(0)
+4: ra
+5: pa(0)
+><><><><><><><><><><><><><
+STACK_A: 0x4a75410
+head: 0x4a75470
+size: 3
+min: 1
+max: 3
+sorted: 0
+
+node: 0x4a75470
+content: 1
+index: 0
+rank: 0
+octet rank: 00
+inversions: 0
+previous: 0x4a754d0
+next: 0x4a75530
+------------
+
+node: 0x4a75530
+content: 2
+index: 1
+rank: 1
+octet rank: 01
+inversions: 0
+previous: 0x4a75470
+next: 0x4a754d0
+------------
+
+node: 0x4a754d0
+content: 3
+index: 2
+rank: 2
+octet rank: 10
+inversions: 0
+previous: 0x4a75530
+next: 0x4a75470
+------------
+
+><><><><><><><><><><><><><
+STACK_B: 0x4a757d0
+head: (nil)
+size: 0
+min: 1
+max: -1
+sorted: 0
+

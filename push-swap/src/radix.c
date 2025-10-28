@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:03:09 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/28 15:23:12 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/28 18:34:23 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -52,13 +52,13 @@ int	radix_btoa(t_stack *stack_a, t_stack *stack_b, int pos, int moves_count)
 				{
 					if (current->index < (int)stack_b->size / 2)
 					{
-						rotate(stack_b);
+						rb(stack_b);
 						moves_count++; // tester
 						printf("%d: rb\n", moves_count); // tester
 					}
 					else
 					{
-						rev_rotate(stack_b);
+						rrb(stack_b);
 						moves_count++; // tester
 						printf("%d: rrb\n", moves_count); // tester
 					}
@@ -89,52 +89,63 @@ int	radix_btoa(t_stack *stack_a, t_stack *stack_b, int pos, int moves_count)
 	return (moves_count);
 }
 
+int	pa_all(t_stack *stack_a, t_stack *stack_b, int moves_count)
+{
+	if (!stack_b->head || !stack_a)
+		return (moves_count);
+	while (stack_b->head)
+	{
+		pa(stack_a, stack_b);
+		moves_count++; // tester
+		printf("%d: pa(%d)\n", moves_count, stack_a->head->rank); // tester
+	}
+	count_stack_inversions(stack_a);
+	return (moves_count);
+}
+
 void	radix_atob(t_stack *stack_a, t_stack *stack_b, int moves_count)
 {
 	int			bitmask;
-	int			pos;
-	int			rot;
-	t_circlist	*start;
+	int			bit_pos;
+	int			max_bits;
+	t_circlist	*end;
 	t_circlist	*current;
 
-	pos = find_radix_max_div(stack_a);
-	current = stack_a->head;
-	while (pos >= 0)
+	if (!stack_a->head)
+		return ;
+	bit_pos = 0;
+	max_bits = find_radix_max_div(stack_a);
+	while (bit_pos <= max_bits)
 	{
-		rot = 0;
-		start = stack_a->head;
-		while (current && (current != start || rot != 1))
+		end = stack_a->head->previous;
+		current = stack_a->head;
+		while (current)
 		{
-			bitmask = current->rank >> pos & 1;
+			bitmask = current->rank >> bit_pos & 1;
 			if (bitmask == 0)
 			{
-				while (current != stack_a->head && current != current->next)
+				while (current != stack_a->head) // && current != current->next
 				{
-					rotate(stack_a);
+					ra(stack_a);
 					moves_count++; // tester
 					printf("%d: ra\n", moves_count); // tester
 				}
-				if (current != current->next)
+				if (current != end && stack_a->size > 2)
 				{
-					if (current == start)
-						start = stack_a->head->next;
 					current = current->next;
+					pb(stack_a, stack_b);
+					moves_count++; // tester
+					printf("%d: pb(%d)\n", moves_count, stack_b->head->rank); // tester
+					continue ;
 				}
 				else
-					current = NULL;
-				pb(stack_a, stack_b);
-				moves_count++; // tester
-				printf("%d: pb(%d)\n", moves_count, stack_b->head->rank); // tester
-				continue ;
+					break ;
 			}
-			else if (current != current->next)
-			{
+			else
 				current = current->next;
-				if (current == start && rot == 0)
-					rot = 1;
-			}
 		}
-		moves_count = radix_btoa(stack_a, stack_b, pos, moves_count);
-		pos--;
+		moves_count = pa_all(stack_a, stack_b, moves_count);
+		// moves_count = radix_btoa(stack_a, stack_b, bit_pos, moves_count);
+		bit_pos++;
 	}
 }
