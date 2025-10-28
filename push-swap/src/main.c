@@ -6,26 +6,13 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/27 21:19:00 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/28 20:46:16 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "../include/push_swap.h"
 
 // TESTERS:
-void	print_bits(int octet)
-{
-    int bit_mask;
-    int i = 1;
-
-    while (i >= 0)
-    { 
-        bit_mask = (octet >> i & 1);
-        printf("%d", bit_mask);
-        i--;
-    }
-}
-
 void	print_stack(t_stack *stack, char stack_name)
 {
 	t_circlist	*current;
@@ -45,9 +32,7 @@ void	print_stack(t_stack *stack, char stack_name)
 		printf("content: %d\n", current->content);
 		printf("index: %d\n", current->index);
 		printf("rank: %d\n", current->rank);
-		printf("octet rank: ");
-		print_bits(current->rank);
-		printf("\n");
+		printf("rank bits: %d\n", b10_to_b2(current->rank));
 		printf("inversions: %d\n", current->inversions);
 		printf("previous: %p\n", current->previous);
 		printf("next: %p\n------------\n\n", current->next);
@@ -69,10 +54,10 @@ int	main(int ac, char **av)
 	stack_a = parser(ac, av);
 	stack_b = create_empty_stack();
 	// TESTS START
-	print_stack(stack_a, 'A');
-	printf("><><><><><><><><><><><><><\n");
-	print_stack(stack_b, 'B');
-	printf("><><><><><><><><><><><><><\n");
+	// print_stack(stack_a, 'A');
+	// printf("><><><><><><><><><><><><><\n");
+	// print_stack(stack_b, 'B');
+	// printf("><><><><><><><><><><><><><\n");
 	int	moves = 0;
 	radix_atob(stack_a, stack_b, moves);
 	// int	max_index = (int)stack_a->size - 1;
@@ -81,7 +66,7 @@ int	main(int ac, char **av)
 	// // printf("sa_or_ss(stack_a, stack_b, moves) moves = %d\n", moves = sa_or_ss(stack_a, stack_b, max_index, moves));
 	// // printf("traverse2head(stack_a, stack_b, moves) moves = %d\n", traverse2head(stack_a, stack_b, max_index, moves));
 	// printf("inv_algo(stack_a, stack_b, max_index) moves = %d\n", moves);	
-	printf("><><><><><><><><><><><><><\n");
+	// printf("><><><><><><><><><><><><><\n");
 	print_stack(stack_a, 'A');
 	printf("><><><><><><><><><><><><><\n");
 	print_stack(stack_b, 'B');

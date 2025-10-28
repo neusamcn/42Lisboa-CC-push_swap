@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:03:09 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/28 18:34:23 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/28 20:44:52 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -33,114 +33,103 @@ void	stack_index(t_stack *stack)
 	}
 }
 
-int	radix_btoa(t_stack *stack_a, t_stack *stack_b, int pos, int moves_count)
+int	b10_to_b2(int decimal)
 {
-	int			bitmask;
-	t_circlist	*start;
-	t_circlist	*current;
+	int	binary;
+	int	remainder;
+	int	adjust;
 
-	current = stack_b->head;
-	if (pos >= 0)
+	binary = 0;
+	remainder = decimal % 2;
+	adjust = 1;
+	if (remainder == 0)
 	{
-		start = stack_b->head;
-		while (current)
-		{
-			bitmask = current->rank >> pos & 1;
-			if (bitmask == 1 || (pos == 0 && bitmask == 0))
-			{
-				while (current != stack_b->head && current->next != current)
-				{
-					if (current->index < (int)stack_b->size / 2)
-					{
-						rb(stack_b);
-						moves_count++; // tester
-						printf("%d: rb\n", moves_count); // tester
-					}
-					else
-					{
-						rrb(stack_b);
-						moves_count++; // tester
-						printf("%d: rrb\n", moves_count); // tester
-					}
-					if (current == start)
-						start = stack_b->head->next;
-					current = stack_b->head->next;
-				}
-				pa(stack_a, stack_b);
-				moves_count++; // tester
-				printf("%d: pa(%d)\n", moves_count, stack_a->head->rank); // tester
-			}
-			else if (current->next != current)
-			{
-				if (current->index < (int)stack_b->size / 2)
-					current = current->next;
-				else
-					current = current->previous;
-			}
-			if (current == start)
-			{
-				if (pos > 0)
-					break ;
-				else
-					continue ;
-			}
-		}
+		adjust = 10;
+		decimal = decimal / 2;
 	}
-	return (moves_count);
+	while (decimal > 0)
+	{
+		remainder = decimal % 2;
+		if (remainder == 0)
+			binary = binary * 100;
+		else
+			binary = (binary * 10) + remainder;
+		decimal = decimal / 2;
+	}
+	return (binary * adjust);
 }
 
-int	pa_all(t_stack *stack_a, t_stack *stack_b, int moves_count)
+// int	find_radix_max_div(t_stack *stack)
+// {
+// 	int	position;
+// 	int	radix_max_div;
+// 	int	longest_nb;
+
+// 	if (!stack || !stack->head || stack->min > stack->max)
+// 		return (-1);
+// 	longest_nb = b10_to_b2((int)stack->size - 1);
+// 	position = 1;
+// 	radix_max_div = 1;
+// 	while (position < ft_nlen(longest_nb))
+// 	{
+// 		radix_max_div *= 10;
+// 		position++;
+// 	}
+// 	return (radix_max_div);
+// }
+
+int	pa_all(t_stack *stack_a, t_stack *stack_b, int moves_count) // tester
 {
 	if (!stack_b->head || !stack_a)
 		return (moves_count);
 	while (stack_b->head)
 	{
 		pa(stack_a, stack_b);
-		moves_count++; // tester
-		printf("%d: pa(%d)\n", moves_count, stack_a->head->rank); // tester
+		// moves_count++; // tester
+		// printf("%d: pa(%d)\n", moves_count, stack_a->head->rank); // tester
 	}
 	count_stack_inversions(stack_a);
 	return (moves_count);
 }
 
-void	radix_atob(t_stack *stack_a, t_stack *stack_b, int moves_count)
+void	radix_atob(t_stack *stack_a, t_stack *stack_b, int moves_count) // tester
 {
-	int			bitmask;
 	int			bit_pos;
 	int			max_bits;
 	t_circlist	*end;
 	t_circlist	*current;
 
-	if (!stack_a->head)
+	if (!stack_a->head || stack_a->sorted == 0)
 		return ;
 	bit_pos = 0;
-	max_bits = find_radix_max_div(stack_a);
-	while (bit_pos <= max_bits)
+	max_bits = ft_nlen(b10_to_b2((int)stack_a->size - 1));
+	while (bit_pos < max_bits)
 	{
 		end = stack_a->head->previous;
 		current = stack_a->head;
-		while (current)
+		while (current) // && current != current->next
 		{
-			bitmask = current->rank >> bit_pos & 1;
-			if (bitmask == 0)
+			if ((current->rank >> bit_pos & 1) == 0)
 			{
-				while (current != stack_a->head) // && current != current->next
+				while (current != stack_a->head)
 				{
 					ra(stack_a);
-					moves_count++; // tester
-					printf("%d: ra\n", moves_count); // tester
+					// moves_count++; // tester
+					// printf("%d: ra\n", moves_count); // tester
 				}
-				if (current != end && stack_a->size > 2)
+				if (current == end || stack_a->size < 3)
+					break ;
+				else
 				{
 					current = current->next;
 					pb(stack_a, stack_b);
-					moves_count++; // tester
-					printf("%d: pb(%d)\n", moves_count, stack_b->head->rank); // tester
+					// moves_count++; // tester
+					// printf("%d: pb(%d)\n", moves_count, stack_b->head->rank); // tester
 					continue ;
 				}
-				else
-					break ;
 			}
+			else if (current == end)
+				break ;
 			else
 				current = current->next;
 		}

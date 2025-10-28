@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:46:06 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/28 17:57:50 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/28 19:43:44 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -61,7 +61,6 @@ int		is_stack_min(int content, int curr_min);
 int		is_stack_max(int content, int curr_max);
 int		find_min(t_stack *t_stack);
 int		find_max(t_stack *t_stack);
-int		find_radix_max_div(t_stack *stack);
 int 	rank(t_stack *stack_a);
 int		swap(t_stack *stack, int max_index);
 int		sa(t_stack *stack_a, int max_index);
@@ -88,9 +87,10 @@ int		sa_or_ss(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_count
 int		inv_algo(t_stack *stack_a, t_stack *stack_b, int max_index);
 int		check_rot_only(t_stack *stack_a);
 int		min_to_head(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_count);
+int		b10_to_b2(int decimal);
+// int		find_radix_max_div(t_stack *stack);
 void	radix_atob(t_stack *stack_a, t_stack *stack_b, int moves_count);
 int		pa_all(t_stack *stack_a, t_stack *stack_b, int moves_count);
-int		radix_btoa(t_stack *stack_a, t_stack *stack_b, int curr_radix, int moves_count);
 void	stack_index(t_stack *stack);
 // TESTER
 void	print_stack(t_stack *stack, char stack_name);
