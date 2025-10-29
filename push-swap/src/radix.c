@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:03:09 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/29 20:49:40 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/29 23:28:32 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -33,6 +33,22 @@ void	stack_index(t_stack *stack)
 	}
 }
 
+int	ft_max_bits(t_stack *stack_a)
+{
+	int	max_bits;
+	int	max_rank;
+
+	max_bits = 0;
+	max_rank = (int)stack_a->size - 1;
+	while (max_rank > 0)
+	{
+		max_rank = max_rank / 2;
+		max_bits++;
+	}
+	return (max_bits);
+}
+
+// NEEDS FIXING:
 int	b10_to_b2(int decimal)
 {
 	int	binary;
@@ -41,21 +57,20 @@ int	b10_to_b2(int decimal)
 
 	binary = 0;
 	adjust = 1;
-	remainder = decimal % 2;
-	while (remainder == 0 && decimal > 0)
-	{
-		remainder = decimal % 2;
-		adjust = adjust * 10;
-		decimal = decimal / 2;
-	}
-	if (decimal < 1)
-		return (adjust);
 	while (decimal > 0)
 	{
 		remainder = decimal % 2;
-		if (remainder == 0)
-			binary = binary * 100;
-		else
+		if (remainder == 0 && binary == 0)
+		{
+			adjust = adjust * 10;
+			decimal = decimal / 2;
+			if (decimal < 1)
+				return (adjust);
+			continue ;
+		}
+		else if (remainder == 0 && adjust != 1)
+			binary = binary * 10;
+		else if (remainder == 1)
 			binary = (binary * 10) + remainder;
 		decimal = decimal / 2;
 	}
@@ -95,6 +110,7 @@ int	pa_all(t_stack *stack_a, t_stack *stack_b, int moves_count) // tester
 	return (moves_count);
 }
 
+// DELETE?
 void inv(t_stack *stack_a)
 {
 	if (!stack_a || !stack_a->head || !stack_a->head->next)
@@ -103,7 +119,7 @@ void inv(t_stack *stack_a)
 		sa(stack_a, (int)stack_a->size - 1); // tester
 }
 
-void	radix_atob(t_stack *stack_a, t_stack *stack_b, int moves_count) // tester
+void	radix(t_stack *stack_a, t_stack *stack_b, int moves_count) // tester
 {
 	int			bit_pos;
 	int			max_bits;
@@ -113,7 +129,8 @@ void	radix_atob(t_stack *stack_a, t_stack *stack_b, int moves_count) // tester
 	if (!stack_a->head || stack_a->sorted == 0)
 		return ;
 	bit_pos = 0;
-	max_bits = ft_nlen(b10_to_b2((int)stack_a->size - 1));
+	max_bits = ft_max_bits(stack_a);
+	// max_bits = ft_nlen(b10_to_b2((int)stack_a->size - 1));
 	while (bit_pos < max_bits)
 	{
 		end = stack_a->head->previous;
@@ -144,3 +161,31 @@ void	radix_atob(t_stack *stack_a, t_stack *stack_b, int moves_count) // tester
 		bit_pos++;
 	}
 }
+
+// void	radix(t_stack *stack_a, t_stack *stack_b, int moves_count) // tester
+// {
+// 	int			bit_pos;
+// 	int			max_bits;
+// 	t_circlist	*end;
+
+// 	if (!stack_a->head || stack_a->sorted == 0)
+// 		return ;
+// 	bit_pos = 0;
+// 	max_bits = ft_max_bits(stack_a);
+// 	end = stack_a->head->previous;
+// 	// max_bits = ft_nlen(b10_to_b2((int)stack_a->size - 1));
+// 	while (bit_pos < max_bits)
+// 	{
+// 		if ((stack_a->head->rank >> bit_pos & 1) == 0)
+// 			pb(stack_a, stack_b);
+// 		if ((stack_a->head->rank >> bit_pos & 1) == 1)
+// 			ra(stack_a);
+// 		if (stack_a->head == end)
+// 		{
+// 			ra(stack_a);
+// 			moves_count = pa_all(stack_a, stack_b, moves_count);
+// 			end = stack_a->head->previous;
+// 			bit_pos++;
+// 		}
+// 	}
+// }

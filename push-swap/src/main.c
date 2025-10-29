@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/28 20:46:16 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/29 23:02:43 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -59,7 +59,7 @@ int	main(int ac, char **av)
 	// print_stack(stack_b, 'B');
 	// printf("><><><><><><><><><><><><><\n");
 	int	moves = 0;
-	radix_atob(stack_a, stack_b, moves);
+	radix(stack_a, stack_b, moves);
 	// int	max_index = (int)stack_a->size - 1;
 	// int	moves = inv_algo(stack_a, stack_b, max_index);
 	// // printf("traverse2tail(stack_a, stack_b) moves = %d\n", moves);
