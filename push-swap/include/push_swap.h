@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:46:06 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/28 19:43:44 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/29 19:31:52 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -91,6 +91,7 @@ int		b10_to_b2(int decimal);
 // int		find_radix_max_div(t_stack *stack);
 void	radix_atob(t_stack *stack_a, t_stack *stack_b, int moves_count);
 int		pa_all(t_stack *stack_a, t_stack *stack_b, int moves_count);
+void 	inv(t_stack *stack);
 void	stack_index(t_stack *stack);
 // TESTER
 void	print_stack(t_stack *stack, char stack_name);

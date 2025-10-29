@@ -6,7 +6,7 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:32:52 by ncruz-ne          #+#    #+#              #
-#    Updated: 2025/10/29 18:51:15 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2025/10/29 19:01:27 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -34,11 +34,11 @@ OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 # OBJS_BONUS = 
 
 # Testing variables' assignments:
+DEBUGFLAGS = -g -O0 -fno-omit-frame-pointer
 TEST_DIR = TESTS
 OBJ_DIR_DB = $(TEST_DIR)/db_obj
 OBJS_DEBUG = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR_DB)/%.o,$(SRCS))
 NAME_DEBUG = $(TEST_DIR)/push_swap_db
-DEBUGFLAGS = -g -O0 -fno-omit-frame-pointer
 TEST_ARGS = 47641 9299 21173 5918 14069 23633 21426 20878 18485 16744 19102 43542 5543 21225 28907 22286 17046 25362 17889 12926
 # 32 34 5464 -2135344233
 # 4 0 "1" 6 2 5 3
@@ -104,7 +104,7 @@ tclean:
 	@rm -f $(TEST_DIR)/$(NAME_DEBUG)
 	@echo "⚙️  push_swap_db for debugging removed. 🗑️\n"
 	@rm -f $(OBJ_DIR_DB)/$(OBJS_DEBUG)
-	@echo "⚙️  Object files for debugging removed. 🗑️\n"
+	@echo "⚙️  All object files for debugging removed. 🗑️\n"
 	@rm -fr $(TEST_DIR)/$(OBJ_DIR_DB)
 	@echo "⚙️  $(OBJ_DIR_DB) removed. 🗑️\n"
 	@rm -f $(TEST_DIR)/valgrind_log.log
@@ -116,5 +116,6 @@ debug: fclean tclean $(NAME_DEBUG)
 	@valgrind --log-file=$(TEST_DIR)/valgrind_log.log --leak-check=full --show-leak-kinds=all -s \
 	$(NAME_DEBUG) $(TEST_ARGS) > $(TEST_DIR)/test_output.txt
 	@echo "⚙️  Test run concluded. ✅\n"
+
 
 .PHONY: all clean fclean re tclean debug # bonus
