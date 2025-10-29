@@ -6,7 +6,7 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:32:52 by ncruz-ne          #+#    #+#              #
-#    Updated: 2025/10/29 16:19:33 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2025/10/29 16:30:09 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -33,6 +33,7 @@ OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 # SRCS_BONUS =
 # OBJS_BONUS = 
 
+# Testing variables' assignments:
 TEST_DIR = TESTS
 NAME_DEBUG = $(TEST_DIR)/push_swap_db
 DEBUGFLAGS = -g -O0 -fno-omit-frame-pointer
@@ -43,7 +44,6 @@ TEST_ARGS = 47641 9299 21173 5918 14069 23633 21426 20878 18485 16744 19102 4354
 # "-"2 4 1 2 5000 7 2147483647 9 -3 388 -25 5 0 -2147483648
 # fix to be able to work with "-"2 ?
 
-all: $(LIBFT) $(OBJ_DIR) $(NAME)
 
 $(LIBFT):
 	@make -C libft
@@ -53,7 +53,6 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 	@echo "🟢 /obj created. ✅\n"
 
-# Redundant ?
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -62,6 +61,7 @@ $(NAME): $(LIBFT) $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -Llibft -lft -o $(NAME)
 	@echo "🟢 push_swap compiled. ✅\n"
 
+# Testing rules:
 $(TEST_DIR):
 	@mkdir -p $(TEST_DIR)
 	@echo "⚙️  /$(TEST_DIR) created. ✅\n"
@@ -70,16 +70,14 @@ $(NAME_DEBUG): $(LIBFT) $(OBJS) | $(TEST_DIR)
 	@$(CC) $(CFLAGS) $(DEBUGFLAGS) $(OBJS) -Llibft -lft -o $(NAME_DEBUG)
 	@echo "⚙️  push_swap_db for debugging compiled. ✅\n"
 
+
+all: $(LIBFT) $(OBJ_DIR) $(NAME)
+
 # bonus: .bonus
 
 # .bonus: $(NAME) $(OBJS_BONUS)
 #	$(CC) $(CFLAGS) $(OBJS) $(OBJS_BONUS) -o $(NAME)
 #	touch .bonus
-
-debug: fclean tclean $(NAME_DEBUG)
-	@valgrind --log-file=$(TEST_DIR)/valgrind_log.log --leak-check=full --show-leak-kinds=all -s \
-	$(NAME_DEBUG) $(TEST_ARGS) > $(TEST_DIR)/test_output.txt
-	@echo "⚙️  Test run concluded. ✅\n"
 
 clean:
 	@-rm -f $(OBJS)
@@ -95,12 +93,17 @@ fclean: clean
 
 re: fclean all
 
-# Remove test artifacts and debug binary
+# Testing Make targets to remove test artifacts and debug binary:
 tclean:
 	@rm -f $(TEST_DIR)/$(NAME_DEBUG)
 	@rm -f $(TEST_DIR)/valgrind_log.log
 	@rm -f $(TEST_DIR)/test_output.txt
 # 	@rm -fr $(TEST_DIR)
 	@echo "⚙️   Test files and directories removed. 🗑️"
+
+debug: fclean tclean $(NAME_DEBUG)
+	@valgrind --log-file=$(TEST_DIR)/valgrind_log.log --leak-check=full --show-leak-kinds=all -s \
+	$(NAME_DEBUG) $(TEST_ARGS) > $(TEST_DIR)/test_output.txt
+	@echo "⚙️  Test run concluded. ✅\n"
 
 .PHONY: all clean fclean re tclean debug # bonus
