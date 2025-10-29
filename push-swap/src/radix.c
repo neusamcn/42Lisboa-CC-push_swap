@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:03:09 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/28 20:44:52 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/29 14:57:14 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -107,7 +107,7 @@ void	radix_atob(t_stack *stack_a, t_stack *stack_b, int moves_count) // tester
 	{
 		end = stack_a->head->previous;
 		current = stack_a->head;
-		while (current) // && current != current->next
+		while (current)
 		{
 			if ((current->rank >> bit_pos & 1) == 0)
 			{
@@ -119,22 +119,17 @@ void	radix_atob(t_stack *stack_a, t_stack *stack_b, int moves_count) // tester
 				}
 				if (current == end || stack_a->size < 3)
 					break ;
-				else
-				{
-					current = current->next;
-					pb(stack_a, stack_b);
-					// moves_count++; // tester
-					// printf("%d: pb(%d)\n", moves_count, stack_b->head->rank); // tester
-					continue ;
-				}
+				current = current->next;
+				pb(stack_a, stack_b);
+				// moves_count++; // tester
+				// printf("%d: pb(%d)\n", moves_count, stack_b->head->rank); // tester
+				continue ;
 			}
 			else if (current == end)
 				break ;
-			else
-				current = current->next;
+			current = current->next;
 		}
 		moves_count = pa_all(stack_a, stack_b, moves_count);
-		// moves_count = radix_btoa(stack_a, stack_b, bit_pos, moves_count);
 		bit_pos++;
 	}
 }

@@ -6,7 +6,7 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:32:52 by ncruz-ne          #+#    #+#              #
-#    Updated: 2025/10/28 20:40:16 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2025/10/29 16:19:33 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -17,11 +17,11 @@ LIBFT = libft/libft.a
 
 SRC_DIR = src
 OBJ_DIR = obj
-SRC_BONUS_DIR = src/bonus
-OBJ_BONUS_DIR = obj/bonus
+# SRC_BONUS_DIR = src/bonus
+# OBJ_BONUS_DIR = obj/bonus
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g -I.
+CFLAGS = -Wall -Werror -Wextra -I.
 
 SRCS = $(SRC_DIR)/err_handler.c $(SRC_DIR)/free_stack.c $(SRC_DIR)/input_parser.c \
 	$(SRC_DIR)/main.c $(SRC_DIR)/pre_sort.c $(SRC_DIR)/quick_sort.c \
@@ -30,10 +30,12 @@ SRCS = $(SRC_DIR)/err_handler.c $(SRC_DIR)/free_stack.c $(SRC_DIR)/input_parser.
 	$(SRC_DIR)/swaps.c $(SRC_DIR)/pushes.c $(SRC_DIR)/ranker.c \
 	$(SRC_DIR)/ft_split_ps.c $(SRC_DIR)/ft_atoi_ps.c $(SRC_DIR)/radix.c
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
-SRCS_BONUS =
-OBJS_BONUS = 
+# SRCS_BONUS =
+# OBJS_BONUS = 
 
 TEST_DIR = TESTS
+NAME_DEBUG = $(TEST_DIR)/push_swap_db
+DEBUGFLAGS = -g -O0 -fno-omit-frame-pointer
 TEST_ARGS = 47641 9299 21173 5918 14069 23633 21426 20878 18485 16744 19102 43542 5543 21225 28907 22286 17046 25362 17889 12926
 # 32 34 5464 -2135344233
 # 4 0 "1" 6 2 5 3
@@ -45,52 +47,60 @@ all: $(LIBFT) $(OBJ_DIR) $(NAME)
 
 $(LIBFT):
 	@make -C libft
-	@echo "Libft compiled.\n"
+	@echo "🟢 Libft compiled. ✅\n"
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
-	@echo "/obj created.\n"
+	@echo "🟢 /obj created. ✅\n"
 
 # Redundant ?
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJS)
+$(NAME): $(LIBFT) $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -Llibft -lft -o $(NAME)
-	@echo "push_swap compiled.\n"
+	@echo "🟢 push_swap compiled. ✅\n"
 
 $(TEST_DIR):
 	@mkdir -p $(TEST_DIR)
-	@echo "/$(TEST_DIR) created.\n"
+	@echo "⚙️  /$(TEST_DIR) created. ✅\n"
+	
+$(NAME_DEBUG): $(LIBFT) $(OBJS) | $(TEST_DIR)
+	@$(CC) $(CFLAGS) $(DEBUGFLAGS) $(OBJS) -Llibft -lft -o $(NAME_DEBUG)
+	@echo "⚙️  push_swap_db for debugging compiled. ✅\n"
 
-bonus: .bonus
+# bonus: .bonus
 
-.bonus: $(NAME) $(OBJS_BONUS)
-	$(CC) $(CFLAGS) $(OBJS) $(OBJS_BONUS) -o $(NAME)
-	touch .bonus
+# .bonus: $(NAME) $(OBJS_BONUS)
+#	$(CC) $(CFLAGS) $(OBJS) $(OBJS_BONUS) -o $(NAME)
+#	touch .bonus
 
-valgrind: $(NAME) $(TEST_DIR)
+debug: fclean tclean $(NAME_DEBUG)
 	@valgrind --log-file=$(TEST_DIR)/valgrind_log.log --leak-check=full --show-leak-kinds=all -s \
-	./$(NAME) $(TEST_ARGS) > $(TEST_DIR)/test_output.txt
-	@echo "Test run concluded.\n"
+	$(NAME_DEBUG) $(TEST_ARGS) > $(TEST_DIR)/test_output.txt
+	@echo "⚙️  Test run concluded. ✅\n"
 
 clean:
-	@-rm -f $(OBJS) $(MAIN_OBJS) $(OBJS_BONUS) .bonus
+	@-rm -f $(OBJS)
+# $(OBJS_BONUS) .bonus
 	@make -C libft clean
-	@echo "All object files removed.\n"
+	@echo "🗑️  All object files removed.\n"
 
 fclean: clean
 	@-rm -f $(NAME)
 	@make -C libft fclean
 	@-rm -fr $(OBJ_DIR)
-	@echo "Object files and libraries removed.\n"
+	@echo "🗑️  Object files and libraries removed.\n"
 
 re: fclean all
 
+# Remove test artifacts and debug binary
 tclean:
+	@rm -f $(TEST_DIR)/$(NAME_DEBUG)
 	@rm -f $(TEST_DIR)/valgrind_log.log
 	@rm -f $(TEST_DIR)/test_output.txt
-	@rm -fr $(TEST_DIR)
-	@echo "Test files and directories removed."
+# 	@rm -fr $(TEST_DIR)
+	@echo "⚙️   Test files and directories removed. 🗑️"
 
-.PHONY: all bonus clean fclean re run valgrind tclean
+.PHONY: all clean fclean re tclean debug # bonus
