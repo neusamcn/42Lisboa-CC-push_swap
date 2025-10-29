@@ -233,7 +233,7 @@ node: 0x4a77720
 content: 5543
 index: 0
 rank: 0
-rank bits: 0
+rank bits: 1
 inversions: 0
 previous: 0x4a772a0
 next: 0x4a773c0
@@ -253,7 +253,7 @@ node: 0x4a77300
 content: 9299
 index: 2
 rank: 2
-rank bits: 10
+rank bits: 100
 inversions: 0
 previous: 0x4a773c0
 next: 0x4a779c0
@@ -273,7 +273,7 @@ node: 0x4a77420
 content: 14069
 index: 4
 rank: 4
-rank bits: 10
+rank bits: 1000
 inversions: 0
 previous: 0x4a779c0
 next: 0x4a77600
@@ -293,7 +293,7 @@ node: 0x4a778a0
 content: 17046
 index: 6
 rank: 6
-rank bits: 110
+rank bits: 100
 inversions: 0
 previous: 0x4a77600
 next: 0x4a77960
@@ -313,7 +313,7 @@ node: 0x4a775a0
 content: 18485
 index: 8
 rank: 8
-rank bits: 10
+rank bits: 10000
 inversions: 0
 previous: 0x4a77960
 next: 0x4a77660
@@ -333,7 +333,7 @@ node: 0x4a77540
 content: 20878
 index: 10
 rank: 10
-rank bits: 10010
+rank bits: 100
 inversions: 0
 previous: 0x4a77660
 next: 0x4a77360
@@ -363,7 +363,7 @@ node: 0x4a77780
 content: 21225
 index: 13
 rank: 12
-rank bits: 110
+rank bits: 1000
 inversions: 0
 previous: 0x4a77480
 next: 0x4a774e0
@@ -383,7 +383,7 @@ node: 0x4a77840
 content: 22286
 index: 15
 rank: 14
-rank bits: 1110
+rank bits: 1100
 inversions: 0
 previous: 0x4a774e0
 next: 0x4a77900
@@ -393,7 +393,7 @@ node: 0x4a77900
 content: 25362
 index: 16
 rank: 16
-rank bits: 10
+rank bits: 100000
 inversions: 0
 previous: 0x4a77840
 next: 0x4a777e0
@@ -413,7 +413,7 @@ node: 0x4a776c0
 content: 43542
 index: 18
 rank: 18
-rank bits: 1000010
+rank bits: 100
 inversions: 0
 previous: 0x4a777e0
 next: 0x4a772a0

@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:03:09 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/29 19:52:29 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/29 20:49:40 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -40,13 +40,16 @@ int	b10_to_b2(int decimal)
 	int	adjust;
 
 	binary = 0;
-	remainder = decimal % 2;
 	adjust = 1;
-	if (remainder == 0)
+	remainder = decimal % 2;
+	while (remainder == 0 && decimal > 0)
 	{
-		adjust = 10;
+		remainder = decimal % 2;
+		adjust = adjust * 10;
 		decimal = decimal / 2;
 	}
+	if (decimal < 1)
+		return (adjust);
 	while (decimal > 0)
 	{
 		remainder = decimal % 2;
