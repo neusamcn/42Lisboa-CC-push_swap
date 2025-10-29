@@ -6,7 +6,7 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:32:52 by ncruz-ne          #+#    #+#              #
-#    Updated: 2025/10/29 16:30:09 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2025/10/29 18:51:15 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -35,6 +35,8 @@ OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 
 # Testing variables' assignments:
 TEST_DIR = TESTS
+OBJ_DIR_DB = $(TEST_DIR)/db_obj
+OBJS_DEBUG = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR_DB)/%.o,$(SRCS))
 NAME_DEBUG = $(TEST_DIR)/push_swap_db
 DEBUGFLAGS = -g -O0 -fno-omit-frame-pointer
 TEST_ARGS = 47641 9299 21173 5918 14069 23633 21426 20878 18485 16744 19102 43542 5543 21225 28907 22286 17046 25362 17889 12926
@@ -65,9 +67,13 @@ $(NAME): $(LIBFT) $(OBJS)
 $(TEST_DIR):
 	@mkdir -p $(TEST_DIR)
 	@echo "⚙️  /$(TEST_DIR) created. ✅\n"
-	
-$(NAME_DEBUG): $(LIBFT) $(OBJS) | $(TEST_DIR)
-	@$(CC) $(CFLAGS) $(DEBUGFLAGS) $(OBJS) -Llibft -lft -o $(NAME_DEBUG)
+
+$(OBJ_DIR_DB)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) $(DEBUGFLAGS) -c $< -o $@
+
+$(NAME_DEBUG): $(LIBFT) $(OBJS_DEBUG) | $(TEST_DIR) $(OBJ_DIR_DB)
+	@$(CC) $(CFLAGS) $(DEBUGFLAGS) $(OBJS_DEBUG) -Llibft -lft -o $(NAME_DEBUG)
 	@echo "⚙️  push_swap_db for debugging compiled. ✅\n"
 
 
@@ -96,6 +102,11 @@ re: fclean all
 # Testing Make targets to remove test artifacts and debug binary:
 tclean:
 	@rm -f $(TEST_DIR)/$(NAME_DEBUG)
+	@echo "⚙️  push_swap_db for debugging removed. 🗑️\n"
+	@rm -f $(OBJ_DIR_DB)/$(OBJS_DEBUG)
+	@echo "⚙️  Object files for debugging removed. 🗑️\n"
+	@rm -fr $(TEST_DIR)/$(OBJ_DIR_DB)
+	@echo "⚙️  $(OBJ_DIR_DB) removed. 🗑️\n"
 	@rm -f $(TEST_DIR)/valgrind_log.log
 	@rm -f $(TEST_DIR)/test_output.txt
 # 	@rm -fr $(TEST_DIR)
