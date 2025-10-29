@@ -6,7 +6,7 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:32:52 by ncruz-ne          #+#    #+#              #
-#    Updated: 2025/10/29 19:01:27 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2025/10/29 20:08:29 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -58,6 +58,7 @@ $(OBJ_DIR):
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "🟢  All object files created. ✅\n"
 
 $(NAME): $(LIBFT) $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -Llibft -lft -o $(NAME)
@@ -68,9 +69,14 @@ $(TEST_DIR):
 	@mkdir -p $(TEST_DIR)
 	@echo "⚙️  /$(TEST_DIR) created. ✅\n"
 
+$(OBJ_DIR_DB):
+	@mkdir -p $(OBJ_DIR_DB)
+	@echo "⚙️  $(OBJ_DIR_DB) created. ✅\n"
+
 $(OBJ_DIR_DB)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(DEBUGFLAGS) -c $< -o $@
+	@echo "⚙️  All object files for debugging created. ✅\n"
 
 $(NAME_DEBUG): $(LIBFT) $(OBJS_DEBUG) | $(TEST_DIR) $(OBJ_DIR_DB)
 	@$(CC) $(CFLAGS) $(DEBUGFLAGS) $(OBJS_DEBUG) -Llibft -lft -o $(NAME_DEBUG)
