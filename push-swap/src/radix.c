@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:03:09 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/29 19:31:18 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/29 19:52:29 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -92,13 +92,12 @@ int	pa_all(t_stack *stack_a, t_stack *stack_b, int moves_count) // tester
 	return (moves_count);
 }
 
-void inv(t_stack *stack)
+void inv(t_stack *stack_a)
 {
-	if (!stack || !stack->head)
+	if (!stack_a || !stack_a->head || !stack_a->head->next)
 		return ;
-	if (stack->head->rank == stack->head->next->rank + 1
-		|| stack->head->rank == stack->head->next->rank - 1)
-		sa(stack, (int)stack->size - 1); // tester
+	if (stack_a->head->rank == stack_a->head->next->rank + 1)
+		sa(stack_a, (int)stack_a->size - 1); // tester
 }
 
 void	radix_atob(t_stack *stack_a, t_stack *stack_b, int moves_count) // tester
@@ -123,7 +122,6 @@ void	radix_atob(t_stack *stack_a, t_stack *stack_b, int moves_count) // tester
 				while (current != stack_a->head)
 				{
 					ra(stack_a);
-					inv(stack_a);
 					// moves_count++; // tester
 					// printf("%d: ra\n", moves_count); // tester
 				}
