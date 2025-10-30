@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:03:09 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/30 17:56:41 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/30 18:02:39 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -36,12 +36,15 @@ void	stack_index_size(t_stack *stack)
 	}
 }
 
-int	ft_max_bits(t_stack *stack_a)
+int	ft_max_bits(t_stack *stack_a, t_stack *stack_b)
 {
 	int	max_bits;
 	int	max_rank;
 
+	if (stack_b->head)
+		return (-1);
 	max_bits = 0;
+	stack_index_size(stack_a);
 	max_rank = (int)stack_a->size - 1;
 	while (max_rank > 0)
 	{
@@ -109,6 +112,7 @@ int	pa_all(t_stack *stack_a, t_stack *stack_b, int moves_count) // tester
 		// moves_count++; // tester
 		// printf("%d: pa(%d)\n", moves_count, stack_a->head->rank); // tester
 	}
+	stack_index_size(stack_a);
 	count_stack_inversions(stack_a);
 	return (moves_count);
 }
@@ -212,7 +216,8 @@ void inv_a(t_stack *stack_a)
 // 	}
 // }
 
-void	radix(t_stack *stack_a, t_stack *stack_b, int moves_count) // tester
+ // tester moves_count
+void	radix(t_stack *stack_a, t_stack *stack_b, int moves_count)
 {
 	int			bit_pos;
 	int			max_bits;
@@ -221,7 +226,9 @@ void	radix(t_stack *stack_a, t_stack *stack_b, int moves_count) // tester
 	if (!stack_a->head || stack_a->sorted == 0)
 		return ;
 	bit_pos = 0;
-	max_bits = ft_max_bits(stack_a);
+	max_bits = ft_max_bits(stack_a, stack_b);
+	if (max_bits == -1)
+		return ;
 	end = stack_a->head->previous;
 	while (bit_pos < max_bits)
 	{

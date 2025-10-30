@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:45:50 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/30 16:46:22 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/30 18:37:52 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -90,7 +90,7 @@ int	push_stack_head(t_stack *stack, t_circlist *push_node)
 	{
 		old_head = stack->head;
 		head_previous = stack->head->previous;
-		push_node->next = old_head;
+		push_node->next = old_head; 
 		push_node->previous = head_previous;
 		old_head->previous = push_node;
 		head_previous->next = push_node;
