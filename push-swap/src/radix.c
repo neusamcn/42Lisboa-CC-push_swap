@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:03:09 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/30 18:02:39 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/30 18:44:51 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -54,7 +54,7 @@ int	ft_max_bits(t_stack *stack_a, t_stack *stack_b)
 	return (max_bits);
 }
 
-// NEEDS FIXING:
+// tester. NEEDS FIXING? :
 int	b10_to_b2(int decimal)
 {
 	int	binary;
