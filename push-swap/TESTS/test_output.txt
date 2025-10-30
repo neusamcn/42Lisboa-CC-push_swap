@@ -46,7 +46,7 @@ pa
 pa
 STACK_A: 0x4a75a10
 head: 0x4a75ad0
-size: 8
+size: 7
 min: 11822
 max: 39887
 sorted: 1
@@ -124,7 +124,7 @@ next: 0x4a75ad0
 ><><><><><><><><><><><><><
 STACK_B: 0x4a75d10
 head: (nil)
-size: 1
+size: 0
 min: 1
 max: -1
 sorted: 0

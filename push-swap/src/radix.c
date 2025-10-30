@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:03:09 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/30 17:46:11 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/30 17:56:41 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -30,7 +30,7 @@ void	stack_index_size(t_stack *stack)
 		current = current->next;
 		if (current == start)
 		{
-			stack->size = (size_t)index + 1;
+			stack->size = (size_t)index;
 			break ;
 		}
 	}
