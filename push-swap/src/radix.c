@@ -6,13 +6,13 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:03:09 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/29 23:28:32 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/30 17:46:11 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "../include/push_swap.h"
 
-void	stack_index(t_stack *stack)
+void	stack_index_size(t_stack *stack)
 {
 	t_circlist	*start;
 	t_circlist	*current;
@@ -23,13 +23,16 @@ void	stack_index(t_stack *stack)
 	current = stack->head;
 	start = stack->head;
 	index = 0;
-	while (current && index < (int)stack->size)
+	while (current)
 	{
 		current->index = index;
 		index++;
 		current = current->next;
 		if (current == start)
+		{
+			stack->size = (size_t)index + 1;
 			break ;
+		}
 	}
 }
 
@@ -110,82 +113,128 @@ int	pa_all(t_stack *stack_a, t_stack *stack_b, int moves_count) // tester
 	return (moves_count);
 }
 
-// DELETE?
-void inv(t_stack *stack_a)
+int	rotate_or_reverse(t_stack *stack, t_circlist *current)
 {
+	int		index_diff;
+	int		next_move;
+
+	if (!stack || !stack->head || !stack->head->next)
+		return (-1);
+	index_diff = current->index - stack->head->index;
+	if (index_diff < (int)stack->size / 2)
+	{
+		while (current != stack->head)
+			ra(stack);
+		next_move = 0;
+		// current = current->next->next->next;
+	}
+	else
+	{
+		while (current != stack->head)
+			rra(stack);
+		next_move = 1;
+		// current = current->previous->previous->previous;
+	}
+	return (next_move);
+}
+
+// DELETE? REQUIRES TESTING:
+// , t_stack *stack_b ?
+void inv_a(t_stack *stack_a)
+{
+	t_circlist	*end;
+	t_circlist	*current;
+	int			next_move;
+
 	if (!stack_a || !stack_a->head || !stack_a->head->next)
 		return ;
-	if (stack_a->head->rank == stack_a->head->next->rank + 1)
-		sa(stack_a, (int)stack_a->size - 1); // tester
+	end = stack_a->head->previous;
+	current = stack_a->head;
+	next_move = 0;
+	while (next_move != -1 && current != end)
+	{
+		if (current->rank == current->next->rank + 1)
+		{
+			stack_index_size(stack_a);
+			count_stack_inversions(stack_a);
+			next_move = rotate_or_reverse(stack_a, current);
+			sa(stack_a);
+			// + (int)stack_b->size ?
+		}
+		if (next_move == 0)
+			current = current->next;
+		else if (next_move == 1)
+			current = current->previous;
+	}
 }
+// tester moves_count
+// void	radix(t_stack *stack_a, t_stack *stack_b, int moves_count)
+// {
+// 	int			bit_pos;
+// 	int			max_bits;
+// 	t_circlist	*end;
+// 	t_circlist	*current;
+
+// 	if (!stack_a->head || stack_a->sorted == 0)
+// 		return ;
+// 	bit_pos = 0;
+// 	max_bits = ft_max_bits(stack_a);
+// 	// max_bits = ft_nlen(b10_to_b2((int)stack_a->size - 1));
+// 	while (bit_pos < max_bits)
+// 	{
+// 		end = stack_a->head->previous;
+// 		current = stack_a->head;
+// 		while (current)
+// 		{
+// 			if ((current->rank >> bit_pos & 1) == 0)
+// 			{
+// 				while (current != stack_a->head)
+// 				{
+// 					ra(stack_a);
+// 					// moves_count++; // tester
+// 					// printf("%d: ra\n", moves_count); // tester
+// 				}
+// 				if (current == end || stack_a->size < 3)
+// 					break ;
+// 				current = current->next;
+// 				pb(stack_a, stack_b);
+// 				// moves_count++; // tester
+// 				// printf("%d: pb(%d)\n", moves_count, stack_b->head->rank); // tester
+// 				continue ;
+// 			}
+// 			else if (current == end)
+// 				break ;
+// 			current = current->next;
+// 		}
+// 		// inv_a(stack_a); // , stack_b ?
+// 		moves_count = pa_all(stack_a, stack_b, moves_count);
+// 		bit_pos++;
+// 	}
+// }
 
 void	radix(t_stack *stack_a, t_stack *stack_b, int moves_count) // tester
 {
 	int			bit_pos;
 	int			max_bits;
 	t_circlist	*end;
-	t_circlist	*current;
 
 	if (!stack_a->head || stack_a->sorted == 0)
 		return ;
 	bit_pos = 0;
 	max_bits = ft_max_bits(stack_a);
-	// max_bits = ft_nlen(b10_to_b2((int)stack_a->size - 1));
+	end = stack_a->head->previous;
 	while (bit_pos < max_bits)
 	{
-		end = stack_a->head->previous;
-		current = stack_a->head;
-		while (current)
+		if ((stack_a->head->rank >> bit_pos & 1) == 0)
+			pb(stack_a, stack_b);
+		if ((stack_a->head->rank >> bit_pos & 1) == 1)
+			ra(stack_a);
+		if (stack_a->head == end)
 		{
-			if ((current->rank >> bit_pos & 1) == 0)
-			{
-				while (current != stack_a->head)
-				{
-					ra(stack_a);
-					// moves_count++; // tester
-					// printf("%d: ra\n", moves_count); // tester
-				}
-				if (current == end || stack_a->size < 3)
-					break ;
-				current = current->next;
-				pb(stack_a, stack_b);
-				// moves_count++; // tester
-				// printf("%d: pb(%d)\n", moves_count, stack_b->head->rank); // tester
-				continue ;
-			}
-			else if (current == end)
-				break ;
-			current = current->next;
+			ra(stack_a);
+			moves_count = pa_all(stack_a, stack_b, moves_count);
+			end = stack_a->head->previous;
+			bit_pos++;
 		}
-		moves_count = pa_all(stack_a, stack_b, moves_count);
-		bit_pos++;
 	}
 }
-
-// void	radix(t_stack *stack_a, t_stack *stack_b, int moves_count) // tester
-// {
-// 	int			bit_pos;
-// 	int			max_bits;
-// 	t_circlist	*end;
-
-// 	if (!stack_a->head || stack_a->sorted == 0)
-// 		return ;
-// 	bit_pos = 0;
-// 	max_bits = ft_max_bits(stack_a);
-// 	end = stack_a->head->previous;
-// 	// max_bits = ft_nlen(b10_to_b2((int)stack_a->size - 1));
-// 	while (bit_pos < max_bits)
-// 	{
-// 		if ((stack_a->head->rank >> bit_pos & 1) == 0)
-// 			pb(stack_a, stack_b);
-// 		if ((stack_a->head->rank >> bit_pos & 1) == 1)
-// 			ra(stack_a);
-// 		if (stack_a->head == end)
-// 		{
-// 			ra(stack_a);
-// 			moves_count = pa_all(stack_a, stack_b, moves_count);
-// 			end = stack_a->head->previous;
-// 			bit_pos++;
-// 		}
-// 	}
-// }

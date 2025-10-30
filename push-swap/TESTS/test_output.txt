@@ -1,367 +1,131 @@
-ra
-pb
-ra
-ra
-pb
-ra
-ra
-pb
-pb
-ra
-ra
-pb
-pb
-pb
-ra
-pb
-pb
-pb
-pa
-pa
-pa
-pa
-pa
-pa
-pa
-pa
-pa
-pa
-ra
-pb
-ra
-pb
-ra
-pb
-pb
-ra
-ra
-pb
-ra
-ra
-ra
-ra
-pb
-ra
-pb
-pb
-pb
-pa
-pa
-pa
-pa
-pa
-pa
-pa
-pa
-pa
-ra
-pb
-pb
-ra
-pb
-pb
-ra
-ra
-pb
-pb
-pb
-pb
-pb
-ra
-ra
-ra
-pb
-pb
-pb
-pa
-pa
-pa
-pa
-pa
-pa
-pa
-pa
-pa
-pa
-pa
-pa
+13844 11822 21121 39887 26951 34912 37038 
+0: 13844
+1: 11822
+2: 21121
+3: 39887
+4: 26951
+5: 34912
+6: 37038
 ra
 pb
 pb
 pb
 ra
 pb
-pb
-ra
-pb
-pb
-pb
 ra
 ra
-pb
 ra
 ra
-pb
-ra
-pb
-pa
-pa
-pa
-pa
-pa
-pa
-pa
 pa
 pa
 pa
 pa
 pb
 ra
+ra
+pb
+pb
+ra
+ra
+pa
+pa
+pa
+pb
+ra
+pb
 pb
 ra
 pb
 ra
-pb
 ra
-pb
-pb
-pb
-pb
-pb
-pb
-pb
-pb
-pb
-pb
-pb
+ra
+ra
 pa
 pa
 pa
 pa
-pa
-pa
-pa
-pa
-pa
-pa
-pa
-pa
-pa
-pa
-pa
-rank worked? 0
-STACK_A: 0x4a77240
-head: 0x4a77720
-size: 20
-min: 5543
-max: 47641
-sorted: 3
+STACK_A: 0x4a75a10
+head: 0x4a75ad0
+size: 8
+min: 11822
+max: 39887
+sorted: 1
 
-node: 0x4a77720
-content: 5543
+node: 0x4a75ad0
+content: 11822
 index: 0
 rank: 0
 rank bits: 0
 inversions: 0
-previous: 0x4a772a0
-next: 0x4a773c0
+previous: 0x4a75cb0
+next: 0x4a75a70
 ------------
 
-node: 0x4a773c0
-content: 5918
+node: 0x4a75a70
+content: 13844
 index: 1
 rank: 1
 rank bits: 1
 inversions: 0
-previous: 0x4a77720
-next: 0x4a77300
+previous: 0x4a75ad0
+next: 0x4a75b30
 ------------
 
-node: 0x4a77300
-content: 9299
+node: 0x4a75b30
+content: 21121
 index: 2
 rank: 2
 rank bits: 10
 inversions: 0
-previous: 0x4a773c0
-next: 0x4a779c0
+previous: 0x4a75a70
+next: 0x4a75bf0
 ------------
 
-node: 0x4a779c0
-content: 12926
+node: 0x4a75bf0
+content: 26951
 index: 3
 rank: 3
 rank bits: 11
 inversions: 0
-previous: 0x4a77300
-next: 0x4a77420
+previous: 0x4a75b30
+next: 0x4a75c50
 ------------
 
-node: 0x4a77420
-content: 14069
+node: 0x4a75c50
+content: 34912
 index: 4
 rank: 4
 rank bits: 100
 inversions: 0
-previous: 0x4a779c0
-next: 0x4a77600
+previous: 0x4a75bf0
+next: 0x4a75b90
 ------------
 
-node: 0x4a77600
-content: 16744
+node: 0x4a75b90
+content: 39887
 index: 5
+rank: 6
+rank bits: 110
+inversions: 1
+previous: 0x4a75c50
+next: 0x4a75cb0
+------------
+
+node: 0x4a75cb0
+content: 37038
+index: 6
 rank: 5
 rank bits: 11
 inversions: 0
-previous: 0x4a77420
-next: 0x4a778a0
-------------
-
-node: 0x4a778a0
-content: 17046
-index: 6
-rank: 6
-rank bits: 110
-inversions: 0
-previous: 0x4a77600
-next: 0x4a77960
-------------
-
-node: 0x4a77960
-content: 17889
-index: 7
-rank: 7
-rank bits: 111
-inversions: 0
-previous: 0x4a778a0
-next: 0x4a775a0
-------------
-
-node: 0x4a775a0
-content: 18485
-index: 8
-rank: 8
-rank bits: 1000
-inversions: 0
-previous: 0x4a77960
-next: 0x4a77660
-------------
-
-node: 0x4a77660
-content: 19102
-index: 9
-rank: 9
-rank bits: 11
-inversions: 0
-previous: 0x4a775a0
-next: 0x4a77540
-------------
-
-node: 0x4a77540
-content: 20878
-index: 10
-rank: 10
-rank bits: 1010
-inversions: 0
-previous: 0x4a77660
-next: 0x4a77360
-------------
-
-node: 0x4a77360
-content: 21173
-index: 11
-rank: 11
-rank bits: 111
-inversions: 0
-previous: 0x4a77540
-next: 0x4a77480
-------------
-
-node: 0x4a77480
-content: 23633
-index: 12
-rank: 15
-rank bits: 1111
-inversions: 3
-previous: 0x4a77360
-next: 0x4a77780
-------------
-
-node: 0x4a77780
-content: 21225
-index: 13
-rank: 12
-rank bits: 1100
-inversions: 0
-previous: 0x4a77480
-next: 0x4a774e0
-------------
-
-node: 0x4a774e0
-content: 21426
-index: 14
-rank: 13
-rank bits: 111
-inversions: 0
-previous: 0x4a77780
-next: 0x4a77840
-------------
-
-node: 0x4a77840
-content: 22286
-index: 15
-rank: 14
-rank bits: 1110
-inversions: 0
-previous: 0x4a774e0
-next: 0x4a77900
-------------
-
-node: 0x4a77900
-content: 25362
-index: 16
-rank: 16
-rank bits: 10000
-inversions: 0
-previous: 0x4a77840
-next: 0x4a777e0
-------------
-
-node: 0x4a777e0
-content: 28907
-index: 17
-rank: 17
-rank bits: 11
-inversions: 0
-previous: 0x4a77900
-next: 0x4a776c0
-------------
-
-node: 0x4a776c0
-content: 43542
-index: 18
-rank: 18
-rank bits: 10010
-inversions: 0
-previous: 0x4a777e0
-next: 0x4a772a0
-------------
-
-node: 0x4a772a0
-content: 47641
-index: 19
-rank: 19
-rank bits: 111
-inversions: 0
-previous: 0x4a776c0
-next: 0x4a77720
+previous: 0x4a75b90
+next: 0x4a75ad0
 ------------
 
 ><><><><><><><><><><><><><
-STACK_B: 0x4a77c60
+STACK_B: 0x4a75d10
 head: (nil)
-size: 0
+size: 1
 min: 1
 max: -1
-sorted: -137
+sorted: 0
 

@@ -6,7 +6,7 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:32:52 by ncruz-ne          #+#    #+#              #
-#    Updated: 2025/10/29 20:08:29 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2025/10/30 15:16:02 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -39,7 +39,7 @@ TEST_DIR = TESTS
 OBJ_DIR_DB = $(TEST_DIR)/db_obj
 OBJS_DEBUG = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR_DB)/%.o,$(SRCS))
 NAME_DEBUG = $(TEST_DIR)/push_swap_db
-TEST_ARGS = 47641 9299 21173 5918 14069 23633 21426 20878 18485 16744 19102 43542 5543 21225 28907 22286 17046 25362 17889 12926
+TEST_ARGS = 13844 11822 21121 39887 26951 34912 37038
 # 32 34 5464 -2135344233
 # 4 0 "1" 6 2 5 3
 # 47641 9299 21173 5918 14069 23633 21426 20878 18485 16744 19102 43542 5543 21225 28907 22286 17046 25362 17889 12926
@@ -76,7 +76,7 @@ $(OBJ_DIR_DB):
 $(OBJ_DIR_DB)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(DEBUGFLAGS) -c $< -o $@
-	@echo "⚙️  All object files for debugging created. ✅\n"
+#	@echo "⚙️  All object files for debugging created. ✅\n"
 
 $(NAME_DEBUG): $(LIBFT) $(OBJS_DEBUG) | $(TEST_DIR) $(OBJ_DIR_DB)
 	@$(CC) $(CFLAGS) $(DEBUGFLAGS) $(OBJS_DEBUG) -Llibft -lft -o $(NAME_DEBUG)

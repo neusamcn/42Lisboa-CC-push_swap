@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 02:42:28 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/24 16:54:19 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/30 15:06:29 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -158,20 +158,20 @@ int	sa_or_ss(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_count)
 						anext_bnext *= -1;
 					if (anext_bhead > anext_bnext)
 					{
-						ss(stack_a, stack_b, max_index);
+						ss(stack_a, stack_b);
 						moves_count++; // tester
 						printf("%d: ss (sa: %d & %d; sb: %d & %d)\n", moves_count, stack_a->head->content, stack_a->head->next->content, stack_b->head->content, stack_b->head->next->content); // tester
 					}
 					else if (anext_bhead < anext_bnext)
 					{
-						sa(stack_a, max_index);
+						sa(stack_a);
 						moves_count++; // tester
 						printf("%d: sa (%d & %d)\n", moves_count, stack_a->head->content, stack_a->head->next->content); // tester
 					}
 				}
 				else if (stack_b->size < 2)
 				{
-					sa(stack_a, max_index);
+					sa(stack_a);
 					moves_count++; // tester
 					printf("%d: sa (%d & %d)\n", moves_count, stack_a->head->content, stack_a->head->next->content); // tester
 				}

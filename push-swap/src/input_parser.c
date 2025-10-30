@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:30:34 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/26 22:52:08 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/10/30 15:52:27 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -74,12 +74,14 @@ t_stack	*mk_stack(int max_rows_cont, char **rows_cont)
 	stack->sorted = 0;
 	mk_circlst(stack, max_rows_cont, rows_cont);
 	count_stack_inversions(stack);
-	printf("rank worked? %d\n", rank(stack));
+	rank(stack);
+	// printf("rank worked? %d\n", rank(stack)); // tester
 	return (stack);
 }
 
 // REQUIRES TESTING:
-t_stack	*parser(int ac, char **av) // should it return a pointer?
+ // should it return a pointer?
+t_stack	*parser(int ac, char **av)
 {
 	int row;
 	int	li;
@@ -114,7 +116,21 @@ t_stack	*parser(int ac, char **av) // should it return a pointer?
 		temp_join1 = NULL;
 		row++;
 	}
+	write(1, str_args, ft_strlen(str_args)); // tester
+	write(1, "\n", 1); // tester
 	list_matrix = ft_split_ps(str_args, " \f\n\r\t\v");
+	// tester:
+	int	i = 0;
+	char	c;
+	while (list_matrix[i])
+	{
+		c = i + '0';
+		write(1, &c, 1);
+		write(1, ": ", 2);
+		write(1, list_matrix[i], ft_strlen(list_matrix[i]));
+		write(1, "\n", 1);
+		i++;
+	}
 	free(str_args);
 	str_args = NULL;
 	li = 0;
