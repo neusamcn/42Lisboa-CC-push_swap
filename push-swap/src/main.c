@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/30 17:15:02 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/12/10 00:02:34 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -47,19 +47,19 @@ int	main(int ac, char **av)
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
-	// if (ac < 3)
-	// 	exit(EXIT_SUCCESS); // yes? or only in main?
 	if (ac < 2)
-		exit(EXIT_SUCCESS);
+		return (0);
 	stack_a = parser(ac, av);
+	if (!stack_a)
+		error();
 	stack_b = create_empty_stack();
 	// TESTS START
 	// print_stack(stack_a, 'A');
 	// printf("><><><><><><><><><><><><><\n");
 	// print_stack(stack_b, 'B');
 	// printf("><><><><><><><><><><><><><\n");
-	int	moves = 0;
-	radix(stack_a, stack_b, moves);
+	// int	moves = 0;
+	// radix(stack_a, stack_b, moves);
 	// int	max_index = (int)stack_a->size - 1;
 	// int	moves = inv_algo(stack_a, stack_b, max_index);
 	// // printf("traverse2tail(stack_a, stack_b) moves = %d\n", moves);

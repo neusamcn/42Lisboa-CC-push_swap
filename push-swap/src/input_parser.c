@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:30:34 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/30 15:52:27 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/12/10 00:07:26 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -69,8 +69,8 @@ t_stack	*mk_stack(int max_rows_cont, char **rows_cont)
 		return (NULL);
 	stack->head = NULL;
 	stack->size = 0;
-	stack->min = ft_atoi_ps(rows_cont[0]);
-	stack->max = ft_atoi_ps(rows_cont[0]);
+	stack->min = ft_atol(rows_cont[0]);
+	stack->max = ft_atol(rows_cont[0]);
 	stack->sorted = 0;
 	mk_circlst(stack, max_rows_cont, rows_cont);
 	count_stack_inversions(stack);
@@ -78,28 +78,22 @@ t_stack	*mk_stack(int max_rows_cont, char **rows_cont)
 	// printf("rank worked? %d\n", rank(stack)); // tester
 	return (stack);
 }
-
-// REQUIRES TESTING:
- // should it return a pointer?
-t_stack	*parser(int ac, char **av)
+char	*av_to_str(int ac, char **av)
 {
-	int row;
-	int	li;
-	// t_circlist  *lst_b;
-	t_stack *stack_a;
-	// t_stack *stack_b;
+	int 	row;
 	char	*temp_join1;
-	char	*str_args;
 	char	*temp_join2;
-	char	**list_matrix;
+	char	*str_args;
 
+	if (ac < 3 || !av)
+		return (NULL); // or error()
 	row = 1;
 	temp_join1 = NULL;
 	str_args = NULL;
 	while (row < ac)
 	{
 		if (err_empty(av[row]) == -1)
-			error();
+			error(); // or return (NULL);
 		temp_join1 = ft_strjoin(av[row], " ");
 		if (temp_join1 && str_args)
 		{
@@ -116,21 +110,22 @@ t_stack	*parser(int ac, char **av)
 		temp_join1 = NULL;
 		row++;
 	}
-	write(1, str_args, ft_strlen(str_args)); // tester
-	write(1, "\n", 1); // tester
+	// tester 1
+	return (str_args);
+}
+// REQUIRES TESTING:
+ // should it return a pointer?
+t_stack	*parser(int ac, char **av)
+{
+	int		li;
+	t_stack *stack_a;
+	char	*str_args;
+	char	**list_matrix;
+
+	str_args = av_to_str(ac, av);
+	if (!str_args)
+		return (NULL); // or error();
 	list_matrix = ft_split_ps(str_args, " \f\n\r\t\v");
-	// tester:
-	int	i = 0;
-	char	c;
-	while (list_matrix[i])
-	{
-		c = i + '0';
-		write(1, &c, 1);
-		write(1, ": ", 2);
-		write(1, list_matrix[i], ft_strlen(list_matrix[i]));
-		write(1, "\n", 1);
-		i++;
-	}
 	free(str_args);
 	str_args = NULL;
 	li = 0;
@@ -140,10 +135,9 @@ t_stack	*parser(int ac, char **av)
 			|| err_exceeds_int_limits(list_matrix[li]) == -1
 			|| err_not_unique(li, list_matrix) == -1)
 		{
-			while (list_matrix[li])
-				li++;
+			while (list_matrix[li++])
 			freeall(list_matrix, (size_t)li);
-			error();
+			error(); // or return (NULL);
 		}
 		li++;
 	}
@@ -151,3 +145,17 @@ t_stack	*parser(int ac, char **av)
 	freeall(list_matrix, (size_t)li);
 	return (stack_a);
 }
+	// // tester 1:
+	// write(1, str_args, ft_strlen(str_args));
+	// write(1, "\n", 1);
+	// int	i = 0;
+	// char	c;
+	// while (list_matrix[i])
+	// {
+	// 	c = i + '0';
+	// 	write(1, &c, 1);
+	// 	write(1, ": ", 2);
+	// 	write(1, list_matrix[i], ft_strlen(list_matrix[i]));
+	// 	write(1, "\n", 1);
+	// 	i++;
+	// }

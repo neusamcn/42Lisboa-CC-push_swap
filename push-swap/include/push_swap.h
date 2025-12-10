@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:46:06 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/30 18:00:16 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/12/09 23:38:39 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -44,7 +44,7 @@ typedef struct s_nodes
 }				t_nodes;
 
 char	**ft_split_ps(char const *str, char *skip);
-int		ft_atoi_ps(const char *nptr);
+long	ft_atol(const char *nptr);
 int		freeall(char **splat, size_t j);
 int		err_not_nbr(char *list_item);
 int		err_not_unique(int li_row, char **av);
@@ -54,6 +54,7 @@ void	error(void);
 t_stack	*mk_stack(int max_rows_cont, char **rows_cont);
 void	mk_circlst(t_stack *stack, int max_rows_cont, char **rows_cont);
 t_nodes	link_circlst(t_stack *stack, t_nodes nodes, int max_rows, int row);
+char	*av_to_str(int ac, char **av);
 t_stack	*parser(int ac, char **av);
 void	free_circlst_stack(t_stack *stack);
 void	free_err_stack(t_stack *stack);
@@ -62,6 +63,7 @@ int		is_stack_max(int content, int curr_max);
 int		find_min(t_stack *t_stack);
 int		find_max(t_stack *t_stack);
 int 	rank(t_stack *stack_a);
+
 int		swap(t_stack *stack);
 int		sa(t_stack *stack_a);
 int		sb(t_stack *stack_b);
@@ -76,16 +78,12 @@ int		rev_rotate(t_stack *stack);
 int		rra(t_stack *stack_a);
 int		rrb(t_stack *stack_b);
 int		rrr(t_stack *stack_a, t_stack *stack_b);
+
 t_stack	*create_empty_stack(void);
 int		count_node_inversions(t_stack *stack, t_circlist *node);
 void	count_stack_inversions(t_stack *stack);
 t_stack	*hoares_partition(t_stack *stack);
-int		traverse2tail(t_stack *stack_a, t_stack *stack_b, int max_index);
-int		traverse2head(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_count);
-void	sort_sorter(t_stack *stack);
 int		sa_or_ss(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_count);
-int		inv_algo(t_stack *stack_a, t_stack *stack_b, int max_index);
-int		check_rot_only(t_stack *stack_a);
 int		min_to_head(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_count);
 int		ft_max_bits(t_stack *stack_a, t_stack *stack_b);
 int		b10_to_b2(int decimal);
@@ -97,5 +95,12 @@ void 	inv_a(t_stack *stack_a); // , t_stack *stack_b ?
 void	stack_index_size(t_stack *stack);
 // TESTER
 void	print_stack(t_stack *stack, char stack_name);
+void	inv_above_one(t_stack *stack_a, t_stack *stack_b);
+void	rank_diff_1move(t_stack *stack_a, t_stack *stack_b);
+void	rank_diff_2moves(t_stack *stack_a, t_stack *stack_b);
+void	rankinv_sort(t_stack *stack_a, t_stack *stack_b);
+int		a_node_inversions(t_stack *stack, t_circlist *node);
+void	stack_a_sortedness(t_stack *stack_a);
+void	rot_all_b(t_stack *stack_a, t_stack *stack_b);
 
 #endif

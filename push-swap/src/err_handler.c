@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 23:48:41 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/26 22:51:38 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2025/12/03 22:27:03 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -44,7 +44,7 @@ int	err_exceeds_int_limits(char *list_item)
 	int	li_int;
 	int	i;
 
-	li_int = ft_atoi_ps(list_item);
+	li_int = ft_atol(list_item);
 	i = 0;
 	while (list_item[i])
 	{
@@ -62,10 +62,10 @@ int	err_not_unique(int row, char **av)
 	int	av_nbr;
 
 	i = row + 1;
-	li_nbr = ft_atoi(av[row]);
+	li_nbr = ft_atol(av[row]);
 	while (av[i])
 	{
-		av_nbr = ft_atoi(av[i]);
+		av_nbr = ft_atol(av[i]);
 		if (li_nbr == av_nbr)
 			return (-1);
 		i++;

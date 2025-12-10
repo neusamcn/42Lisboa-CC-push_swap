@@ -6,7 +6,7 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:32:52 by ncruz-ne          #+#    #+#              #
-#    Updated: 2025/10/30 15:16:02 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2025/12/03 22:48:25 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -24,11 +24,12 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra -I.
 
 SRCS = $(SRC_DIR)/err_handler.c $(SRC_DIR)/free_stack.c $(SRC_DIR)/input_parser.c \
-	$(SRC_DIR)/main.c $(SRC_DIR)/pre_sort.c $(SRC_DIR)/quick_sort.c \
+	$(SRC_DIR)/main.c \
 	$(SRC_DIR)/rotate.c $(SRC_DIR)/reverse.c $(SRC_DIR)/sortedness.c \
 	$(SRC_DIR)/stack_min_max.c $(SRC_DIR)/stack_operations.c \
 	$(SRC_DIR)/swaps.c $(SRC_DIR)/pushes.c $(SRC_DIR)/ranker.c \
-	$(SRC_DIR)/ft_split_ps.c $(SRC_DIR)/ft_atoi_ps.c $(SRC_DIR)/radix.c
+	$(SRC_DIR)/ft_split_ps.c $(SRC_DIR)/ft_atol.c $(SRC_DIR)/radix.c \
+	$(SRC_DIR)/inv_sort.c
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 # SRCS_BONUS =
 # OBJS_BONUS = 
@@ -39,48 +40,52 @@ TEST_DIR = TESTS
 OBJ_DIR_DB = $(TEST_DIR)/db_obj
 OBJS_DEBUG = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR_DB)/%.o,$(SRCS))
 NAME_DEBUG = $(TEST_DIR)/push_swap_db
-TEST_ARGS = 13844 11822 21121 39887 26951 34912 37038
+TEST_ARGS = 3 2 1
+# 13844 11822 21121 39887 26951 34912 37038
 # 32 34 5464 -2135344233
 # 4 0 "1" 6 2 5 3
 # 47641 9299 21173 5918 14069 23633 21426 20878 18485 16744 19102 43542 5543 21225 28907 22286 17046 25362 17889 12926
 # "-"2 4 1 2 5000 7 2147483647 9 -3 388 -25 5 0 -2147483648
 # fix to be able to work with "-"2 ?
+# seq -2147483648 101 2147483647 | shuf -n 10 | tr '\n' ' '
 
 
 $(LIBFT):
 	@make -C libft
-	@echo "🟢 Libft compiled. ✅\n"
+	@echo "🟢  $(LIBFT) compiled. ✅\n"
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
-	@echo "🟢 /obj created. ✅\n"
+	@echo "🟢  $(OBJ_DIR) directory created. ✅\n"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "🟢  All object files created. ✅\n"
+	@echo "🟢  $@ created. ✅\n"
+# 	@echo "🟢  All object files created. ✅\n"
 
 $(NAME): $(LIBFT) $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -Llibft -lft -o $(NAME)
-	@echo "🟢 push_swap compiled. ✅\n"
+	@echo "🟢  $(NAME) compiled. ✅\n"
 
 # Testing rules:
 $(TEST_DIR):
 	@mkdir -p $(TEST_DIR)
-	@echo "⚙️  /$(TEST_DIR) created. ✅\n"
+	@echo "⚙️  $(TEST_DIR) directory created. ✅\n"
 
 $(OBJ_DIR_DB):
 	@mkdir -p $(OBJ_DIR_DB)
-	@echo "⚙️  $(OBJ_DIR_DB) created. ✅\n"
+	@echo "⚙️  $(OBJ_DIR_DB) directory created. ✅\n"
 
 $(OBJ_DIR_DB)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(DEBUGFLAGS) -c $< -o $@
+	@echo "🟢  $@ created. ✅\n"
 #	@echo "⚙️  All object files for debugging created. ✅\n"
 
 $(NAME_DEBUG): $(LIBFT) $(OBJS_DEBUG) | $(TEST_DIR) $(OBJ_DIR_DB)
 	@$(CC) $(CFLAGS) $(DEBUGFLAGS) $(OBJS_DEBUG) -Llibft -lft -o $(NAME_DEBUG)
-	@echo "⚙️  push_swap_db for debugging compiled. ✅\n"
+	@echo "⚙️  $(NAME_DEBUG) for debugging compiled. ✅\n"
 
 
 all: $(LIBFT) $(OBJ_DIR) $(NAME)
