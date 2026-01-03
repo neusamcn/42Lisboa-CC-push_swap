@@ -6,7 +6,7 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:32:52 by ncruz-ne          #+#    #+#              #
-#    Updated: 2025/12/03 22:48:25 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2026/01/03 22:40:38 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -40,7 +40,7 @@ TEST_DIR = TESTS
 OBJ_DIR_DB = $(TEST_DIR)/db_obj
 OBJS_DEBUG = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR_DB)/%.o,$(SRCS))
 NAME_DEBUG = $(TEST_DIR)/push_swap_db
-TEST_ARGS = 3 2 1
+TEST_ARGS = 2
 # 13844 11822 21121 39887 26951 34912 37038
 # 32 34 5464 -2135344233
 # 4 0 "1" 6 2 5 3

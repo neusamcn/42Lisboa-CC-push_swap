@@ -1,43 +1,14 @@
-==34622== Memcheck, a memory error detector
-==34622== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==34622== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
-==34622== Command: TESTS/push_swap_db 3 2 1
-==34622== Parent PID: 34621
-==34622== 
-==34622== 
-==34622== Process terminating with default action of signal 2 (SIGINT)
-==34622==    at 0x10B5F2: stack_a_sortedness (inv_sort.c:49)
-==34622==    by 0x10B828: rank_diff_1move (inv_sort.c:108)
-==34622==    by 0x10BAAA: rankinv_sort (inv_sort.c:170)
-==34622==    by 0x109E24: main (main.c:63)
-==34622== 
-==34622== HEAP SUMMARY:
-==34622==     in use at exit: 160 bytes in 5 blocks
-==34622==   total heap usage: 17 allocs, 12 frees, 234 bytes allocated
-==34622== 
-==34622== 32 bytes in 1 blocks are still reachable in loss record 1 of 3
-==34622==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==34622==    by 0x1097E1: mk_stack (input_parser.c:67)
-==34622==    by 0x109BA4: parser (input_parser.c:150)
-==34622==    by 0x109E04: main (main.c:54)
-==34622== 
-==34622== 32 bytes in 1 blocks are still reachable in loss record 2 of 3
-==34622==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==34622==    by 0x10A3AF: create_empty_stack (stack_operations.c:19)
-==34622==    by 0x109E0D: main (main.c:55)
-==34622== 
-==34622== 96 bytes in 3 blocks are still reachable in loss record 3 of 3
-==34622==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==34622==    by 0x1096CD: mk_circlst (input_parser.c:45)
-==34622==    by 0x109856: mk_stack (input_parser.c:75)
-==34622==    by 0x109BA4: parser (input_parser.c:150)
-==34622==    by 0x109E04: main (main.c:54)
-==34622== 
-==34622== LEAK SUMMARY:
-==34622==    definitely lost: 0 bytes in 0 blocks
-==34622==    indirectly lost: 0 bytes in 0 blocks
-==34622==      possibly lost: 0 bytes in 0 blocks
-==34622==    still reachable: 160 bytes in 5 blocks
-==34622==         suppressed: 0 bytes in 0 blocks
-==34622== 
-==34622== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==54381== Memcheck, a memory error detector
+==54381== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==54381== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==54381== Command: TESTS/push_swap_db 2
+==54381== Parent PID: 54380
+==54381== 
+==54381== 
+==54381== HEAP SUMMARY:
+==54381==     in use at exit: 0 bytes in 0 blocks
+==54381==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==54381== 
+==54381== All heap blocks were freed -- no leaks are possible
+==54381== 
+==54381== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

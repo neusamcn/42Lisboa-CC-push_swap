@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 23:48:41 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/12/03 22:27:03 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2026/01/03 22:24:05 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -17,41 +17,25 @@ int	err_not_nbr(char *list_item)
 	int	i;
 
 	i = 0;
-	while (list_item[i] == ' ' || (list_item[i] > 8 && list_item[i] < 14))
-		i++;
-	if (list_item[i] == '\0')
-		return (-1);
-	else if (list_item[i] == '-' || list_item[i] == '+')
-		i++;
-	if (!(list_item[i] >= '0' && list_item[i] <= '9'))
-		return (-1);
-	else
+	while (list_item[i])
 	{
-		while (list_item[i])
+		if (list_item[i] < '0' || list_item[i] > '9')
 		{
-			if (!(list_item[i] >= '0' && list_item[i] <= '9'))
+			if (!ft_strchr(" \f\n\r\t\v", list_item[i]))
 				return (-1);
-			i++;
 		}
-		if (list_item[i] == '\0')
-			return (0);
+		i++;
 	}
-	return (-1);
+	return (0);
 }
 
 int	err_exceeds_int_limits(char *list_item)
 {
-	int	li_int;
-	int	i;
+	long	li_long;
 
-	li_int = ft_atol(list_item);
-	i = 0;
-	while (list_item[i])
-	{
-		if ((list_item[i] >= '1' && list_item[i] <= '9') && li_int == 0)
-			return (-1);
-		i++;
-	}
+	li_long = ft_atol(list_item);
+	if (li_long > INT_MAX || li_long < INT_MIN)
+		return (-1);
 	return (0);
 }
 
@@ -75,16 +59,22 @@ int	err_not_unique(int row, char **av)
 
 int	err_empty(char *list_item)
 {
-	int	i;
+	size_t	i;
+	size_t	len;
 
+	if (!list_item)
+		return (-1);
 	i = 0;
+	len = ft_strlen(list_item);
 	while (list_item[i])
 	{
-		if (list_item[i] >= '0' && list_item[i] <= '9')
-			return (0);
+		if (!ft_strchr(" \f\n\r\t\v", list_item[i]))
+			break ;
 		i++;
 	}
-	return (-1);
+	if (i == len)
+		return (-1);
+	return (0);
 }
 
 void	error(void)

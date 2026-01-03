@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/12/10 00:02:34 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2026/01/03 22:51:24 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -42,13 +42,38 @@ void	print_stack(t_stack *stack, char stack_name)
 	}
 }
 
+// int	main(int ac, char **av)
+// {
+// 	int	i;
+
+// 	i = 1;
+// 	if (ac > 1)
+// 	{
+// 		while (av[i] && i < ac)
+// 		{
+// 			printf("av[%d]: %s\nerr_empty return: %d\n", i, av[i], err_empty(av[i]));
+// 			i++;
+// 		}
+// 	}
+// 	return (0);
+// }
+
 int	main(int ac, char **av)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
-	if (ac < 2)
+	if (ac < 3)
+	{
+		if (ac == 2)
+		{
+			if (err_not_nbr(av[1]) == -1
+				|| err_empty(av[1]) == -1
+				|| err_exceeds_int_limits(av[1]) == -1)
+				error();
+		}
 		return (0);
+	}
 	stack_a = parser(ac, av);
 	if (!stack_a)
 		error();

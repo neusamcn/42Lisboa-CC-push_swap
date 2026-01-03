@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:30:34 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/12/10 00:07:26 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2026/01/03 22:47:13 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -132,6 +132,7 @@ t_stack	*parser(int ac, char **av)
 	while (list_matrix[li])
 	{
 		if (err_not_nbr(list_matrix[li]) == -1
+			|| err_empty(list_matrix[li]) == -1
 			|| err_exceeds_int_limits(list_matrix[li]) == -1
 			|| err_not_unique(li, list_matrix) == -1)
 		{
