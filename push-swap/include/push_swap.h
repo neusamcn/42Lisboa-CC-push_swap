@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:46:06 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/12/09 23:38:39 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2026/01/05 23:50:38 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -85,10 +85,9 @@ void	count_stack_inversions(t_stack *stack);
 t_stack	*hoares_partition(t_stack *stack);
 int		sa_or_ss(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_count);
 int		min_to_head(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_count);
-int		ft_max_bits(t_stack *stack_a, t_stack *stack_b);
 int		b10_to_b2(int decimal);
 // int		find_radix_max_div(t_stack *stack);
-void	radix(t_stack *stack_a, t_stack *stack_b, int moves_count);
+void	radix(t_stack *stack_a, t_stack *stack_b);
 int		pa_all(t_stack *stack_a, t_stack *stack_b, int moves_count);
 int		rotate_or_reverse(t_stack *stack, t_circlist *current);
 void 	inv_a(t_stack *stack_a); // , t_stack *stack_b ?

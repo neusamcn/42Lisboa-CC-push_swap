@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 23:48:41 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2026/01/03 22:24:05 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2026/01/05 23:10:15 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,12 +19,14 @@ int	err_not_nbr(char *list_item)
 	i = 0;
 	while (list_item[i])
 	{
+		while (ft_strchr(" \f\n\r\t\v", list_item[i]))
+			i++;
+		if (list_item[i] == '-' || list_item[i] == '+')
+			i++;
 		if (list_item[i] < '0' || list_item[i] > '9')
-		{
-			if (!ft_strchr(" \f\n\r\t\v", list_item[i]))
-				return (-1);
-		}
-		i++;
+			return (-1);
+		while (list_item[i] >= '0' && list_item[i] <= '9')
+			i++;
 	}
 	return (0);
 }

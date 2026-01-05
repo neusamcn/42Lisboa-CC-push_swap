@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:03:09 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/30 18:44:51 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2026/01/05 23:50:12 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -36,23 +36,6 @@ void	stack_index_size(t_stack *stack)
 	}
 }
 
-int	ft_max_bits(t_stack *stack_a, t_stack *stack_b)
-{
-	int	max_bits;
-	int	max_rank;
-
-	if (stack_b->head)
-		return (-1);
-	max_bits = 0;
-	stack_index_size(stack_a);
-	max_rank = (int)stack_a->size - 1;
-	while (max_rank > 0)
-	{
-		max_rank = max_rank / 2;
-		max_bits++;
-	}
-	return (max_bits);
-}
 
 // tester. NEEDS FIXING? :
 int	b10_to_b2(int decimal)
@@ -171,77 +154,31 @@ void inv_a(t_stack *stack_a)
 			current = current->previous;
 	}
 }
-// tester moves_count
-// void	radix(t_stack *stack_a, t_stack *stack_b, int moves_count)
-// {
-// 	int			bit_pos;
-// 	int			max_bits;
-// 	t_circlist	*end;
-// 	t_circlist	*current;
 
-// 	if (!stack_a->head || stack_a->sorted == 0)
-// 		return ;
-// 	bit_pos = 0;
-// 	max_bits = ft_max_bits(stack_a);
-// 	// max_bits = ft_nlen(b10_to_b2((int)stack_a->size - 1));
-// 	while (bit_pos < max_bits)
-// 	{
-// 		end = stack_a->head->previous;
-// 		current = stack_a->head;
-// 		while (current)
-// 		{
-// 			if ((current->rank >> bit_pos & 1) == 0)
-// 			{
-// 				while (current != stack_a->head)
-// 				{
-// 					ra(stack_a);
-// 					// moves_count++; // tester
-// 					// printf("%d: ra\n", moves_count); // tester
-// 				}
-// 				if (current == end || stack_a->size < 3)
-// 					break ;
-// 				current = current->next;
-// 				pb(stack_a, stack_b);
-// 				// moves_count++; // tester
-// 				// printf("%d: pb(%d)\n", moves_count, stack_b->head->rank); // tester
-// 				continue ;
-// 			}
-// 			else if (current == end)
-// 				break ;
-// 			current = current->next;
-// 		}
-// 		// inv_a(stack_a); // , stack_b ?
-// 		moves_count = pa_all(stack_a, stack_b, moves_count);
-// 		bit_pos++;
-// 	}
-// }
-
- // tester moves_count
-void	radix(t_stack *stack_a, t_stack *stack_b, int moves_count)
+void	radix(t_stack *stack_a, t_stack *stack_b)
 {
-	int			bit_pos;
-	int			max_bits;
-	t_circlist	*end;
+	unsigned int	bit;
+	size_t			i;
+	size_t			max_size;
 
-	if (!stack_a->head || stack_a->sorted == 0)
-		return ;
-	bit_pos = 0;
-	max_bits = ft_max_bits(stack_a, stack_b);
-	if (max_bits == -1)
-		return ;
-	end = stack_a->head->previous;
-	while (bit_pos < max_bits)
+	bit = 1;
+	i = 0;
+	max_size = stack_a->size;
+	while (stack_a->sorted != 0 || stack_a->head->rank != 0
+		|| stack_b->head != NULL)
 	{
-		if ((stack_a->head->rank >> bit_pos & 1) == 0)
-			pb(stack_a, stack_b);
-		if ((stack_a->head->rank >> bit_pos & 1) == 1)
-			ra(stack_a);
-		if (stack_a->head == end)
+		while (max_size != i)
 		{
-			ra(stack_a);
-			moves_count = pa_all(stack_a, stack_b, moves_count);
-			end = stack_a->head->previous;
-			bit_pos++;
+			if ((stack_a->head->rank & bit) == 0)
+				pb(stack_a, stack_b);
+			else
+				ra(stack_a);
+			i++;
 		}
+		while (stack_b->head != NULL)
+			pa(stack_a, stack_b);
+		i = 0;
+		bit = bit << 1;
 	}
 }
+

@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 15:54:12 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2026/01/03 22:51:24 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2026/01/05 22:32:04 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -78,13 +78,14 @@ int	main(int ac, char **av)
 	if (!stack_a)
 		error();
 	stack_b = create_empty_stack();
+	/* algo_switch(stack_a, stack_b); */
 	// TESTS START
-	// print_stack(stack_a, 'A');
-	// printf("><><><><><><><><><><><><><\n");
-	// print_stack(stack_b, 'B');
-	// printf("><><><><><><><><><><><><><\n");
+	print_stack(stack_a, 'A');
+	printf("><><><><><><><><><><><><><\n");
+	print_stack(stack_b, 'B');
+	printf("><><><><><><><><><><><><><\n");
 	// int	moves = 0;
-	// radix(stack_a, stack_b, moves);
+	radix(stack_a, stack_b);
 	// int	max_index = (int)stack_a->size - 1;
 	// int	moves = inv_algo(stack_a, stack_b, max_index);
 	// // printf("traverse2tail(stack_a, stack_b) moves = %d\n", moves);
