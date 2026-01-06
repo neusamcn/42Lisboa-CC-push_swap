@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:03:09 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2026/01/05 23:50:12 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2026/01/06 00:26:05 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -35,55 +35,6 @@ void	stack_index_size(t_stack *stack)
 		}
 	}
 }
-
-
-// tester. NEEDS FIXING? :
-int	b10_to_b2(int decimal)
-{
-	int	binary;
-	int	remainder;
-	int	adjust;
-
-	binary = 0;
-	adjust = 1;
-	while (decimal > 0)
-	{
-		remainder = decimal % 2;
-		if (remainder == 0 && binary == 0)
-		{
-			adjust = adjust * 10;
-			decimal = decimal / 2;
-			if (decimal < 1)
-				return (adjust);
-			continue ;
-		}
-		else if (remainder == 0 && adjust != 1)
-			binary = binary * 10;
-		else if (remainder == 1)
-			binary = (binary * 10) + remainder;
-		decimal = decimal / 2;
-	}
-	return (binary * adjust);
-}
-
-// int	find_radix_max_div(t_stack *stack)
-// {
-// 	int	position;
-// 	int	radix_max_div;
-// 	int	longest_nb;
-
-// 	if (!stack || !stack->head || stack->min > stack->max)
-// 		return (-1);
-// 	longest_nb = b10_to_b2((int)stack->size - 1);
-// 	position = 1;
-// 	radix_max_div = 1;
-// 	while (position < ft_nlen(longest_nb))
-// 	{
-// 		radix_max_div *= 10;
-// 		position++;
-// 	}
-// 	return (radix_max_div);
-// }
 
 int	pa_all(t_stack *stack_a, t_stack *stack_b, int moves_count) // tester
 {
@@ -155,12 +106,27 @@ void inv_a(t_stack *stack_a)
 	}
 }
 
+void	inv_algo(t_stack *stack_a, t_stack *stack_b)
+{
+	if (!stack_a || !stack_a->head || !stack_a->head->next || !stack_b)
+		return ;
+	while (stack_a->sorted != 0 || stack_a->head->rank != 0
+		|| stack_b->head != NULL)
+	{
+	// check when is next node->inversions != 0
+	// if node->index > size / 2 rra() before sa()
+	// if node->index <= size / 2 ra() before sa()
+	}
+}
+
 void	radix(t_stack *stack_a, t_stack *stack_b)
 {
 	unsigned int	bit;
 	size_t			i;
 	size_t			max_size;
 
+	if (!stack_a || !stack_a->head || !stack_a->head->next || !stack_b)
+		return ;
 	bit = 1;
 	i = 0;
 	max_size = stack_a->size;
