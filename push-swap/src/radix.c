@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:03:09 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2026/01/06 00:26:05 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2026/01/06 23:57:41 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -53,27 +53,19 @@ int	pa_all(t_stack *stack_a, t_stack *stack_b, int moves_count) // tester
 
 int	rotate_or_reverse(t_stack *stack, t_circlist *current)
 {
-	int		index_diff;
-	int		next_move;
-
 	if (!stack || !stack->head || !stack->head->next)
 		return (-1);
-	index_diff = current->index - stack->head->index;
-	if (index_diff < (int)stack->size / 2)
+	if (current->index <= (int)stack->size / 2)
 	{
 		while (current != stack->head)
 			ra(stack);
-		next_move = 0;
-		// current = current->next->next->next;
 	}
 	else
 	{
 		while (current != stack->head)
 			rra(stack);
-		next_move = 1;
-		// current = current->previous->previous->previous;
 	}
-	return (next_move);
+	return (0);
 }
 
 // DELETE? REQUIRES TESTING:
@@ -108,14 +100,28 @@ void inv_a(t_stack *stack_a)
 
 void	inv_algo(t_stack *stack_a, t_stack *stack_b)
 {
+	t_circlist	*current;
+
 	if (!stack_a || !stack_a->head || !stack_a->head->next || !stack_b)
 		return ;
 	while (stack_a->sorted != 0 || stack_a->head->rank != 0
 		|| stack_b->head != NULL)
 	{
+		if (stack_a->head->rank == stack_a->head->next->rank + 1)
+			sa(stack_a);
+		current = stack_a->head;
+		while (current->inversions != 0)
+			current = current->next;
+		if (stack_a->head->inversions != 0)
+			rotate_or_reverse(stack_a, current);
+		if (stack_b->head)
+		{
+			if (stack_b->head->rank == stack_a->head->rank + 1)
+				pa(stack_a, stack_b);
+		}
+		if (stack_a->head->inversions > 1)
+			pb(stack_a, stack_b);
 	// check when is next node->inversions != 0
-	// if node->index > size / 2 rra() before sa()
-	// if node->index <= size / 2 ra() before sa()
 	}
 }
 
@@ -146,5 +152,13 @@ void	radix(t_stack *stack_a, t_stack *stack_b)
 		i = 0;
 		bit = bit << 1;
 	}
+}
+
+void	pick_algo(t_stack *stack_a, t_stack *stack_b)
+{
+	if (stack_a->size < 6)
+		inv_algo(stack_a, stack_b);
+	else
+		radix(stack_a, stack_b);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 19:21:19 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/30 17:09:07 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2026/01/06 23:27:22 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,22 +14,24 @@
 
 int	swap(t_stack *stack)
 {
-	t_nodes	top;
-	t_nodes	bottom;
+	t_circlist	*first;
+	t_circlist	*second;
+	t_circlist	*first_previous;
+	t_circlist	*second_next;
 
 	if (!stack->head || !stack->head->next || stack->size < 2)
 		return (-1);
-	top.previous = stack->head->previous;
-	top.current = stack->head;
-	bottom.previous = stack->head->next;
-	bottom.current = stack->head->next;
-	top.previous->next = bottom.previous;
-	bottom.previous->previous = top.previous;
-	bottom.previous->next = top.current;
-	top.current->previous = bottom.previous;
-	top.current->next = bottom.current;
-	bottom.current->previous = top.current;
-	stack->head = bottom.previous;
+	first = stack->head;
+	second = first->next;
+	first_previous = first->previous;
+	second_next = second->next;
+	first_previous->next = second;
+	second->previous = first_previous;
+	second->next = first;
+	first->previous = second;
+	first->next = second_next;
+	second_next->previous = first;
+	stack->head = second;
 	stack_index_size(stack);
 	count_stack_inversions(stack);
 	return (0);

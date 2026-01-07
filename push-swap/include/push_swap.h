@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:46:06 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2026/01/06 00:09:39 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2026/01/06 23:57:54 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -87,6 +87,7 @@ int		sa_or_ss(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_count
 int		min_to_head(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_count);
 void	inv_algo(t_stack *stack_a, t_stack *stack_b);
 void	radix(t_stack *stack_a, t_stack *stack_b);
+void	pick_algo(t_stack *stack_a, t_stack *stack_b);
 int		pa_all(t_stack *stack_a, t_stack *stack_b, int moves_count);
 int		rotate_or_reverse(t_stack *stack, t_circlist *current);
 void 	inv_a(t_stack *stack_a); // , t_stack *stack_b ?

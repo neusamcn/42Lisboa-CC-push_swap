@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:50:14 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2026/01/05 23:23:36 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2026/01/06 23:52:08 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,38 +15,11 @@
 // REQUIRES NORME:
 int	rev_rotate(t_stack *stack)
 {
-	t_circlist	*current;
-	t_circlist	*start;
-
 	if (!stack->head || stack->head->previous == stack->head || stack->size < 2)
 		return (-1);
-	// update head & reset sorted
 	stack->head = stack->head->previous;
-	current = stack->head;
-	start = stack->head;
-	stack->sorted = 0;
-	// update indexes, inversions & sorted
-	while (current)
-	{
-		if (current == start)
-		{
-			current->index = 0;
-			current->inversions = count_node_inversions(stack, current);
-			stack->sorted += current->inversions;
-		}
-		else
-		{
-			current->index++;
-			if (current->content > start->content)
-			{
-				current->inversions--;
-				stack->sorted--;
-			}
-		}
-		current = current->next;
-		if (current == start)
-			break ;
-	}
+	stack_index_size(stack);
+	count_stack_inversions(stack);
 	return (0);
 }
 

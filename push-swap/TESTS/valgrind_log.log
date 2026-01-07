@@ -1,14 +1,42 @@
-==73410== Memcheck, a memory error detector
-==73410== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==73410== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
-==73410== Command: TESTS/push_swap_db 4 0 1 6 2
-==73410== Parent PID: 73409
-==73410== 
-==73410== 
-==73410== HEAP SUMMARY:
-==73410==     in use at exit: 0 bytes in 0 blocks
-==73410==   total heap usage: 28 allocs, 28 frees, 876 bytes allocated
-==73410== 
-==73410== All heap blocks were freed -- no leaks are possible
-==73410== 
-==73410== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==60288== Memcheck, a memory error detector
+==60288== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==60288== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==60288== Command: TESTS/push_swap_db 4 0 1 6
+==60288== Parent PID: 60287
+==60288== 
+==60288== 
+==60288== Process terminating with default action of signal 2 (SIGINT)
+==60288==    at 0x10B19F: inv_algo (radix.c:110)
+==60288==    by 0x10B3D7: pick_algo (radix.c:160)
+==60288==    by 0x109CDC: main (main.c:78)
+==60288== 
+==60288== HEAP SUMMARY:
+==60288==     in use at exit: 192 bytes in 6 blocks
+==60288==   total heap usage: 22 allocs, 16 frees, 297 bytes allocated
+==60288== 
+==60288== 32 bytes in 1 blocks are still reachable in loss record 1 of 3
+==60288==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==60288==    by 0x109754: mk_stack (input_parser.c:67)
+==60288==    by 0x109A8B: parser (input_parser.c:145)
+==60288==    by 0x109CB0: main (main.c:67)
+==60288== 
+==60288== 32 bytes in 1 blocks are still reachable in loss record 2 of 3
+==60288==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==60288==    by 0x10A270: create_empty_stack (stack_operations.c:19)
+==60288==    by 0x109CC5: main (main.c:70)
+==60288== 
+==60288== 128 bytes in 4 blocks are still reachable in loss record 3 of 3
+==60288==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==60288==    by 0x109640: mk_circlst (input_parser.c:45)
+==60288==    by 0x1097D0: mk_stack (input_parser.c:75)
+==60288==    by 0x109A8B: parser (input_parser.c:145)
+==60288==    by 0x109CB0: main (main.c:67)
+==60288== 
+==60288== LEAK SUMMARY:
+==60288==    definitely lost: 0 bytes in 0 blocks
+==60288==    indirectly lost: 0 bytes in 0 blocks
+==60288==      possibly lost: 0 bytes in 0 blocks
+==60288==    still reachable: 192 bytes in 6 blocks
+==60288==         suppressed: 0 bytes in 0 blocks
+==60288== 
+==60288== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
