@@ -6,7 +6,7 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:32:52 by ncruz-ne          #+#    #+#              #
-#    Updated: 2026/01/07 00:02:38 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2026/01/07 23:52:57 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -21,20 +21,19 @@ OBJ_DIR = obj
 # OBJ_BONUS_DIR = obj/bonus
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -I.
+CFLAGS = -Wall -Werror -Wextra -I. -g
 
 SRCS = $(SRC_DIR)/err_handler.c $(SRC_DIR)/free_stack.c $(SRC_DIR)/input_parser.c \
 	$(SRC_DIR)/main.c \
 	$(SRC_DIR)/rotate.c $(SRC_DIR)/reverse.c $(SRC_DIR)/sortedness.c \
 	$(SRC_DIR)/stack_min_max.c $(SRC_DIR)/stack_operations.c \
 	$(SRC_DIR)/swaps.c $(SRC_DIR)/pushes.c $(SRC_DIR)/ranker.c \
-	$(SRC_DIR)/ft_split_ps.c $(SRC_DIR)/ft_atol.c $(SRC_DIR)/radix.c \
-	$(SRC_DIR)/inv_sort.c
+	$(SRC_DIR)/ft_split_ps.c $(SRC_DIR)/ft_atol.c $(SRC_DIR)/radix.c
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 # SRCS_BONUS =
 # OBJS_BONUS = 
 
-# Testing variables' assignments:
+# Debugging variables' assignments:
 DEBUGFLAGS = -g -O0 -fno-omit-frame-pointer
 TEST_DIR = TESTS
 OBJ_DIR_DB = $(TEST_DIR)/db_obj
@@ -46,8 +45,10 @@ TEST_ARGS = 4 0 "1" 6
 # 4 0 "1" 6 2 5 3
 # 47641 9299 21173 5918 14069 23633 21426 20878 18485 16744 19102 43542 5543 21225 28907 22286 17046 25362 17889 12926
 # "-"2 4 1 2 5000 7 2147483647 9 -3 388 -25 5 0 -2147483648
-# fix to be able to work with "-"2 ?
 # seq -2147483648 101 2147483647 | shuf -n 10 | tr '\n' ' '
+
+# Variable to facilitate project testing:
+CHECKER = checker_linux
 
 
 $(LIBFT):
@@ -111,7 +112,12 @@ fclean: clean
 re: fclean all
 
 # Testing Make targets to remove test artifacts and debug binary:
-tclean:
+debug: fclean dbclean $(NAME_DEBUG)
+	@valgrind --log-file=$(TEST_DIR)/valgrind_log.log --leak-check=full --show-leak-kinds=all -s \
+	$(NAME_DEBUG) $(TEST_ARGS) > $(TEST_DIR)/test_output.txt
+	@echo "⚙️  Debug run concluded. ✅\n"
+
+dbclean:
 	@rm -f $(TEST_DIR)/$(NAME_DEBUG)
 	@echo "⚙️  push_swap_db for debugging removed. 🗑️\n"
 	@rm -f $(OBJ_DIR_DB)/$(OBJS_DEBUG)
@@ -123,10 +129,35 @@ tclean:
 # 	@rm -fr $(TEST_DIR)
 	@echo "⚙️   Test files and directories removed. 🗑️"
 
-debug: fclean tclean $(NAME_DEBUG)
-	@valgrind --log-file=$(TEST_DIR)/valgrind_log.log --leak-check=full --show-leak-kinds=all -s \
-	$(NAME_DEBUG) $(TEST_ARGS) > $(TEST_DIR)/test_output.txt
-	@echo "⚙️  Test run concluded. ✅\n"
+# Project testing automation:
+test: re
+	@echo "Test 1:"
+	@ARG="1"; ./$(NAME) $$ARG | ./$(CHECKER) $$ARG
+	@echo "\n"
+	@echo "Test 2:"
+	@ARG="1 0"; ./$(NAME) $$ARG | ./$(CHECKER) $$ARG
+	@echo "\n"
+	@echo "Test 3"
+	@ARG="2 1 0"; ./$(NAME) $$ARG | ./$(CHECKER) $$ARG
+	@echo "\n"
+	@echo "Test 4:"
+	@ARG="3 0 2 1"; ./$(NAME) $$ARG | ./$(CHECKER) $$ARG
+	@echo "\n"
+	@echo "Test 5:"
+	@ARG="4 1 3 0 2"; ./$(NAME) $$ARG | ./$(CHECKER) $$ARG
+	@echo "\n"
+	@echo "Test 6:"
+	@ARG="5 1 4 2 3 0"; ./$(NAME) $$ARG | ./$(CHECKER) $$ARG
+	@echo "\n"
+	@echo "Test 7:"
+	@ARG="$$(seq -2147483648 101 2147483647 | shuf -n 100 | tr '\n' ' ' | sed 's/ $$//')"; \
+	./$(NAME) $$ARG | ./$(CHECKER) $$ARG
+	@echo "\n"
+	@echo "Test 8:"
+	@ARG="$$(seq -2147483648 101 2147483647 | shuf -n 500 | tr '\n' ' ' | sed 's/ $$//')"; \
+	./$(NAME) $$ARG | ./$(CHECKER) $$ARG
+	@echo "\n✅ All tests concluded.\n"
 
 
-.PHONY: all clean fclean re tclean debug # bonus
+.PHONY: all clean fclean re dbclean debug test # bonus
+
