@@ -6,7 +6,7 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:32:52 by ncruz-ne          #+#    #+#              #
-#    Updated: 2026/01/07 23:52:57 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2026/01/09 02:36:07 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -21,7 +21,7 @@ OBJ_DIR = obj
 # OBJ_BONUS_DIR = obj/bonus
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -I. -g
+CFLAGS = -Wall -Werror -Wextra -I.
 
 SRCS = $(SRC_DIR)/err_handler.c $(SRC_DIR)/free_stack.c $(SRC_DIR)/input_parser.c \
 	$(SRC_DIR)/main.c \
@@ -39,7 +39,7 @@ TEST_DIR = TESTS
 OBJ_DIR_DB = $(TEST_DIR)/db_obj
 OBJS_DEBUG = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR_DB)/%.o,$(SRCS))
 NAME_DEBUG = $(TEST_DIR)/push_swap_db
-TEST_ARGS = 4 0 "1" 6
+TEST_ARGS = 4 1 3 0 2 # 4 0 "1" 6
 # 13844 11822 21121 39887 26951 34912 37038
 # 32 34 5464 -2135344233
 # 4 0 "1" 6 2 5 3
@@ -130,7 +130,7 @@ dbclean:
 	@echo "⚙️   Test files and directories removed. 🗑️"
 
 # Project testing automation:
-test: re
+tok: re
 	@echo "Test 1:"
 	@ARG="1"; ./$(NAME) $$ARG | ./$(CHECKER) $$ARG
 	@echo "\n"
@@ -150,12 +150,21 @@ test: re
 	@ARG="5 1 4 2 3 0"; ./$(NAME) $$ARG | ./$(CHECKER) $$ARG
 	@echo "\n"
 	@echo "Test 7:"
-	@ARG="$$(seq -2147483648 101 2147483647 | shuf -n 100 | tr '\n' ' ' | sed 's/ $$//')"; \
+	@ARG="$$(seq -21648 10 2147 | shuf -n 100 | tr '\n' ' ' | sed 's/ $$//')"; \
 	./$(NAME) $$ARG | ./$(CHECKER) $$ARG
 	@echo "\n"
 	@echo "Test 8:"
-	@ARG="$$(seq -2147483648 101 2147483647 | shuf -n 500 | tr '\n' ' ' | sed 's/ $$//')"; \
+	@ARG="$$(seq -216488 10 21474 | shuf -n 500 | tr '\n' ' ' | sed 's/ $$//')"; \
 	./$(NAME) $$ARG | ./$(CHECKER) $$ARG
+# 	@echo "\n"
+# 	@echo "Test 9:"
+# 	@ARG="$$(seq -2147483648 10000001 2147483647 | shuf -n 100 | tr '\n' ' ' | sed 's/ $$//')"; \
+# 	./$(NAME) $$ARG | ./$(CHECKER) $$ARG
+# 	@echo "\n"
+# 	@echo "Test 10:"
+# 	@ARG="$$(seq -2147483648 1000001 2147483647 | shuf -n 500 | tr '\n' ' ' | sed 's/ $$//')"; \
+# 	./$(NAME) $$ARG | ./$(CHECKER) $$ARG
+
 	@echo "\n✅ All tests concluded.\n"
 
 

@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:46:06 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2026/01/07 23:44:55 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2026/01/08 23:51:53 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -85,16 +85,16 @@ void	count_stack_inversions(t_stack *stack);
 void	clear_b(t_stack *stack_a, t_stack *stack_b);
 int		sa_or_ss(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_count);
 int		min_to_head(t_stack *stack_a, t_stack *stack_b, int max_index, int moves_count);
-void	sort_max_five(t_stack *stack_a, t_stack *stack_b);
-void	radix(t_stack *stack_a, t_stack *stack_b);
 void	pick_algo(t_stack *stack_a, t_stack *stack_b);
-void	inv_check(t_stack *stack_a, t_stack *stack_b);
-void	pa_all(t_stack *stack_a, t_stack *stack_b);
-int		rotate_or_reverse(t_stack *stack, t_circlist *current, char stack_name);
-void	final_rot(t_stack *stack_a);
-int		ordered_not_sorted(t_stack *stack, char stack_name);
+void	sort_three(t_stack *stack_a);
+int	is_sorted(t_stack *stack_a, t_stack *stack_b);
+// void	sort_max_five(t_stack *stack_a, t_stack *stack_b);
+void	sort_five(t_stack *stack_a, t_stack *stack_b);
+void	radix(t_stack *stack_a, t_stack *stack_b);
 void	stack_index_size(t_stack *stack);
 // TESTER
+void	smart_rot(t_stack *stack_a, int target);
+void	rot_ordered(t_stack *stack_a);
 void	print_stack(t_stack *stack, char stack_name);
 
 #endif

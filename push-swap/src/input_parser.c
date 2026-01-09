@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:30:34 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2026/01/03 22:47:13 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2026/01/09 02:32:02 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -85,7 +85,7 @@ char	*av_to_str(int ac, char **av)
 	char	*temp_join2;
 	char	*str_args;
 
-	if (ac < 3 || !av)
+	if (ac < 2 || !av)
 		return (NULL); // or error()
 	row = 1;
 	temp_join1 = NULL;
