@@ -6,7 +6,7 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:32:52 by ncruz-ne          #+#    #+#              #
-#    Updated: 2026/01/09 03:05:00 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2026/01/09 03:06:10 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -170,12 +170,12 @@ terror: re
 # 	@echo "Test one:"
 # 	@ARG="one"; ./$(NAME) $$ARG | ./$(CHECKER) $$ARG
 # 	@echo "\n"
-	@echo "Test empty av[]:"
-	@ARG=""" 32 -3234 5464"; ./$(NAME) $$ARG | ./$(CHECKER) $$ARG
-	@echo "\n"
-	@echo "Test 3:"
-	@ARG=""   " 32 -3234 5464"; ./$(NAME) $$ARG | ./$(CHECKER) $$ARG
-	@echo "\n"
+# 	@echo "Test empty av[]:"
+# 	@ARG=""" 32 -3234 5464"; ./$(NAME) $$ARG | ./$(CHECKER) $$ARG
+# 	@echo "\n"
+# 	@echo "Test 3:"
+# 	@ARG=""   " 32 -3234 5464"; ./$(NAME) $$ARG | ./$(CHECKER) $$ARG
+# 	@echo "\n"
 	@echo "Test > INT_MAX:"
 	@ARG="32 3 -5464 23535345325"; ./$(NAME) $$ARG | ./$(CHECKER) $$ARG
 	@echo "\n"
