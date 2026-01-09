@@ -6,7 +6,7 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:32:52 by ncruz-ne          #+#    #+#              #
-#    Updated: 2026/01/09 02:36:07 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2026/01/09 03:05:00 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -164,9 +164,33 @@ tok: re
 # 	@echo "Test 10:"
 # 	@ARG="$$(seq -2147483648 1000001 2147483647 | shuf -n 500 | tr '\n' ' ' | sed 's/ $$//')"; \
 # 	./$(NAME) $$ARG | ./$(CHECKER) $$ARG
-
 	@echo "\n✅ All tests concluded.\n"
 
+terror: re
+# 	@echo "Test one:"
+# 	@ARG="one"; ./$(NAME) $$ARG | ./$(CHECKER) $$ARG
+# 	@echo "\n"
+	@echo "Test empty av[]:"
+	@ARG=""" 32 -3234 5464"; ./$(NAME) $$ARG | ./$(CHECKER) $$ARG
+	@echo "\n"
+	@echo "Test 3:"
+	@ARG=""   " 32 -3234 5464"; ./$(NAME) $$ARG | ./$(CHECKER) $$ARG
+	@echo "\n"
+	@echo "Test > INT_MAX:"
+	@ARG="32 3 -5464 23535345325"; ./$(NAME) $$ARG | ./$(CHECKER) $$ARG
+	@echo "\n"
+	@echo "Test < INT_MIN:"
+	@ARG="32 34 -5464 -21353442334"; ./$(NAME) $$ARG | ./$(CHECKER) $$ARG
+	@echo "\n"
+	@echo "Test dupe:"
+	@ARG="1 3687 997 -6 9876 9 4 6 584"; ./$(NAME) $$ARG | ./$(CHECKER) $$ARG
+	@echo "\n"
+	@echo "Test "+":
+	@ARG="-32 3 5464 "235353 + 213""; ./$(NAME) $$ARG | ./$(CHECKER) $$ARG
+	@echo "\n"
+	@echo "Test +:"
+	@ARG="-32 3 5464 235353 + 213"; ./$(NAME) $$ARG | ./$(CHECKER) $$ARG
+	@echo "\n✅ All tests concluded.\n"
 
-.PHONY: all clean fclean re dbclean debug test # bonus
+.PHONY: all clean fclean re dbclean debug tok terror # bonus
 
