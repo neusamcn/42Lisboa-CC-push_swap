@@ -6,60 +6,12 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:30:34 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2026/01/09 02:32:02 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2026/01/09 18:14:53 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "../include/push_swap.h"
 
-t_nodes	link_circlst(t_stack *stack, t_nodes nodes, int max_rows, int row)
-{
-	if (!stack->head)
-		stack->head = nodes.current;
-	if (row <= max_rows)
-	{
-		nodes.current->previous = nodes.previous;
-		if (nodes.previous)
-			nodes.previous->next = nodes.current;
-		nodes.previous = nodes.current;
-		if (row == max_rows)
-		{
-			nodes.current->next = stack->head;
-			stack->head->previous = nodes.current;
-		}
-	}
-	if (row < max_rows)
-		nodes.current->next = NULL;
-	return (nodes);
-}
-
-void	mk_circlst(t_stack *stack, int max_rows_cont, char **rows_cont)
-{
-	t_nodes	nodes;
-	int		row;
-
-	nodes.previous = NULL;
-	row = 0;
-	while (row < max_rows_cont)
-	{
-		nodes.current = malloc(sizeof(t_circlist));
-		if (!nodes.current)
-		{
-			free_err_stack(stack);
-			return ;
-		}
-		nodes.current->content = ft_atoi(rows_cont[row++]);
-		stack->max = is_stack_max(nodes.current->content, stack->max);
-		stack->min = is_stack_min(nodes.current->content, stack->min);
-		nodes.current->index = stack->size++;
-		nodes.current->rank = 0;
-		nodes.current->inversions = 0;
-		nodes = link_circlst(stack, nodes, max_rows_cont, row);
-		nodes.current = nodes.current->next;
-	}
-}
-
-// REQUIRES TESTING:
 t_stack	*mk_stack(int max_rows_cont, char **rows_cont)
 {
 	t_stack	*stack;
@@ -74,89 +26,62 @@ t_stack	*mk_stack(int max_rows_cont, char **rows_cont)
 	stack->sorted = 0;
 	mk_circlst(stack, max_rows_cont, rows_cont);
 	count_stack_inversions(stack);
-	rank(stack);
-	// printf("rank worked? %d\n", rank(stack)); // tester
+	rank(stack, (int)(stack->size) - 1);
 	return (stack);
 }
+
+char	*conc_str_args(char *temp_join1, char *str_args)
+{
+	char	*temp_join2;
+
+	temp_join2 = ft_strjoin(str_args, temp_join1);
+	free(str_args);
+	free(temp_join1);
+	return (temp_join2);
+}
+
 char	*av_to_str(int ac, char **av)
 {
-	int 	row;
+	int		row;
 	char	*temp_join1;
-	char	*temp_join2;
 	char	*str_args;
 
 	if (ac < 2 || !av)
-		return (NULL); // or error()
+		return (NULL);
 	row = 1;
 	temp_join1 = NULL;
 	str_args = NULL;
 	while (row < ac)
 	{
 		if (err_empty(av[row]) == -1)
-			error(); // or return (NULL);
+			error();
 		temp_join1 = ft_strjoin(av[row], " ");
 		if (temp_join1 && str_args)
-		{
-			temp_join2 = ft_strjoin(str_args, temp_join1);
-			free(str_args);
-			str_args = NULL;
-			str_args = ft_strdup(temp_join2);
-			free(temp_join2);
-			temp_join2 = NULL;
-		}
+			str_args = conc_str_args(temp_join1, str_args);
 		else
+		{
 			str_args = ft_strdup(temp_join1);
-		free(temp_join1);
-		temp_join1 = NULL;
+			free(temp_join1);
+		}
 		row++;
 	}
-	// tester 1
 	return (str_args);
 }
-// REQUIRES TESTING:
- // should it return a pointer?
+
 t_stack	*parser(int ac, char **av)
 {
-	int		li;
-	t_stack *stack_a;
-	char	*str_args;
-	char	**list_matrix;
+	t_stack		*stack_a;
+	char		*str_args;
+	t_matrix	matrix;
 
 	str_args = av_to_str(ac, av);
 	if (!str_args)
-		return (NULL); // or error();
-	list_matrix = ft_split_ps(str_args, " \f\n\r\t\v");
+		return (NULL);
+	matrix.list = ft_split_ps(str_args, " \f\n\r\t\v");
 	free(str_args);
 	str_args = NULL;
-	li = 0;
-	while (list_matrix[li])
-	{
-		if (err_not_nbr(list_matrix[li]) == -1
-			|| err_empty(list_matrix[li]) == -1
-			|| err_exceeds_int_limits(list_matrix[li]) == -1
-			|| err_not_unique(li, list_matrix) == -1)
-		{
-			while (list_matrix[li++])
-			freeall(list_matrix, (size_t)li);
-			error(); // or return (NULL);
-		}
-		li++;
-	}
-	stack_a = mk_stack(li, list_matrix);
-	freeall(list_matrix, (size_t)li);
+	matrix = matrix_err_free(matrix.list);
+	stack_a = mk_stack(matrix.li, matrix.list);
+	freeall(matrix.list, (size_t)matrix.li);
 	return (stack_a);
 }
-	// // tester 1:
-	// write(1, str_args, ft_strlen(str_args));
-	// write(1, "\n", 1);
-	// int	i = 0;
-	// char	c;
-	// while (list_matrix[i])
-	// {
-	// 	c = i + '0';
-	// 	write(1, &c, 1);
-	// 	write(1, ": ", 2);
-	// 	write(1, list_matrix[i], ft_strlen(list_matrix[i]));
-	// 	write(1, "\n", 1);
-	// 	i++;
-	// }

@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 19:21:19 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2026/01/06 23:27:22 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2026/01/09 14:03:47 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -37,26 +37,6 @@ int	swap(t_stack *stack)
 	return (0);
 }
 
-// int	swap(t_stack *stack, int max_index)
-// {
-// 	int	swap;
-
-// 	if (!stack->head || !stack->head->next || stack->size < 2)
-// 		return (-1);
-// 	swap = stack->head->content;
-// 	stack->head->content = stack->head->next->content;
-// 	stack->head->next->content = swap;
-// 	if (stack->head->content < swap && stack->head->index < max_index)
-// 	{
-// 		stack->head->inversions--;
-// 		stack->sorted--;
-// 	}
-// 	swap = stack->head->rank;
-// 	stack->head->rank = stack->head->next->rank;
-// 	stack->head->next->rank = swap;
-// 	return (0);
-// }
-
 int	sa(t_stack *stack_a)
 {
 	int	err_check;
@@ -79,7 +59,6 @@ int	sb(t_stack *stack_b)
 	return (0);
 }
 
-// REQUIRES TESTING:
 int	ss(t_stack *stack_a, t_stack *stack_b)
 {
 	int	err_check_a;

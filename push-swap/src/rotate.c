@@ -6,16 +6,14 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 19:35:20 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2026/01/06 23:52:14 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2026/01/09 14:01:38 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "../include/push_swap.h"
 
-// REQUIRES NORME:
 int	rotate(t_stack *stack)
 {
-
 	if (!stack->head || stack->head->previous == stack->head || stack->size < 2)
 		return (-1);
 	stack->head = stack->head->next;
@@ -46,7 +44,6 @@ int	rb(t_stack *stack_b)
 	return (0);
 }
 
-// REQUIRES TESTING:
 int	rr(t_stack *stack_a, t_stack *stack_b)
 {
 	int	err_check;

@@ -6,7 +6,7 @@
 #    By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:32:52 by ncruz-ne          #+#    #+#              #
-#    Updated: 2026/01/09 03:06:10 by ncruz-ne         ###   ########.fr        #
+#    Updated: 2026/01/09 17:44:17 by ncruz-ne         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -23,8 +23,8 @@ OBJ_DIR = obj
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -I.
 
-SRCS = $(SRC_DIR)/err_handler.c $(SRC_DIR)/free_stack.c $(SRC_DIR)/input_parser.c \
-	$(SRC_DIR)/main.c \
+SRCS = $(SRC_DIR)/err_handler.c $(SRC_DIR)/free.c $(SRC_DIR)/input_parser.c \
+	$(SRC_DIR)/main.c $(SRC_DIR)/circlst.c \
 	$(SRC_DIR)/rotate.c $(SRC_DIR)/reverse.c $(SRC_DIR)/sortedness.c \
 	$(SRC_DIR)/stack_min_max.c $(SRC_DIR)/stack_operations.c \
 	$(SRC_DIR)/swaps.c $(SRC_DIR)/pushes.c $(SRC_DIR)/ranker.c \
@@ -39,13 +39,35 @@ TEST_DIR = TESTS
 OBJ_DIR_DB = $(TEST_DIR)/db_obj
 OBJS_DEBUG = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR_DB)/%.o,$(SRCS))
 NAME_DEBUG = $(TEST_DIR)/push_swap_db
-TEST_ARGS = 4 1 3 0 2 # 4 0 "1" 6
+TEST_ARGS = 4 0 "1" 6 2 5 3
 # 13844 11822 21121 39887 26951 34912 37038
 # 32 34 5464 -2135344233
 # 4 0 "1" 6 2 5 3
+# -1 3 9 58 94
+# "2 43 5665634 " -23 345
+# "2"43 5665634 -3 345
 # 47641 9299 21173 5918 14069 23633 21426 20878 18485 16744 19102 43542 5543 21225 28907 22286 17046 25362 17889 12926
 # "-"2 4 1 2 5000 7 2147483647 9 -3 388 -25 5 0 -2147483648
-# seq -2147483648 101 2147483647 | shuf -n 10 | tr '\n' ' '
+
+# Errors:
+# ""
+# "" 32 -3234 5464
+# "   " 32 -3234 5464
+# break # Text. Expected: Error
+# 32 3 -5464 23535345325 # > INT_MAX. Expected: Error
+# 32 34 -5464 -21353442334 # < INT_MIN. Expected: Error
+
+# 42
+# 2 3
+# 2 1 0 # 2 or 3 instructions
+# 3 0 2 1
+# 4 1 3 0 2
+# 1 5 2 4 3 # max 12 instructions; kudos if 8
+# 5 1 4 2 3 0
+# seq -21648 10 2147 | shuf -n 100 | tr '\n' ' ' | sed 's/ $$//'
+# seq -216488 10 21474 | shuf -n 500 | tr '\n' ' ' | sed 's/ $$//'
+# seq -2147483648 10000001 2147483647 | shuf -n 100 | tr '\n' ' ' | sed 's/ $$//'
+# seq -2147483648 1000001 2147483647 | shuf -n 500 | tr '\n' ' ' | sed 's/ $$//'
 
 # Variable to facilitate project testing:
 CHECKER = checker_linux
@@ -132,7 +154,7 @@ dbclean:
 # Project testing automation:
 tok: re
 	@echo "Test 1:"
-	@ARG="1"; ./$(NAME) $$ARG | ./$(CHECKER) $$ARG
+	@ARG="42"; ./$(NAME) $$ARG | ./$(CHECKER) $$ARG
 	@echo "\n"
 	@echo "Test 2:"
 	@ARG="1 0"; ./$(NAME) $$ARG | ./$(CHECKER) $$ARG

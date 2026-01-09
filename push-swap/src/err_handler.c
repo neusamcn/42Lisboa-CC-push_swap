@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 23:48:41 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2026/01/09 02:26:54 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2026/01/09 17:48:39 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -82,5 +82,5 @@ int	err_empty(char *list_item)
 void	error(void)
 {
 	write(2, "Error\n", 6);
-	exit(EXIT_FAILURE); // yes? or only in main?
+	exit(EXIT_FAILURE);
 }

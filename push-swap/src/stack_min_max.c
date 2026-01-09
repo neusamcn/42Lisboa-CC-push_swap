@@ -6,7 +6,7 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 18:17:39 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/28 18:59:34 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2026/01/09 14:02:57 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -32,8 +32,7 @@ int	find_min(t_stack *stack)
 	t_circlist	*start;
 	int			min;
 
-	// worth it to keep as an err checker?
-	if (!stack || !stack->head/* || stack->head->previous->next != stack->head */)
+	if (!stack || !stack->head)
 		return (1);
 	current = stack->head;
 	start = stack->head;
@@ -54,8 +53,7 @@ int	find_max(t_stack *stack)
 	t_circlist	*start;
 	int			max;
 
-	// worth it to keep as an err checker?
-	if (!stack || !stack->head/*  || stack->head->previous->next != stack->head */)
+	if (!stack || !stack->head)
 		return (-1);
 	current = stack->head;
 	start = stack->head;

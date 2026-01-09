@@ -2,6 +2,9 @@ This project has been created as part of the 42 curriculum by ncruz-ne.
 
 Description
 The push_swap project is an algorithmic challenge: a set of integer values is provided as argument(s) for the created C program that must sort them in ascending order in stack a while only using a set of instructions that manipulate both stacks a and b.
+-1: error flags
+1: true
+0: false 
 
 Instructions to manipulate stacks:
 sa (swap a): Swap the first 2 elements at the top of stack a. Do nothing if there is only one element or none.

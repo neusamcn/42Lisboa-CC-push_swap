@@ -6,14 +6,12 @@
 /*   By: ncruz-ne <ncruz-ne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:45:50 by ncruz-ne          #+#    #+#             */
-/*   Updated: 2025/10/30 18:37:52 by ncruz-ne         ###   ########.fr       */
+/*   Updated: 2026/01/09 13:58:50 by ncruz-ne         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "../include/push_swap.h"
 
-// Consider generalising the function to pop any node of stack
-// REQUIRES TESTING:
 int	pop_stack_head(t_stack *stack, t_circlist *pop_node)
 {
 	// Save references before unlinking
@@ -64,8 +62,6 @@ int	pop_stack_head(t_stack *stack, t_circlist *pop_node)
 	return (0);
 }
 
-// Consider generalising the function to push any node of stack
-// REQUIRES TESTING:
 int	push_stack_head(t_stack *stack, t_circlist *push_node)
 {
 	t_circlist	*old_head;
@@ -90,7 +86,7 @@ int	push_stack_head(t_stack *stack, t_circlist *push_node)
 	{
 		old_head = stack->head;
 		head_previous = stack->head->previous;
-		push_node->next = old_head; 
+		push_node->next = old_head;
 		push_node->previous = head_previous;
 		old_head->previous = push_node;
 		head_previous->next = push_node;
@@ -103,7 +99,6 @@ int	push_stack_head(t_stack *stack, t_circlist *push_node)
 	return (0);
 }
 
-// Consider later to have only push(source, dest);
 int	pa(t_stack *stack_a, t_stack *stack_b)
 {
 	t_circlist	*push_node;
@@ -115,13 +110,12 @@ int	pa(t_stack *stack_a, t_stack *stack_b)
 		return (-1);
 	if (push_stack_head(stack_a, push_node) == -1)
 		return (-1);
-	stack_index_size(stack_a); // add due to radix
-	stack_index_size(stack_b); // add due to radix
+	stack_index_size(stack_a);
+	stack_index_size(stack_b);
 	write(1, "pa\n", 3);
 	return (0);
 }
 
-// Consider later to have only push(source, dest);
 int	pb(t_stack *stack_a, t_stack *stack_b)
 {
 	t_circlist	*push_node;
@@ -133,8 +127,8 @@ int	pb(t_stack *stack_a, t_stack *stack_b)
 		return (-1);
 	if (push_stack_head(stack_b, push_node) == -1)
 		return (-1);
-	stack_index_size(stack_a); // add due to radix
-	stack_index_size(stack_b); // add due to radix
+	stack_index_size(stack_a);
+	stack_index_size(stack_b);
 	write(1, "pb\n", 3);
 	return (0);
 }
