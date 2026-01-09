@@ -54,9 +54,9 @@ rrr : rra and rrb at the same time.
 
 This project can be compiled in 3 different ways:
 
-1. for debugging: make debug
-2. for defense with automated testing: make tok
-3. to simply compile the project: make all
+1. for debugging: `make debug`
+2. for defense with automated testing: `make tok`
+3. to simply compile the project: `make all`
 
 
 The debugging option will compile the project in a TEST directory as push_swap_db.
@@ -66,8 +66,8 @@ This file is optimised for debugging, which can be verified through the Makefile
 The automated testing uses the checker provided by 42 and will show test results in the terminal where the command will be executed.
 
 
-To delete all debugging and testing files use make tclean.
-To delete the main program, library and all associated object files use make fclean.
+To delete all debugging and testing files use `make tclean`.
+To delete the main program, library and all associated object files use `make fclean`.
 
 
 ## Resources
