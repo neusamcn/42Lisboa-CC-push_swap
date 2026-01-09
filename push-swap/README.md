@@ -55,9 +55,7 @@ rrr : rra and rrb at the same time.
 This project can be compiled in 3 different ways:
 
 1. for debugging: make debug
-
 2. for defense with automated testing: make tok
-
 3. to simply compile the project: make all
 
 
@@ -76,4 +74,6 @@ To delete the main program, library and all associated object files use make fcl
 
 AI was used as a support for research in order to find the most relevant resources to understand concepts related to this project.
 
-[radix video]
+The most interesting resource I found:
+https://youtu.be/Y95a-8oNqps?si=rY5EoXtRcRGczlEG
+
