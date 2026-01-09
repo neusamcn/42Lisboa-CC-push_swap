@@ -7,28 +7,44 @@ The push_swap project is an algorithmic challenge: a set of integer values is pr
 
 ### Instructions to manipulate stacks:
 sa (swap a): Swap the first 2 elements at the top of stack a. Do nothing if there is only one element or none.
+
 sb (swap b): Swap the first 2 elements at the top of stack b. Do nothing if there is only one element or none.
+
 ss : sa and sb at the same time.
+
 pa (push a): Take the first element at the top of b and put it at the top of a. Do nothing if b is empty.
+
 pb (push b): Take the first element at the top of a and put it at the top of b. Do nothing if a is empty.
+
 ra (rotate a): Shift up all elements of stack a by 1. The first element becomes the last one.
+
 rb (rotate b): Shift up all elements of stack b by 1. The first element becomes the last one.
+
 rr : ra and rb at the same time.
+
 rra (reverse rotate a): Shift down all elements of stack a by 1.
 The last element becomes the first one.
+
 rrb (reverse rotate b): Shift down all elements of stack b by 1. The last element becomes the first one.
+
 rrr : rra and rrb at the same time.
 
 ### Benchmarks:
 
 • For maximum project validation (100%) and eligibility for bonuses:
+
 ◦ Sort 100 random numbers in fewer than 700 operations.
+
 ◦ Sort 500 random numbers in no more than 5500 operations.
+
 • For minimal project validation (which implies a minimum grade of 80%), success can be obtained with different averages:
+
 ◦ 100 numbers in under 1100 operations and 500 numbers in under
 8500 operations
+
 ◦ 100 numbers in under 700 operations and 500 numbers in under
 11500 operations
+
 ◦ 100 numbers in under 1300 operations and 500 numbers in under
 5500 operations
 
@@ -37,14 +53,20 @@ rrr : rra and rrb at the same time.
 ## Instructions
 
 This project can be compiled in 3 different ways:
+
 1. for debugging: make debug
+
 2. for defense with automated testing: make tok
+
 3. to simply compile the project: make all
+
 
 The debugging option will compile the project in a TEST directory as push_swap_db.
 This file is optimised for debugging, which can be verified through the Makefile.
 
+
 The automated testing uses the checker provided by 42 and will show test results in the terminal where the command will be executed.
+
 
 To delete all debugging and testing files use make tclean.
 To delete the main program, library and all associated object files use make fclean.
