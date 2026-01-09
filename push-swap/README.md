@@ -32,6 +32,7 @@ rrr : rra and rrb at the same time.
 ### Benchmarks:
 
 • For maximum project validation (100%) and eligibility for bonuses:
+
 ◦ Sort 100 random numbers in fewer than 700 operations.
 
 ◦ Sort 500 random numbers in no more than 5500 operations.
